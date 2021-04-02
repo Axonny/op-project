@@ -1,16 +1,34 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
-    // internal int health;
-    // internal int maxHealth;
+    [SerializeField] private int health;
+    [SerializeField] private int maxHealth;
     [SerializeField] private int speed;
+    
+    [SerializeField] private Slider healthBar;
     
     private SpriteRenderer sprite;
     private new Rigidbody2D rigidbody;
     
     private InputMaster input;
     private Vector2 movement;
+
+    internal int Health
+    {
+        get => health;
+        set
+        {
+            if (value < 0) 
+                Debug.Log("death");
+            
+            health = value;
+            if (health > maxHealth)
+                health = maxHealth;
+            healthBar.value = value;
+        }
+    }
 
     private void Awake()
     {
@@ -19,6 +37,7 @@ public class Player : MonoBehaviour
         rigidbody = gameObject.GetComponent<Rigidbody2D>();
         input.Player.Move.performed += context => Move(context.ReadValue<Vector2>());
         input.Player.Move.canceled += context => movement = Vector3.zero;
+        Health = maxHealth;
     }
 
     private void Update()
