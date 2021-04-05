@@ -1436,6 +1436,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1009691157, guid: 7d98d02eeac5551408ed2cbbf06e633a, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1535701055, guid: 7d98d02eeac5551408ed2cbbf06e633a, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1663375450498424170, guid: 7d98d02eeac5551408ed2cbbf06e633a,
         type: 3}
       propertyPath: m_RootOrder
@@ -1514,6 +1522,16 @@ PrefabInstance:
     - target: {fileID: 1663375450498424173, guid: 7d98d02eeac5551408ed2cbbf06e633a,
         type: 3}
       propertyPath: m_Name
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 1663375450498424173, guid: 7d98d02eeac5551408ed2cbbf06e633a,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1663375450498424173, guid: 7d98d02eeac5551408ed2cbbf06e633a,
+        type: 3}
+      propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
     m_RemovedComponents: []
