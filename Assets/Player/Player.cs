@@ -11,6 +11,7 @@ public class Player : MonoBehaviour
     [SerializeField] private Camera mainCamera;
 
     [SerializeField] private int damage;
+    [SerializeField] private float attackDuration;
     [SerializeField] private Transform attackPoint;
     [SerializeField] private Transform rotatePoint;
     [SerializeField] private float circleRadius;
@@ -21,6 +22,7 @@ public class Player : MonoBehaviour
     
     private InputMaster input;
     private Vector2 movement;
+    private float lastTimeAttack;
 
     internal int Health
     {
@@ -59,6 +61,9 @@ public class Player : MonoBehaviour
 
     private void Attack()
     {
+        if(Time.time - lastTimeAttack < attackDuration)
+            return;
+        lastTimeAttack = Time.time;
         var enemies = Physics2D.OverlapCircleAll(attackPoint.position, circleRadius, enemyLayers);
         foreach (var enemy in enemies)
         {
