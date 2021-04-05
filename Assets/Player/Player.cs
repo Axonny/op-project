@@ -10,6 +10,7 @@ public class Player : MonoBehaviour
     [SerializeField] private Slider healthBar;
     [SerializeField] private Camera mainCamera;
 
+    [SerializeField] private int damage;
     [SerializeField] private Transform attackPoint;
     [SerializeField] private Transform rotatePoint;
     [SerializeField] private float circleRadius;
@@ -62,6 +63,7 @@ public class Player : MonoBehaviour
         foreach (var enemy in enemies)
         {
             Debug.Log("hit");
+            enemy.GetComponent<Enemy>().GetDamage(damage);
         }
     }
     

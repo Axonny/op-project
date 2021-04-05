@@ -1,18 +1,27 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private int health;
+    [SerializeField] private int maxHealth = 100;
+
+    private void Awake()
     {
-        
+        health = maxHealth;
     }
 
-    // Update is called once per frame
-    void Update()
+    internal void GetDamage(int damage)
     {
-        
+        if (damage < 0)
+            throw new ArgumentException();
+        health -= damage;
+        if (health <= 0)
+        {
+            Debug.Log("Enemy died");
+            Destroy(gameObject);
+        }
     }
 }
