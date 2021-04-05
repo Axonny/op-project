@@ -8,6 +8,12 @@ public class Player : MonoBehaviour
     [SerializeField] private int speed;
     
     [SerializeField] private Slider healthBar;
+    [SerializeField] private Camera mainCamera;
+
+    [SerializeField] private Transform attackPoint;
+    [SerializeField] private Transform rotatePoint;
+    [SerializeField] private float circleRadius;
+    [SerializeField] private LayerMask enemyLayers;
     
     private SpriteRenderer sprite;
     private new Rigidbody2D rigidbody;
@@ -37,12 +43,26 @@ public class Player : MonoBehaviour
         rigidbody = gameObject.GetComponent<Rigidbody2D>();
         input.Player.Move.performed += context => Move(context.ReadValue<Vector2>());
         input.Player.Move.canceled += context => movement = Vector3.zero;
+        input.Player.Shot.performed += context => Attack();
         Health = maxHealth;
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         rigidbody.velocity = movement * speed;
+
+        var vector = mainCamera.ScreenToWorldPoint(input.Mouse.Move.ReadValue<Vector2>()) - transform.position;
+        var angle = Mathf.Atan2(vector.y, vector.x);
+        rotatePoint.rotation = Quaternion.Euler(0,0, angle * Mathf.Rad2Deg - 90f);
+    }
+
+    private void Attack()
+    {
+        var enemies = Physics2D.OverlapCircleAll(attackPoint.position, circleRadius, enemyLayers);
+        foreach (var enemy in enemies)
+        {
+            Debug.Log("hit");
+        }
     }
     
     private void Move(Vector2 inputMovement)
