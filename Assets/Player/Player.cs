@@ -3,7 +3,7 @@ using Interfaces;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Player : MonoBehaviour, IPlayer
+public class Player :Singleton<Player>, IPlayer
 {
     [SerializeField] private int health;
     [SerializeField] private int maxHealth;
@@ -50,7 +50,7 @@ public class Player : MonoBehaviour, IPlayer
         input.Player.Move.performed += context => Move(context.ReadValue<Vector2>());
         input.Player.Move.canceled += context => movement = Vector3.zero;
         input.Player.Shot.performed += context => Attack();
-        input.Player.Action.performed += context => kek();
+        input.Player.Action.performed += context => kek?.Invoke();
         Health = maxHealth;
     }
 
