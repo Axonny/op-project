@@ -1,4 +1,5 @@
-﻿using Interfaces;
+﻿using System;
+using Interfaces;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -17,6 +18,7 @@ public class Player : MonoBehaviour, IPlayer
     [SerializeField] private Transform rotatePoint;
     [SerializeField] private float circleRadius;
     [SerializeField] private LayerMask enemyLayers;
+    public event Action kek;
     
     private SpriteRenderer sprite;
     private new Rigidbody2D rigidbody;
@@ -48,6 +50,7 @@ public class Player : MonoBehaviour, IPlayer
         input.Player.Move.performed += context => Move(context.ReadValue<Vector2>());
         input.Player.Move.canceled += context => movement = Vector3.zero;
         input.Player.Shot.performed += context => Attack();
+        input.Player.Action.performed += context => kek();
         Health = maxHealth;
     }
 
