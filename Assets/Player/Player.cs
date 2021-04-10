@@ -1,7 +1,8 @@
-﻿using UnityEngine;
+﻿using Interfaces;
+using UnityEngine;
 using UnityEngine.UI;
 
-public class Player : MonoBehaviour
+public class Player : MonoBehaviour, IPlayer
 {
     [SerializeField] private int health;
     [SerializeField] private int maxHealth;
@@ -59,7 +60,7 @@ public class Player : MonoBehaviour
         rotatePoint.rotation = Quaternion.Euler(0,0, angle * Mathf.Rad2Deg - 90f);
     }
 
-    private void Attack()
+    public void Attack()
     {
         if(Time.time - lastTimeAttack < attackDuration)
             return;
@@ -71,8 +72,13 @@ public class Player : MonoBehaviour
             enemy.GetComponent<Enemy>().GetDamage(damage);
         }
     }
-    
-    private void Move(Vector2 inputMovement)
+
+    public void Dead()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public void Move(Vector2 inputMovement)
     {
         movement = inputMovement;
         if (inputMovement.x != 0)

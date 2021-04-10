@@ -1,13 +1,11 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
     private int health;
     [SerializeField] private int maxHealth = 100;
-
+    
     private void Awake()
     {
         health = maxHealth;
