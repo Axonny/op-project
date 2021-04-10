@@ -1,9 +1,12 @@
 using System;
+using DialogueSystem;
+using DialogueSystem.GraphData;
 using Interfaces;
 using UnityEngine;
 
 public class Npc : MonoBehaviour, INpc
 {
+    public DialogueContainer dialogue;
     private void Awake()
     {
     }
@@ -20,6 +23,7 @@ public class Npc : MonoBehaviour, INpc
 
     public void Talk()
     {
+        DialogueManager.Instance.StartDialogue(dialogue);
         Debug.Log("Are you trying to speak with me?");
     }
 

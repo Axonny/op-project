@@ -1,0 +1,7 @@
+DialogueNode #title{
+    background-color: green;
+}
+
+EventNode #title{
+    background-color: darkred;
+}
