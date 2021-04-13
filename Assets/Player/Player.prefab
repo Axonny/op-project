@@ -264,11 +264,11 @@ MonoBehaviour:
   speed: 1
   healthBar: {fileID: 0}
   mainCamera: {fileID: 0}
-  damage: 40
-  attackDuration: 2
+  damagePower: 0
+  attackDuration: 0.5
   attackPoint: {fileID: 1009691158}
   rotatePoint: {fileID: 1535701056}
-  circleRadius: 0.2
+  circleRadius: 0.1
   enemyLayers:
     serializedVersion: 2
     m_Bits: 64

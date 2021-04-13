@@ -6,6 +6,7 @@ namespace Interfaces
     {
         void Move(Vector2 inputMovement);
         void Attack();
+        void GetDamage(int damage);
         void Dead();
     }
 }

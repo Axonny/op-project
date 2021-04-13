@@ -13,7 +13,7 @@ public class Player :Singleton<Player>, IPlayer
     [SerializeField] private Slider healthBar;
     [SerializeField] private Camera mainCamera;
 
-    [SerializeField] private int damage;
+    [SerializeField] private int damagePower;
     [SerializeField] private float attackDuration;
     [SerializeField] private Transform attackPoint;
     [SerializeField] private Transform rotatePoint;
@@ -33,6 +33,7 @@ public class Player :Singleton<Player>, IPlayer
 
     private int Health
     {
+        get => health;
         set
         {
             if (value < 0) 
@@ -77,7 +78,19 @@ public class Player :Singleton<Player>, IPlayer
         foreach (var enemy in enemies)
         {
             Debug.Log("hit");
-            enemy.GetComponent<Enemy>().GetDamage(damage);
+            enemy.GetComponent<Enemy>().GetDamage(damagePower);
+        }
+    }
+
+    public void GetDamage(int damage)
+    {
+        if (damage < 0)
+            throw new ArgumentException();
+        Health -= damage;
+        if (health <= 0)
+        {
+            Debug.Log("Player died");
+            Destroy(gameObject);
         }
     }
 

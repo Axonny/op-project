@@ -16,24 +16,26 @@ MonoBehaviour:
     guid: 0920005f-78d6-45f7-87b4-c02ab31d8556
     targetNodeGuid: 2df8ead5-292e-48fa-9dde-0697d9ee967d
   dialogueNodes:
-  - guid: f6b2c783-449b-4d94-9235-5baa3737f837
-    position: {x: 734, y: 300}
-    outputPorts:
-    - portName: Choice 1
-      targetNodeGuid: 
-    dialogueText: Dialogue Node
-  - guid: 17020547-10d9-4b31-a198-78883f65acd4
-    position: {x: 748, y: 155}
-    outputPorts:
-    - portName: Choice 1
-      targetNodeGuid: 
-    dialogueText: Dialogue Node
   - guid: 2df8ead5-292e-48fa-9dde-0697d9ee967d
-    position: {x: 354, y: 196}
+    position: {x: 260, y: 200.8}
     outputPorts:
-    - portName: poboltat'
+    - portName: Hi
       targetNodeGuid: 17020547-10d9-4b31-a198-78883f65acd4
-    - portName: nichego
-      targetNodeGuid: f6b2c783-449b-4d94-9235-5baa3737f837
-    dialogueText: ok i cho tebye nado
+    - portName: Bye
+      targetNodeGuid: 
+    dialogueText: Hi
+  - guid: 17020547-10d9-4b31-a198-78883f65acd4
+    position: {x: 501.6, y: 129.6}
+    outputPorts:
+    - portName: Ok
+      targetNodeGuid: dffd4d38-d319-4d6d-86f1-d4f992d74d7e
+    - portName: Nope
+      targetNodeGuid: 
+    dialogueText: Can you kill 5 monsters?
+  - guid: dffd4d38-d319-4d6d-86f1-d4f992d74d7e
+    position: {x: 854.4, y: 104.8}
+    outputPorts:
+    - portName: Bye
+      targetNodeGuid: 
+    dialogueText: Thanks! Bye!
   eventNodes: []
