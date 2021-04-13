@@ -25,17 +25,27 @@ MonoBehaviour:
       targetNodeGuid: 
     dialogueText: Hi
   - guid: 17020547-10d9-4b31-a198-78883f65acd4
-    position: {x: 501.6, y: 129.6}
+    position: {x: 501.6, y: 129.59999}
     outputPorts:
     - portName: Ok
       targetNodeGuid: dffd4d38-d319-4d6d-86f1-d4f992d74d7e
     - portName: Nope
-      targetNodeGuid: 
+      targetNodeGuid: 78397b3a-d45f-4bb2-b95c-4ac1fb092550
     dialogueText: Can you kill 5 monsters?
-  - guid: dffd4d38-d319-4d6d-86f1-d4f992d74d7e
-    position: {x: 854.4, y: 104.8}
+  - guid: 78397b3a-d45f-4bb2-b95c-4ac1fb092550
+    position: {x: 813.6, y: 253.59999}
     outputPorts:
-    - portName: Bye
-      targetNodeGuid: 
+    - portName: Ok, I help
+      targetNodeGuid: dffd4d38-d319-4d6d-86f1-d4f992d74d7e
+    - portName: I said no
+      targetNodeGuid: 29f9bbb2-ea14-468a-b755-6f5c5933f387
+    dialogueText: Damn. Can you help me anyway?)
+  - guid: dffd4d38-d319-4d6d-86f1-d4f992d74d7e
+    position: {x: 1172.8, y: 47.2}
+    outputPorts: []
     dialogueText: Thanks! Bye!
+  - guid: 29f9bbb2-ea14-468a-b755-6f5c5933f387
+    position: {x: 1200.8, y: 347.2}
+    outputPorts: []
+    dialogueText: Sorry...
   eventNodes: []
