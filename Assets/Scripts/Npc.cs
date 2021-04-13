@@ -7,9 +7,6 @@ using UnityEngine;
 public class Npc : MonoBehaviour, INpc
 {
     public DialogueContainer dialogue;
-    private void Awake()
-    {
-    }
 
     public void GiveQuest()
     {
@@ -24,18 +21,17 @@ public class Npc : MonoBehaviour, INpc
     public void Talk()
     {
         DialogueManager.Instance.StartDialogue(dialogue);
-        Debug.Log("Are you trying to speak with me?");
     }
 
     public void PlayerEnter(bool flag)
     {
         if (flag)
         {
-            Player.Instance.kek += Talk;
+            Player.Instance.UseAction += Talk;
         }
         else
         {
-            Player.Instance.kek -= Talk;
+            Player.Instance.UseAction -= Talk;
         }
     }
 }

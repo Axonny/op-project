@@ -1,4 +1,5 @@
 ﻿using System;
+using DialogueSystem;
 using Interfaces;
 using UnityEngine;
 using UnityEngine.UI;
@@ -18,18 +19,20 @@ public class Player :Singleton<Player>, IPlayer
     [SerializeField] private Transform rotatePoint;
     [SerializeField] private float circleRadius;
     [SerializeField] private LayerMask enemyLayers;
-    public event Action kek;
+    public event Action UseAction;
     
     private SpriteRenderer sprite;
     private new Rigidbody2D rigidbody;
+    private Animator animator;
     
     private InputMaster input;
     private Vector2 movement;
     private float lastTimeAttack;
+    
+    private static readonly int AttackAnimation = Animator.StringToHash("Attack");
 
-    internal int Health
+    private int Health
     {
-        get => health;
         set
         {
             if (value < 0) 
@@ -47,10 +50,11 @@ public class Player :Singleton<Player>, IPlayer
         input = new InputMaster();
         sprite = gameObject.GetComponent<SpriteRenderer>();
         rigidbody = gameObject.GetComponent<Rigidbody2D>();
+        animator = gameObject.GetComponent<Animator>();
         input.Player.Move.performed += context => Move(context.ReadValue<Vector2>());
         input.Player.Move.canceled += context => movement = Vector3.zero;
         input.Player.Shot.performed += context => Attack();
-        input.Player.Action.performed += context => kek?.Invoke();
+        input.Player.Action.performed += context => UseAction?.Invoke();
         Health = maxHealth;
     }
 
@@ -65,9 +69,10 @@ public class Player :Singleton<Player>, IPlayer
 
     public void Attack()
     {
-        if(Time.time - lastTimeAttack < attackDuration)
+        if(Time.time - lastTimeAttack < attackDuration || DialogueManager.Instance.isTalk)
             return;
         lastTimeAttack = Time.time;
+        animator.SetTrigger(AttackAnimation);
         var enemies = Physics2D.OverlapCircleAll(attackPoint.position, circleRadius, enemyLayers);
         foreach (var enemy in enemies)
         {
@@ -78,11 +83,13 @@ public class Player :Singleton<Player>, IPlayer
 
     public void Dead()
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public void Move(Vector2 inputMovement)
     {
+        if (DialogueManager.Instance.isTalk)
+            return;
         movement = inputMovement;
         if (inputMovement.x != 0)
             sprite.flipX = inputMovement.x < 0;

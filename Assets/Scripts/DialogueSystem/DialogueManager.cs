@@ -15,6 +15,8 @@ namespace DialogueSystem
         public Transform buttonParent;
         public GameObject continueButton;
         public DialogueContainer dialogue;
+
+        public bool isTalk;
         
         private Coroutine typing;
         [SerializeField] private GameObject buttonPrefab;
@@ -22,6 +24,7 @@ namespace DialogueSystem
         public void StartDialogue(DialogueContainer dialogueContainer)
         {
             dialogue = dialogueContainer;
+            isTalk = true;
 
             NextSentence(dialogue.entryPoint.targetNodeGuid);
             dialogueWindow.SetActive(true);
@@ -31,6 +34,7 @@ namespace DialogueSystem
         {
             dialogueWindow.SetActive(false);
             continueButton.SetActive(false);
+            isTalk = false;
         }
 
         private void NextSentence(string guid)
