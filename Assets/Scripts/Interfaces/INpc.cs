@@ -1,9 +1,10 @@
-﻿namespace Interfaces
+﻿using ScriptableObjects;
+
+namespace Interfaces
 {
     public interface INpc
     {
-        void GiveQuest();
-        void CheckQuestCondition();
+        void GiveQuest(Quest quest);
         void Talk();
     }
 }

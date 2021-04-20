@@ -2,11 +2,8 @@
 
 namespace Interfaces
 {
-    internal interface IPlayer
+    internal interface IPlayer : IUnit, IMove
     {
-        void Move(Vector2 inputMovement);
-        void Attack();
-        void GetDamage(int damage);
-        void Dead();
+        
     }
 }

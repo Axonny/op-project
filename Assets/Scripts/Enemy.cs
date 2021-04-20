@@ -2,7 +2,7 @@ using System;
 using Interfaces;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour, IEnemy
+public class Enemy : MonoBehaviour, IEnemy, IMove
 {
     private int health;
     [SerializeField] private int maxHealth = 100;
@@ -35,7 +35,12 @@ public class Enemy : MonoBehaviour, IEnemy
             Attack();
     }
 
-    internal void GetDamage(int damage)
+    public void Move(Vector2 movement)
+    {
+        throw new NotImplementedException();
+    }
+
+    public void GetDamage(int damage)
     {
         if (damage < 0)
             throw new ArgumentException();
@@ -44,8 +49,7 @@ public class Enemy : MonoBehaviour, IEnemy
         animator.SetInteger(HealthProperty, health);
         if (health <= 0)
         {
-            Debug.Log("Enemy died");
-            Destroy(gameObject, deadTime);
+            Dead();
         }
     }
 
@@ -55,12 +59,12 @@ public class Enemy : MonoBehaviour, IEnemy
             return;
         lastTimeAttack = Time.time;
         animator.SetTrigger(AttackAnimation);
-        var player = Physics2D.OverlapCircle(attackPoint.position, circleRadius, playerLayer);
+        var player = Physics.FindCollider(attackPoint.position, circleRadius, playerLayer);
         if (player != null)
         {
             player.GetComponent<Player>().GetDamage(damagePower);
         }
-    }
+    }    
 
     public void Follow(Vector2 playerPosition)
     {
@@ -69,6 +73,7 @@ public class Enemy : MonoBehaviour, IEnemy
 
     public void Dead()
     {
-        throw new NotImplementedException();
+        Debug.Log("Enemy died");
+        Destroy(gameObject, deadTime);
     }
 }

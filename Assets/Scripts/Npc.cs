@@ -2,20 +2,16 @@ using System;
 using DialogueSystem;
 using DialogueSystem.GraphData;
 using Interfaces;
+using ScriptableObjects;
 using UnityEngine;
 
 public class Npc : MonoBehaviour, INpc
 {
     public DialogueContainer dialogue;
 
-    public void GiveQuest()
+    public void GiveQuest(Quest quest)
     {
-        throw new NotImplementedException();
-    }
-
-    public void CheckQuestCondition()
-    {
-        throw new NotImplementedException();
+        QuestSystem.Instance.AddQuest(quest);
     }
 
     public void Talk()
@@ -27,11 +23,11 @@ public class Npc : MonoBehaviour, INpc
     {
         if (flag)
         {
-            Player.Instance.UseAction += Talk;
+            InputSystem.Instance.UseAction += Talk;
         }
         else
         {
-            Player.Instance.UseAction -= Talk;
+            InputSystem.Instance.UseAction -= Talk;
         }
     }
 }

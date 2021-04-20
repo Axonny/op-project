@@ -2,10 +2,8 @@
 
 namespace Interfaces
 {
-    public interface IEnemy
+    public interface IEnemy : IUnit
     {
-        void Attack();
         void Follow(Vector2 playerPosition);
-        void Dead();
     }
 }

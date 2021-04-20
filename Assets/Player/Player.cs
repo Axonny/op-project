@@ -19,8 +19,7 @@ public class Player :Singleton<Player>, IPlayer
     [SerializeField] private Transform rotatePoint;
     [SerializeField] private float circleRadius;
     [SerializeField] private LayerMask enemyLayers;
-    public event Action UseAction;
-    
+
     private SpriteRenderer sprite;
     private new Rigidbody2D rigidbody;
     private Animator animator;
@@ -36,9 +35,6 @@ public class Player :Singleton<Player>, IPlayer
         get => health;
         set
         {
-            if (value < 0) 
-                Debug.Log("death");
-            
             health = value;
             if (health > maxHealth)
                 health = maxHealth;
@@ -46,26 +42,23 @@ public class Player :Singleton<Player>, IPlayer
         }
     }
 
-    private void Awake()
+    private void Start()
     {
-        input = new InputMaster();
+        input = InputSystem.Instance.Input;
         sprite = gameObject.GetComponent<SpriteRenderer>();
         rigidbody = gameObject.GetComponent<Rigidbody2D>();
         animator = gameObject.GetComponent<Animator>();
         input.Player.Move.performed += context => Move(context.ReadValue<Vector2>());
         input.Player.Move.canceled += context => movement = Vector3.zero;
         input.Player.Shot.performed += context => Attack();
-        input.Player.Action.performed += context => UseAction?.Invoke();
         Health = maxHealth;
     }
 
     private void FixedUpdate()
     {
         rigidbody.velocity = movement * speed;
-
-        var vector = mainCamera.ScreenToWorldPoint(input.Mouse.Move.ReadValue<Vector2>()) - transform.position;
-        var angle = Mathf.Atan2(vector.y, vector.x);
-        rotatePoint.rotation = Quaternion.Euler(0,0, angle * Mathf.Rad2Deg - 90f);
+        
+        rotatePoint.rotation = Quaternion.Euler(0,0, Physics.GetAngleToMouse(mainCamera,transform.position));
     }
 
     public void Attack()
@@ -74,7 +67,7 @@ public class Player :Singleton<Player>, IPlayer
             return;
         lastTimeAttack = Time.time;
         animator.SetTrigger(AttackAnimation);
-        var enemies = Physics2D.OverlapCircleAll(attackPoint.position, circleRadius, enemyLayers);
+        var enemies = Physics.FindColliders(attackPoint.position, circleRadius, enemyLayers);
         foreach (var enemy in enemies)
         {
             Debug.Log("hit");
@@ -89,14 +82,14 @@ public class Player :Singleton<Player>, IPlayer
         Health -= damage;
         if (health <= 0)
         {
-            Debug.Log("Player died");
-            Destroy(gameObject);
+            Dead();
         }
     }
 
     public void Dead()
     {
-        throw new NotImplementedException();
+        Debug.Log("Player died");
+        Destroy(gameObject);
     }
 
     public void Move(Vector2 inputMovement)
@@ -106,15 +99,5 @@ public class Player :Singleton<Player>, IPlayer
         movement = inputMovement;
         if (inputMovement.x != 0)
             sprite.flipX = inputMovement.x < 0;
-    }
-    
-    private void OnEnable()
-    {
-        input.Enable();
-    }
-
-    private void OnDisable()
-    {
-        input.Disable();
     }
 }
