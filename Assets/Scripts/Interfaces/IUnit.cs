@@ -2,8 +2,11 @@
 {
     public interface IUnit
     {
-        void GetDamage(int damage);
+        int Health {get; set;}
+        int Level {get; set;}
+        //int Experience {get; set;}
+        void GetDamage(int damage, IUnit unit);
         void Attack();
-        void Dead();
+        void Dead(IUnit unit);
     }
 }

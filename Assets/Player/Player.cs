@@ -2,19 +2,16 @@
 using DialogueSystem;
 using Interfaces;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class Player :Singleton<Player>, IPlayer
 {
     [SerializeField] private int health;
     [SerializeField] private int maxHealth;
     [SerializeField] private int speed;
-    
-    [SerializeField] private Slider healthBar;
-    [SerializeField] private Camera mainCamera;
-
     [SerializeField] private int damagePower;
     [SerializeField] private float attackDuration;
+    
+    [SerializeField] private Camera mainCamera;
     [SerializeField] private Transform attackPoint;
     [SerializeField] private Transform rotatePoint;
     [SerializeField] private float circleRadius;
@@ -23,14 +20,16 @@ public class Player :Singleton<Player>, IPlayer
     private SpriteRenderer sprite;
     private new Rigidbody2D rigidbody;
     private Animator animator;
-    
     private InputMaster input;
     private Vector2 movement;
     private float lastTimeAttack;
     
     private static readonly int AttackAnimation = Animator.StringToHash("Attack");
 
-    private int Health
+
+    public int Level { get; set; }
+
+    public int Health
     {
         get => health;
         set
@@ -38,7 +37,7 @@ public class Player :Singleton<Player>, IPlayer
             health = value;
             if (health > maxHealth)
                 health = maxHealth;
-            healthBar.value = value;
+            UISystem.Instance.healthBar.value = health;
         }
     }
 
@@ -71,22 +70,22 @@ public class Player :Singleton<Player>, IPlayer
         foreach (var enemy in enemies)
         {
             Debug.Log("hit");
-            enemy.GetComponent<Enemy>().GetDamage(damagePower);
+            enemy.GetComponent<Enemy>().GetDamage(damagePower, this);
         }
     }
 
-    public void GetDamage(int damage)
+    public void GetDamage(int damage, IUnit enemy)
     {
         if (damage < 0)
             throw new ArgumentException();
         Health -= damage;
         if (health <= 0)
         {
-            Dead();
+            Dead(enemy);
         }
     }
 
-    public void Dead()
+    public void Dead(IUnit enemy)
     {
         Debug.Log("Player died");
         Destroy(gameObject);

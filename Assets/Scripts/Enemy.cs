@@ -9,7 +9,9 @@ public class Enemy : MonoBehaviour, IEnemy, IMove
     public float deadTime;
 
     public bool isAlwaysAttack; // to delete
-    
+
+    public int level = 1;
+    public int experience;
     [SerializeField] private int damagePower;
     [SerializeField] private float attackDuration;
     [SerializeField] private Transform attackPoint;
@@ -22,11 +24,18 @@ public class Enemy : MonoBehaviour, IEnemy, IMove
     private static readonly int HitAnimation = Animator.StringToHash("Hit");
     private static readonly int HealthProperty = Animator.StringToHash("Health");
     private static readonly int AttackAnimation = Animator.StringToHash("Attack");
+    
+    private event Action<IEnemy, IUnit> death;
+    
+    public int Health { get; set; }
+    public int Level { get; set; }
 
+    
     private void Awake()
     {
         health = maxHealth;
         animator = gameObject.GetComponent<Animator>();
+        death += GameManager.Instance.proceedEnemyDeath;
     }
 
     private void FixedUpdate()
@@ -39,8 +48,7 @@ public class Enemy : MonoBehaviour, IEnemy, IMove
     {
         throw new NotImplementedException();
     }
-
-    public void GetDamage(int damage)
+    public void GetDamage(int damage, IUnit player)
     {
         if (damage < 0)
             throw new ArgumentException();
@@ -49,7 +57,7 @@ public class Enemy : MonoBehaviour, IEnemy, IMove
         animator.SetInteger(HealthProperty, health);
         if (health <= 0)
         {
-            Dead();
+            Dead(player);
         }
     }
 
@@ -62,7 +70,7 @@ public class Enemy : MonoBehaviour, IEnemy, IMove
         var player = Physics.FindCollider(attackPoint.position, circleRadius, playerLayer);
         if (player != null)
         {
-            player.GetComponent<Player>().GetDamage(damagePower);
+            player.GetComponent<Player>().GetDamage(damagePower, this);
         }
     }    
 
@@ -71,9 +79,11 @@ public class Enemy : MonoBehaviour, IEnemy, IMove
         throw new NotImplementedException();
     }
 
-    public void Dead()
+    public void Dead(IUnit player)
     {
         Debug.Log("Enemy died");
+        ExperienceSystem.Instance.CalculateExperience(this);
         Destroy(gameObject, deadTime);
+        death?.Invoke(this, player);
     }
 }
