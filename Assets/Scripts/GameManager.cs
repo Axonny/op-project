@@ -1,4 +1,5 @@
 ﻿using System;
+using DefaultNamespace;
 using Interfaces;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -21,9 +22,20 @@ public class GameManager : Singleton<GameManager>
         //UpdateMap();
     }
     
-    public void proceedEnemyDeath(IEnemy enemy, IUnit player) 
+    public void ProceedEnemyDeath(IEnemy enemy, IUnit player) 
     {
      //   experienceSystem.
+    }
+    public void ProceedDamage(IUnit attacker, IUnit attacked, Damage damage)
+    {
+        attacked.GetDamage(damage, attacker);
+        if (attacked.Health <= 0)
+        {
+            Debug.Log(attacked);
+            Debug.Log(attacker);
+            ExperienceSystem.Instance.CalculateExperience(attacker, attacked);
+            attacked.Dead();
+        }
     }
 
     public void UpdateMap()

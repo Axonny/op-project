@@ -1,16 +1,18 @@
 ﻿using System;
+using System.Linq;
+using DefaultNamespace;
 using DialogueSystem;
 using Interfaces;
 using UnityEngine;
 
-public class Player :Singleton<Player>, IPlayer
+public class Player : Singleton<Player>, IPlayer
 {
     [SerializeField] private int health;
     [SerializeField] private int maxHealth;
     [SerializeField] private int speed;
-    [SerializeField] private int damagePower;
+    [SerializeField] private Damage damage = new Damage(100, DamageType.Physic);
     [SerializeField] private float attackDuration;
-    
+
     [SerializeField] private Camera mainCamera;
     [SerializeField] private Transform attackPoint;
     [SerializeField] private Transform rotatePoint;
@@ -23,11 +25,32 @@ public class Player :Singleton<Player>, IPlayer
     private InputMaster input;
     private Vector2 movement;
     private float lastTimeAttack;
-    
+
+    private int NeedExperienceCurrent => 100 + 50 * Level;
+
     private static readonly int AttackAnimation = Animator.StringToHash("Attack");
 
+    private int experience;
+    private int level;
+    public int Level
+    {
+        get => level;
+        set
+        {
+            level = value;
+            UISystem.Instance.lvlInfo.text = $"{level} Lvl";
+        }
+    }
 
-    public int Level { get; set; }
+    public int Experience
+    {
+        get => experience;
+        set
+        {
+            experience = value;
+            UISystem.Instance.experienceBar.value = experience * 100 / NeedExperienceCurrent;
+        }
+    }
 
     public int Health
     {
@@ -51,41 +74,52 @@ public class Player :Singleton<Player>, IPlayer
         input.Player.Move.canceled += context => movement = Vector3.zero;
         input.Player.Shot.performed += context => Attack();
         Health = maxHealth;
+        Level = 1;
     }
 
     private void FixedUpdate()
     {
         rigidbody.velocity = movement * speed;
-        
-        rotatePoint.rotation = Quaternion.Euler(0,0, Physics.GetAngleToMouse(mainCamera,transform.position));
+
+        rotatePoint.rotation = Quaternion.Euler(0, 0, Physics.GetAngleToMouse(mainCamera, transform.position));
     }
 
     public void Attack()
     {
-        if(Time.time - lastTimeAttack < attackDuration || DialogueManager.Instance.isTalk)
+        if (Time.time - lastTimeAttack < attackDuration || DialogueManager.Instance.isTalk)
             return;
         lastTimeAttack = Time.time;
         animator.SetTrigger(AttackAnimation);
         var enemies = Physics.FindColliders(attackPoint.position, circleRadius, enemyLayers);
-        foreach (var enemy in enemies)
+        foreach (var enemy in enemies.Select(x => x.GetComponent<Enemy>()))
         {
             Debug.Log("hit");
-            enemy.GetComponent<Enemy>().GetDamage(damagePower, this);
+            GameManager.Instance.ProceedDamage(this, enemy, damage);
         }
     }
 
-    public void GetDamage(int damage, IUnit enemy)
+    public void AddExperience(int additionalExperience)
     {
-        if (damage < 0)
-            throw new ArgumentException();
-        Health -= damage;
-        if (health <= 0)
+        var newExperience = Experience + additionalExperience;
+        while (newExperience >= NeedExperienceCurrent)
         {
-            Dead(enemy);
+            newExperience -= NeedExperienceCurrent;
+            Level++;
         }
+
+        Experience = newExperience;
+        Debug.Log("Exp: " + Experience + " \\ " + NeedExperienceCurrent);
+        Debug.Log("Level: " + Level);
     }
 
-    public void Dead(IUnit enemy)
+    public void GetDamage(Damage damage, IUnit enemy)
+    {
+        // if (damage < 0)
+        // throw new ArgumentException();
+        Health -= damage.size;
+    }
+
+    public void Dead()
     {
         Debug.Log("Player died");
         Destroy(gameObject);
