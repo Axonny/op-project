@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Linq;
-using DefaultNamespace;
 using DialogueSystem;
 using Interfaces;
 using UnityEngine;

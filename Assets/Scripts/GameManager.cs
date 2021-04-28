@@ -1,5 +1,4 @@
 ﻿using System;
-using DefaultNamespace;
 using Interfaces;
 using UnityEngine;
 using UnityEngine.Serialization;

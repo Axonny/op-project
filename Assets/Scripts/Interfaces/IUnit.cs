@@ -1,5 +1,4 @@
-﻿using DefaultNamespace;
-
+﻿
 namespace Interfaces
 {
     public interface IUnit
