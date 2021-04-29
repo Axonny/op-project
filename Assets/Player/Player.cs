@@ -115,7 +115,7 @@ public class Player : Singleton<Player>, IPlayer
     {
         // if (damage < 0)
         // throw new ArgumentException();
-        Health -= damage.size;
+        Health -= damage.Size;
     }
 
     public void Dead()

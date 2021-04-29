@@ -61,7 +61,7 @@ public class Enemy : MonoBehaviour, IEnemy, IMove
     {
         // if (damage < 0)
             // throw new ArgumentException();
-        health -= damage.size;
+        health -= damage.Size;
         animator.SetTrigger(HitAnimation);
         animator.SetInteger(HealthProperty, health);
     }

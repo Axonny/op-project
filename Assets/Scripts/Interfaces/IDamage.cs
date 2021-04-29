@@ -2,7 +2,7 @@
 {
     public interface IDamage
     {
-        public int size { get; set; }
+        public int Size { get; set; }
         public DamageType Type { get; set; }
     }
 }

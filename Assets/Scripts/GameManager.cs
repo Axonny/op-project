@@ -17,8 +17,13 @@ public class GameManager : Singleton<GameManager>
 
     private void Awake()
     {
+        if (settings == null)
+            settings = ScriptableObject.CreateInstance<Settings>();
+        var size = tilemapWalls.size;
+        settings.widthMap = size.x;
+        settings.heightMap = size.y;
         map = new GameField[settings.widthMap, settings.heightMap];
-        //UpdateMap();
+        UpdateMap();
     }
     
     public void ProceedEnemyDeath(IEnemy enemy, IUnit player) 
@@ -39,6 +44,7 @@ public class GameManager : Singleton<GameManager>
 
     public void UpdateMap()
     {
+        
         for (var col = 0; col < settings.widthMap; col++)
         for (var row = 0; row < settings.heightMap; row++)
         {
