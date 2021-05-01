@@ -8521,7 +8521,6 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: '1 Lvl
 
-
 '
 --- !u!222 &2066148185
 CanvasRenderer:
@@ -8570,12 +8569,12 @@ PrefabInstance:
     - target: {fileID: 1663375450498424170, guid: 7d98d02eeac5551408ed2cbbf06e633a,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -9.4
       objectReference: {fileID: 0}
     - target: {fileID: 1663375450498424170, guid: 7d98d02eeac5551408ed2cbbf06e633a,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -2.7
       objectReference: {fileID: 0}
     - target: {fileID: 1663375450498424170, guid: 7d98d02eeac5551408ed2cbbf06e633a,
         type: 3}

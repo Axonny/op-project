@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Text;
 using Interfaces;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -23,7 +25,7 @@ public class GameManager : Singleton<GameManager>
         settings.widthMap = size.x;
         settings.heightMap = size.y;
         map = new GameField[settings.widthMap, settings.heightMap];
-        UpdateMap();
+        InitMap();
     }
     
     public void ProceedEnemyDeath(IEnemy enemy, IUnit player) 
@@ -42,18 +44,51 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
-    public void UpdateMap()
+    public void InitMap()
     {
         
-        for (var col = 0; col < settings.widthMap; col++)
-        for (var row = 0; row < settings.heightMap; row++)
+        for (int x = tilemapWalls.origin.x, i = 0; i < tilemapWalls.size.x; x++, i++)
+        for (int y = tilemapWalls.origin.y, j = 0; j < tilemapWalls.size.y; y++, j++)
         {
             var tileWall = tilemapWalls.GetTile(
-                new Vector3Int(col - settings.widthMap / 2, row - settings.heightMap / 2, 0)
+                new Vector3Int(x, y, 0)
             );
 
-            map[col, row] = tileWall is null ? GameField.Empty : GameField.Wall;
+            map[i, j] = tileWall is null ? GameField.Empty : GameField.Wall;
         }
+
+        UpdateMap(GameObject.FindObjectsOfType<Enemy>());
+    }
+
+    public void UpdateMap(IEnumerable<Enemy> enemies)
+    {
+        var tilePlayer = tilemapWalls.WorldToCell(Player.Instance.transform.position) - tilemapWalls.origin;
+        tilePlayer.y -= 1;
+        map[tilePlayer.x, tilePlayer.y] = GameField.Player;
+
+        foreach (var enemy in enemies)
+        {
+            var tilePos = tilemapWalls.WorldToCell(enemy.transform.position) - tilemapWalls.origin;
+            map[tilePos.x, tilePos.y] = GameField.Enemy;
+        }
+        
+        PrintMap();
+    }
+
+    private void PrintMap()
+    {
+        var str = new StringBuilder();
+        for (var col = 0; col < settings.widthMap; col++)
+        {
+            for (var row = 0; row < settings.heightMap; row++)
+            {
+                var i = (int) map[col, row];
+                str.Append(i == 0 ? "_" : $"{i}");
+            }
+
+            str.Append('\n');
+        }
+        Debug.Log(str);
     }
 }
 
