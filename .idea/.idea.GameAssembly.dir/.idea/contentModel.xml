@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ContentModelStore">
+    <e p="C:\Users\Мвидео\AppData\Local\JetBrains\Rider2020.2\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\Мвидео\AppData\Local\JetBrains\Rider2020.2\resharper-host\Local\Transient\Rider\v202\SolutionCaches\_.19.00" t="ExcludeRecursive" />
+    <e p="D:\game\op-project" t="IncludeRecursive">
+      <e p="Assets" t="Include">
+        <e p="Scripts" t="Include">
+          <e p="DialogueSystem" t="Include">
+            <e p="DialogueManager.cs" t="Include" />
+            <e p="Editor" t="Include">
+              <e p="DialogueGraph.cs" t="Include" />
+              <e p="DialogueWindow.cs" t="Include" />
+              <e p="GraphSaveUtility.cs" t="Include" />
+              <e p="NodeSearchWindow.cs" t="Include" />
+            </e>
+            <e p="GraphData" t="Include">
+              <e p="BaseNodeData.cs" t="Include" />
+              <e p="DialogueContainer.cs" t="Include" />
+              <e p="DialogueNodeData.cs" t="Include" />
+              <e p="EventNodeData.cs" t="Include" />
+              <e p="NodeLinkData.cs" t="Include" />
+            </e>
+            <e p="Nodes" t="Include">
+              <e p="BaseNode.cs" t="Include" />
+              <e p="DialogueNode.cs" t="Include" />
+              <e p="EventNode.cs" t="Include" />
+            </e>
+          </e>
+          <e p="Enemy.cs" t="Include" />
+          <e p="GameAssembly.asmdef" t="Include" />
+          <e p="Interfaces" t="Include">
+            <e p="IEnemy.cs" t="Include" />
+            <e p="INpc.cs" t="Include" />
+            <e p="IPlayer.cs" t="Include" />
+          </e>
+          <e p="Npc.cs" t="Include" />
+          <e p="PlayerTriggerEvent.cs" t="Include" />
+          <e p="Singleton.cs" t="Include" />
+        </e>
+      </e>
+      <e p="GameAssembly.csproj" t="IncludeRecursive" />
+      <e p="obj" t="ExcludeRecursive" />
+      <e p="packages" t="ExcludeRecursive" />
+      <e p="Temp\Bin" t="ExcludeRecursive" />
+    </e>
+  </component>
+</project>
