@@ -66,7 +66,7 @@ public class Player : Singleton<Player>, IPlayer
     private void Start()
     {
         input = InputSystem.Instance.Input;
-        sprite = gameObject.GetComponent<SpriteRenderer>();
+        sprite = gameObject.GetComponentInChildren<SpriteRenderer>();
         rigidbody = gameObject.GetComponent<Rigidbody2D>();
         animator = gameObject.GetComponent<Animator>();
         input.Player.Move.performed += context => Move(context.ReadValue<Vector2>());

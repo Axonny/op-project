@@ -14,6 +14,7 @@ public class GameManager : Singleton<GameManager>
     public UISystem uiSystem;
 
     private GameField[,] map;
+    private Enemy[] enemies;
     public Tilemap tilemapWalls;
     public Settings settings;
 
@@ -25,6 +26,7 @@ public class GameManager : Singleton<GameManager>
         settings.widthMap = size.x;
         settings.heightMap = size.y;
         map = new GameField[settings.widthMap, settings.heightMap];
+        enemies = GameObject.FindObjectsOfType<Enemy>();
         InitMap();
     }
     
@@ -44,6 +46,15 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
+    private void FixedUpdate()
+    {
+        UpdateMap(enemies);
+        foreach (var enemy in enemies)
+        {
+            enemy.GetComponent<MoveAI>().UpdateAI(map, Player.Instance);
+        }
+    }
+
     public void InitMap()
     {
         
@@ -57,13 +68,12 @@ public class GameManager : Singleton<GameManager>
             map[i, j] = tileWall is null ? GameField.Empty : GameField.Wall;
         }
 
-        UpdateMap(GameObject.FindObjectsOfType<Enemy>());
+        UpdateMap(enemies);
     }
 
     public void UpdateMap(IEnumerable<Enemy> enemies)
     {
         var tilePlayer = tilemapWalls.WorldToCell(Player.Instance.transform.position) - tilemapWalls.origin;
-        tilePlayer.y -= 1;
         map[tilePlayer.x, tilePlayer.y] = GameField.Player;
 
         foreach (var enemy in enemies)
@@ -72,7 +82,7 @@ public class GameManager : Singleton<GameManager>
             map[tilePos.x, tilePos.y] = GameField.Enemy;
         }
         
-        PrintMap();
+        // PrintMap();
     }
 
     private void PrintMap()
