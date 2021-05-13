@@ -8,8 +8,6 @@ public class Enemy : MonoBehaviour, IEnemy, IMove
     [SerializeField] private int maxHealth = 100;
     public float deadTime;
 
-    public bool isAlwaysAttack; // to delete
-
     public int level = 1;
     public int experience;
     [SerializeField] private Damage damage = new Damage(10, DamageType.Physic);
@@ -26,12 +24,15 @@ public class Enemy : MonoBehaviour, IEnemy, IMove
     private static readonly int AttackAnimation = Animator.StringToHash("Attack");
 
 
-    public int Health { get; set; }
+    public int Health { 
+        get => health; 
+        set => health = value; 
+    }
 
     public int Level
     {
         get => level;
-        set { level = value; }
+        set => level = value;
     }
     public int Experience { get; set; }
 
@@ -40,12 +41,6 @@ public class Enemy : MonoBehaviour, IEnemy, IMove
     {
         health = maxHealth;
         animator = gameObject.GetComponent<Animator>();
-    }
-
-    private void FixedUpdate()
-    {
-        if (isAlwaysAttack)
-            Attack();
     }
 
     public void Move(Vector2 movement)
@@ -57,11 +52,11 @@ public class Enemy : MonoBehaviour, IEnemy, IMove
     {
     }
 
-    public void GetDamage(Damage damage, IUnit player)
+    public void GetDamage(Damage damageGet, IUnit player)
     {
         // if (damage < 0)
             // throw new ArgumentException();
-        health -= damage.Size;
+        health -= damageGet.Size;
         animator.SetTrigger(HitAnimation);
         animator.SetInteger(HealthProperty, health);
     }
@@ -87,6 +82,7 @@ public class Enemy : MonoBehaviour, IEnemy, IMove
     public void Dead()
     {
         Debug.Log("Enemy died");
+        GameManager.Instance.enemies.Remove(this);
         Destroy(gameObject, deadTime);
     }
 }

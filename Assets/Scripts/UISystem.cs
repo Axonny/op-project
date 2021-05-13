@@ -7,12 +7,6 @@ using UnityEngine.UI;
 public class UISystem : Singleton<UISystem>
 {
     public Slider healthBar;
-    public Slider experienceBar;
+    public Slider manaBar;
     public Text lvlInfo;
-    private void Awake()
-    {
-        healthBar = GameObject.Find("HealthBar").GetComponent<Slider>();
-        experienceBar = GameObject.Find("ExpBar").GetComponent<Slider>();
-        lvlInfo = GameObject.Find("LevelInfo").GetComponent<Text>();
-    }
 }

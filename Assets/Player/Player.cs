@@ -9,8 +9,9 @@ public class Player : Singleton<Player>, IPlayer
     [SerializeField] private int health;
     [SerializeField] private int maxHealth;
     [SerializeField] private int speed;
-    [SerializeField] private Damage damage = new Damage(100, DamageType.Physic);
     [SerializeField] private float attackDuration;
+    
+    public Damage damage = new Damage(100, DamageType.Physic);
 
     [SerializeField] private Camera mainCamera;
     [SerializeField] private Transform attackPoint;
@@ -44,11 +45,7 @@ public class Player : Singleton<Player>, IPlayer
     public int Experience
     {
         get => experience;
-        set
-        {
-            experience = value;
-            UISystem.Instance.experienceBar.value = experience * 100 / NeedExperienceCurrent;
-        }
+        set => experience = value;
     }
 
     public int Health
@@ -111,11 +108,11 @@ public class Player : Singleton<Player>, IPlayer
         Debug.Log("Level: " + Level);
     }
 
-    public void GetDamage(Damage damage, IUnit enemy)
+    public void GetDamage(Damage damageGet, IUnit enemy)
     {
         // if (damage < 0)
         // throw new ArgumentException();
-        Health -= damage.Size;
+        Health -= damageGet.Size;
     }
 
     public void Dead()

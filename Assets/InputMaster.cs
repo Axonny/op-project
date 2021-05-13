@@ -41,6 +41,14 @@ public class @InputMaster : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""MagicShot"",
+                    ""type"": ""Button"",
+                    ""id"": ""9af621db-039c-46fc-ad2a-e5b6ec171544"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -113,11 +121,22 @@ public class @InputMaster : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""b6cd4540-4adc-498e-90bf-a37d4d40418e"",
-                    ""path"": ""<Keyboard>/f"",
+                    ""path"": ""<Keyboard>/e"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard and Mouse"",
                     ""action"": ""Action"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e03df389-0abd-40be-bdbb-08c4864b1f25"",
+                    ""path"": ""<Keyboard>/f"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MagicShot"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -175,6 +194,7 @@ public class @InputMaster : IInputActionCollection, IDisposable
         m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
         m_Player_Shot = m_Player.FindAction("Shot", throwIfNotFound: true);
         m_Player_Action = m_Player.FindAction("Action", throwIfNotFound: true);
+        m_Player_MagicShot = m_Player.FindAction("MagicShot", throwIfNotFound: true);
         // Mouse
         m_Mouse = asset.FindActionMap("Mouse", throwIfNotFound: true);
         m_Mouse_Move = m_Mouse.FindAction("Move", throwIfNotFound: true);
@@ -230,6 +250,7 @@ public class @InputMaster : IInputActionCollection, IDisposable
     private readonly InputAction m_Player_Move;
     private readonly InputAction m_Player_Shot;
     private readonly InputAction m_Player_Action;
+    private readonly InputAction m_Player_MagicShot;
     public struct PlayerActions
     {
         private @InputMaster m_Wrapper;
@@ -237,6 +258,7 @@ public class @InputMaster : IInputActionCollection, IDisposable
         public InputAction @Move => m_Wrapper.m_Player_Move;
         public InputAction @Shot => m_Wrapper.m_Player_Shot;
         public InputAction @Action => m_Wrapper.m_Player_Action;
+        public InputAction @MagicShot => m_Wrapper.m_Player_MagicShot;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -255,6 +277,9 @@ public class @InputMaster : IInputActionCollection, IDisposable
                 @Action.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAction;
                 @Action.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAction;
                 @Action.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAction;
+                @MagicShot.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMagicShot;
+                @MagicShot.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMagicShot;
+                @MagicShot.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMagicShot;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -268,6 +293,9 @@ public class @InputMaster : IInputActionCollection, IDisposable
                 @Action.started += instance.OnAction;
                 @Action.performed += instance.OnAction;
                 @Action.canceled += instance.OnAction;
+                @MagicShot.started += instance.OnMagicShot;
+                @MagicShot.performed += instance.OnMagicShot;
+                @MagicShot.canceled += instance.OnMagicShot;
             }
         }
     }
@@ -319,6 +347,7 @@ public class @InputMaster : IInputActionCollection, IDisposable
         void OnMove(InputAction.CallbackContext context);
         void OnShot(InputAction.CallbackContext context);
         void OnAction(InputAction.CallbackContext context);
+        void OnMagicShot(InputAction.CallbackContext context);
     }
     public interface IMouseActions
     {

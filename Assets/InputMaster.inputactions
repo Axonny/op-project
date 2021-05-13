@@ -28,6 +28,14 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "MagicShot",
+                    "type": "Button",
+                    "id": "9af621db-039c-46fc-ad2a-e5b6ec171544",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -100,11 +108,22 @@
                 {
                     "name": "",
                     "id": "b6cd4540-4adc-498e-90bf-a37d4d40418e",
-                    "path": "<Keyboard>/f",
+                    "path": "<Keyboard>/e",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard and Mouse",
                     "action": "Action",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e03df389-0abd-40be-bdbb-08c4864b1f25",
+                    "path": "<Keyboard>/f",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MagicShot",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

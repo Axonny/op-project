@@ -374,6 +374,7 @@ GameObject:
   - component: {fileID: 1663375450498424169}
   - component: {fileID: 1663375450498424172}
   - component: {fileID: 939786188}
+  - component: {fileID: 1651004333}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -460,11 +461,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 0
   maxHealth: 100
-  speed: 7
+  speed: 10
+  attackDuration: 0.5
   damage:
     size: 100
     type: 0
-  attackDuration: 0.5
   mainCamera: {fileID: 519420031}
   attackPoint: {fileID: 1009691158}
   rotatePoint: {fileID: 1535701056}
@@ -491,3 +492,25 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1651004333
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1663375450498424173}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 387fac2ed2ef41c39795d43b9480994a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mana: 100
+  maxMana: 100
+  costMana: 20
+  magicAttackPrefab: {fileID: 1870006588852226763, guid: 81b9a239f15d1d548b9f440cf659e7f4,
+    type: 3}
+  attackDuration: 0.5
+  manaRestoreDuration: 1
+  mainCamera: {fileID: 519420031}
+  attackPoint: {fileID: 1009691158}
+  rotatePoint: {fileID: 1535701056}

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using Interfaces;
 using UnityEngine;
@@ -14,7 +15,7 @@ public class GameManager : Singleton<GameManager>
     public UISystem uiSystem;
 
     private GameField[,] map;
-    private Enemy[] enemies;
+    public List<Enemy> enemies;
     public Tilemap tilemapWalls;
     public Settings settings;
 
@@ -26,7 +27,7 @@ public class GameManager : Singleton<GameManager>
         settings.widthMap = size.x;
         settings.heightMap = size.y;
         map = new GameField[settings.widthMap, settings.heightMap];
-        enemies = GameObject.FindObjectsOfType<Enemy>();
+        enemies = GameObject.FindObjectsOfType<Enemy>().ToList();
         InitMap();
     }
     
@@ -69,6 +70,7 @@ public class GameManager : Singleton<GameManager>
         }
 
         UpdateMap(enemies);
+        PrintMap();
     }
 
     public void UpdateMap(IEnumerable<Enemy> enemies)
