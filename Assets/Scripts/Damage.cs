@@ -25,4 +25,11 @@ public class Damage : IDamage
         this.size = size;
         Type = type;
     }
+
+    public static Damage operator *(Damage damage, float modifier)
+    {
+        if (Math.Abs(modifier - 1) < 10e-9)
+            return damage;
+        return new Damage((int)(damage.size * modifier), damage.type);
+    }
 }

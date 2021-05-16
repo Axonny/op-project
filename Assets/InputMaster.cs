@@ -49,6 +49,14 @@ public class @InputMaster : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""StrongAttack"",
+                    ""type"": ""Button"",
+                    ""id"": ""c4d48068-e3c7-4d99-9ae1-be76e5c6da50"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press""
                 }
             ],
             ""bindings"": [
@@ -139,6 +147,17 @@ public class @InputMaster : IInputActionCollection, IDisposable
                     ""action"": ""MagicShot"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3ffd37f2-9324-4462-aaae-f853d0153b70"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard and Mouse"",
+                    ""action"": ""StrongAttack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -195,6 +214,7 @@ public class @InputMaster : IInputActionCollection, IDisposable
         m_Player_Shot = m_Player.FindAction("Shot", throwIfNotFound: true);
         m_Player_Action = m_Player.FindAction("Action", throwIfNotFound: true);
         m_Player_MagicShot = m_Player.FindAction("MagicShot", throwIfNotFound: true);
+        m_Player_StrongAttack = m_Player.FindAction("StrongAttack", throwIfNotFound: true);
         // Mouse
         m_Mouse = asset.FindActionMap("Mouse", throwIfNotFound: true);
         m_Mouse_Move = m_Mouse.FindAction("Move", throwIfNotFound: true);
@@ -251,6 +271,7 @@ public class @InputMaster : IInputActionCollection, IDisposable
     private readonly InputAction m_Player_Shot;
     private readonly InputAction m_Player_Action;
     private readonly InputAction m_Player_MagicShot;
+    private readonly InputAction m_Player_StrongAttack;
     public struct PlayerActions
     {
         private @InputMaster m_Wrapper;
@@ -259,6 +280,7 @@ public class @InputMaster : IInputActionCollection, IDisposable
         public InputAction @Shot => m_Wrapper.m_Player_Shot;
         public InputAction @Action => m_Wrapper.m_Player_Action;
         public InputAction @MagicShot => m_Wrapper.m_Player_MagicShot;
+        public InputAction @StrongAttack => m_Wrapper.m_Player_StrongAttack;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -280,6 +302,9 @@ public class @InputMaster : IInputActionCollection, IDisposable
                 @MagicShot.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMagicShot;
                 @MagicShot.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMagicShot;
                 @MagicShot.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMagicShot;
+                @StrongAttack.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnStrongAttack;
+                @StrongAttack.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnStrongAttack;
+                @StrongAttack.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnStrongAttack;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -296,6 +321,9 @@ public class @InputMaster : IInputActionCollection, IDisposable
                 @MagicShot.started += instance.OnMagicShot;
                 @MagicShot.performed += instance.OnMagicShot;
                 @MagicShot.canceled += instance.OnMagicShot;
+                @StrongAttack.started += instance.OnStrongAttack;
+                @StrongAttack.performed += instance.OnStrongAttack;
+                @StrongAttack.canceled += instance.OnStrongAttack;
             }
         }
     }
@@ -348,6 +376,7 @@ public class @InputMaster : IInputActionCollection, IDisposable
         void OnShot(InputAction.CallbackContext context);
         void OnAction(InputAction.CallbackContext context);
         void OnMagicShot(InputAction.CallbackContext context);
+        void OnStrongAttack(InputAction.CallbackContext context);
     }
     public interface IMouseActions
     {

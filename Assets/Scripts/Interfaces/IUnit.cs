@@ -9,7 +9,6 @@ namespace Interfaces
 
         void AddExperience(int experience);
         void GetDamage(Damage damageGet, IUnit unit);
-        void Attack();
         void Dead();
     }
 }
