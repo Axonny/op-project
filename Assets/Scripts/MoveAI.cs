@@ -13,10 +13,10 @@ public class MoveAI : MonoBehaviour
 
     private Moves[] moves = new[]
     {
-        new Moves(MoveType.Down, new Size(1, 0)),
-        new Moves(MoveType.Up, new Size(-1, 0)),
-        new Moves(MoveType.Right, new Size(0, 1)),
-        new Moves(MoveType.Left, new Size(0, -1)),
+        new Moves(MoveType.Down, new Vector2Int(1, 0)),
+        new Moves(MoveType.Up, new Vector2Int(-1, 0)),
+        new Moves(MoveType.Right, new Vector2Int(0, 1)),
+        new Moves(MoveType.Left, new Vector2Int(0, -1)),
     };
 
     private void Awake()
@@ -50,8 +50,8 @@ public class MoveAI : MonoBehaviour
 
             foreach (var move in moves)
             {
-                var newX = x + move.move.Height;
-                var newY = y + move.move.Width;
+                var newX = x + move.move.y;
+                var newY = y + move.move.x;
                 if (newX >= 0 && newX < n &&
                     newY >= 0 && newY <= m &&
                     !visited[newX, newY] && map[newX, newY] != GameField.Wall)
@@ -120,7 +120,7 @@ public class MoveAI : MonoBehaviour
                     rigidbody.velocity = (to2 - transform.position)
                         .normalized * speed;
                 }
-
+                
                 return;
             }
         }

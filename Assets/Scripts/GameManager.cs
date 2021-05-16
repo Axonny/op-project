@@ -15,7 +15,7 @@ public class GameManager : Singleton<GameManager>
     public ExperienceSystem experienceSystem;
     public UISystem uiSystem;
 
-    public List<Enemy> enemies;
+    public HashSet<Enemy> enemies;
     public Tilemap tilemapWalls;
     public Settings settings;
 
@@ -31,7 +31,7 @@ public class GameManager : Singleton<GameManager>
         settings.widthMap = size.x;
         settings.heightMap = size.y;
         map = new GameField[settings.widthMap, settings.heightMap];
-        enemies = GameObject.FindObjectsOfType<Enemy>().ToList();
+        enemies = new HashSet<Enemy>(FindObjectsOfType<Enemy>());
         InitMap();
     }
 
@@ -50,7 +50,7 @@ public class GameManager : Singleton<GameManager>
     private void FixedUpdate()
     {
         UpdateMap(enemies);
-        foreach (var enemy in enemies)
+        foreach (var enemy in enemies.Where(e => e.CanMove))
         {
             var enemyPosition = enemiesPositions[enemy];
             enemy.GetComponent<MoveAI>().UpdateAI(map, Player.Instance, (enemyPosition.x, enemyPosition.y));
