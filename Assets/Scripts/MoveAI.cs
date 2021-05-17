@@ -53,7 +53,7 @@ public class MoveAI : MonoBehaviour
                 var newX = x + move.move.y;
                 var newY = y + move.move.x;
                 if (newX >= 0 && newX < n &&
-                    newY >= 0 && newY <= m &&
+                    newY >= 0 && newY < m &&
                     !visited[newX, newY] && map[newX, newY] != GameField.Wall)
                 {
                     prev[newX, newY] = (x, y);

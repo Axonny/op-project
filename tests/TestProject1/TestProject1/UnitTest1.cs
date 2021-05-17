@@ -47,7 +47,7 @@ namespace TestProject1
             var textMap = new int[,]
             {
                 {2, 0, 1},
-                {3, 3, 0},
+                {0, 0, 0},
                 {0, 0, 0},
             };
             var start = (0, 0);
@@ -56,6 +56,110 @@ namespace TestProject1
             var paths = GetPaths(map, start);
 
             AssertPath(map, paths, 2);
+        }
+
+        [Test, Order(2)]
+        public void ReturnCorrectPaths_OnDungeonWithWalls()
+        {
+            var textMap = new int[,]
+            {
+                {2, 0, 1},
+                {3, 3, 3},
+                {0, 0, 0},
+            };
+            var start = (0, 0);
+            var map = FromLines(textMap);
+
+            var paths = GetPaths(map, start);
+
+            AssertPath(map, paths, 2);
+        }
+
+
+        [Test, Order(3)]
+        public void ReturnCorrectPaths_OnHard()
+        {
+            var textMap = new int[,]
+            {
+                {2, 3, 1},
+                {0, 3, 0},
+                {0, 0, 0},
+            };
+            var start = (0, 0);
+            var map = FromLines(textMap);
+
+            var paths = GetPaths(map, start);
+
+            AssertPath(map, paths, 6);
+        }
+
+        [Test, Order(4)]
+        public void ReturnCorrectPaths_OnSimple()
+        {
+            var textMap = new int[,]
+            {
+                {3, 1, 3},
+                {3, 2, 3},
+                {3, 3, 3},
+            };
+            var start = (1, 1);
+            var map = FromLines(textMap);
+
+            var paths = GetPaths(map, start);
+
+            AssertPath(map, paths, 1);
+        }
+
+        [Test, Order(5)]
+        public void ReturnCorrectPaths_OnSimpleButHarder()
+        {
+            var textMap = new int[,]
+            {
+                {3, 0, 1},
+                {3, 2, 3},
+                {3, 3, 3},
+            };
+            var start = (1, 1);
+            var map = FromLines(textMap);
+
+            var paths = GetPaths(map, start);
+
+            AssertPath(map, paths, 2);
+        }
+
+        [Test, Order(6)]
+        public void ReturnCorrectPaths_OnSpiral()
+        {
+            var textMap = new int[,]
+            {
+                {3, 0, 0},
+                {1, 2, 0},
+                {0, 0, 0},
+            };
+            var start = (1, 1);
+            var map = FromLines(textMap);
+
+            var paths = GetPaths(map, start);
+
+            AssertPath(map, paths, 1);
+        }
+
+        [Test, Order(7)]
+        public void ReturnCorrectPaths_OnSpiral2()
+        {
+            var textMap = new int[,]
+            {
+                {1, 3, 0, 0, 0},
+                {0, 3, 2, 3, 0},
+                {0, 3, 3, 3, 0},
+                {0, 0, 0, 0, 0},
+            };
+            var start = (1, 2);
+            var map = FromLines(textMap);
+
+            var paths = GetPaths(map, start);
+
+            AssertPath(map, paths, 13);
         }
 
         private static List<(int, int)> GetPaths(GameField[,] map, (int, int) start)
