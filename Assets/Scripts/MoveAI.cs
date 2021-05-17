@@ -11,7 +11,7 @@ public class MoveAI : MonoBehaviour
     private bool isDetectedPlayer;
     [SerializeField] private LayerMask layerMask;
 
-    private Moves[] moves = new[]
+    private static Moves[] moves = new[]
     {
         new Moves(MoveType.Down, new Vector2Int(1, 0)),
         new Moves(MoveType.Up, new Vector2Int(-1, 0)),
@@ -30,7 +30,7 @@ public class MoveAI : MonoBehaviour
             MoveToPlayer(map, player, enemyPosInMap);
     }
 
-    private List<(int, int)> MoveBFSOnTilemapToPoint(GameField[,] map, (int, int) start)
+    public static List<(int, int)> MoveBFSOnTilemapToPoint(GameField[,] map, (int, int) start)
     {
         var n = map.GetLength(0);
         var m = map.GetLength(1);
@@ -53,7 +53,7 @@ public class MoveAI : MonoBehaviour
                 var newX = x + move.move.y;
                 var newY = y + move.move.x;
                 if (newX >= 0 && newX < n &&
-                    newY >= 0 && newY <= m &&
+                    newY >= 0 && newY < m &&
                     !visited[newX, newY] && map[newX, newY] != GameField.Wall)
                 {
                     prev[newX, newY] = (x, y);
@@ -64,6 +64,11 @@ public class MoveAI : MonoBehaviour
         }
 
         var ans = new List<(int, int)>();
+        if (playerPosition == (-1, -1))
+        {
+            return new List<(int, int)>();
+        }
+
         while (playerPosition != start)
         {
             ans.Add(playerPosition);
@@ -77,6 +82,11 @@ public class MoveAI : MonoBehaviour
     private void MoveToPlayer(GameField[,] map, Player player, (int, int) enemyPosInMap)
     {
         var pathPoints = MoveBFSOnTilemapToPoint(map, enemyPosInMap);
+        if (pathPoints.Count == 0)
+        {
+            return;
+        }
+
         var i = 0;
         var currentVariant = pathPoints[i];
         while (true)
@@ -120,7 +130,7 @@ public class MoveAI : MonoBehaviour
                     rigidbody.velocity = (to2 - transform.position)
                         .normalized * speed;
                 }
-                
+
                 return;
             }
         }
