@@ -36,6 +36,7 @@ public class Player : Singleton<Player>, IPlayer
     private static readonly int StrongAttack = Animator.StringToHash("StrongAttack");
     private static readonly int Combo = Animator.StringToHash("Combo");
     private static readonly int AttackAnimation = Animator.StringToHash("Attack");
+    private static readonly int Movement = Animator.StringToHash("Movement");
 
     public int Level
     {
@@ -71,7 +72,7 @@ public class Player : Singleton<Player>, IPlayer
         rigidbody = gameObject.GetComponent<Rigidbody2D>();
         animator = gameObject.GetComponent<Animator>();
         input.Player.Move.performed += context => Move(context.ReadValue<Vector2>());
-        input.Player.Move.canceled += context => movement = Vector3.zero;
+        input.Player.Move.canceled += context => Move(Vector3.zero);
         input.Player.Shot.performed += context => Attack();        
         input.Player.StrongAttack.performed += context => Attack(true);
         Health = maxHealth;
@@ -162,6 +163,7 @@ public class Player : Singleton<Player>, IPlayer
         if (DialogueManager.Instance.isTalk)
             return;
         movement = inputMovement;
+        animator.SetFloat(Movement, movement.magnitude);
         if (inputMovement.x != 0)
             sprite.flipX = inputMovement.x < 0;
     }

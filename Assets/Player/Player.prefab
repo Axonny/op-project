@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 57361804}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.785275, z: 0}
+  m_LocalPosition: {x: 0, y: -0.56, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1663375450498424170}
@@ -71,7 +71,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 2b94c5def4c1b634cbfe5582334c84f6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: cbd7597e03652504e9c617d73dd5eb58, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -82,6 +82,36 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &441130225
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 441130226}
+  m_Layer: 7
+  m_Name: magicPointFrom
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &441130226
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 441130225}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.62, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1663375450498424170}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &463407286
 GameObject:
   m_ObjectHideFlags: 0
@@ -107,7 +137,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 463407286}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.169725, z: 0}
+  m_LocalPosition: {x: 0, y: -0.15, z: 0}
   m_LocalScale: {x: 2.5, y: 0.99036, z: 1}
   m_Children: []
   m_Father: {fileID: 1663375450498424170}
@@ -272,13 +302,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1009691157}
-  m_LocalRotation: {x: 0, y: 0, z: 0.92387956, w: 0.38268343}
+  m_LocalRotation: {x: 0, y: 0, z: 0.8654576, w: 0.5009822}
   m_LocalPosition: {x: 0, y: 2.75, z: 0}
   m_LocalScale: {x: 0.6, y: 0.6, z: 1}
   m_Children: []
   m_Father: {fileID: 1535701056}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 135}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 119.87}
 --- !u!212 &1009691159
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -324,7 +354,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1.85, y: 1.86}
+  m_Size: {x: 40, y: 30}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 0
@@ -397,6 +427,7 @@ Transform:
   - {fileID: 1535701056}
   - {fileID: 463407287}
   - {fileID: 519420032}
+  - {fileID: 441130226}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -462,17 +493,20 @@ MonoBehaviour:
   health: 0
   maxHealth: 100
   speed: 10
-  attackDuration: 0.5
+  attackDuration: 0.75
+  comboAttackDuration: 0.34
   damage:
-    size: 100
+    size: 30
     type: 0
   mainCamera: {fileID: 519420031}
   attackPoint: {fileID: 1009691158}
   rotatePoint: {fileID: 1535701056}
-  circleRadius: 0.45
+  circleRadius: 2
   enemyLayers:
     serializedVersion: 2
     m_Bits: 64
+  sprite: {fileID: 57361806}
+  combo: 0
 --- !u!95 &939786188
 Animator:
   serializedVersion: 3
@@ -506,11 +540,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mana: 100
   maxMana: 100
-  costMana: 20
+  costMana: 15
   magicAttackPrefab: {fileID: 1870006588852226763, guid: 81b9a239f15d1d548b9f440cf659e7f4,
     type: 3}
   attackDuration: 0.5
-  manaRestoreDuration: 1
+  manaRestoreDuration: 0.5
   mainCamera: {fileID: 519420031}
   attackPoint: {fileID: 1009691158}
   rotatePoint: {fileID: 1535701056}
+  fromPoint: {fileID: 441130226}

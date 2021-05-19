@@ -11,9 +11,10 @@ public class MagicUnit : MonoBehaviour
     [SerializeField] private float attackDuration;
     [SerializeField] private float manaRestoreDuration;
     
-    [SerializeField] private Camera mainCamera;
-    [SerializeField] public Transform attackPoint;
-    [SerializeField] public Transform rotatePoint;
+    [SerializeField]  Camera mainCamera;
+    [SerializeField] private Transform attackPoint;
+    [SerializeField] private Transform rotatePoint;
+    [SerializeField] private Transform fromPoint;
     
     private InputMaster input;
     private float lastTimeAttack;
@@ -51,7 +52,7 @@ public class MagicUnit : MonoBehaviour
         if (Time.time - lastTimeAttack < attackDuration || Mana < costMana)
             return;
         lastTimeAttack = Time.time;
-        var position = transform.position;
+        var position = fromPoint.position;
         var rotation = Quaternion.Euler(0, 0, Physics.GetAngleToMouse(mainCamera, position));
         var magic = Instantiate(magicAttackPrefab, position, rotation).GetComponent<MagicSpell>();
         magic.SetDirection(rotatePoint.position, attackPoint.position);
