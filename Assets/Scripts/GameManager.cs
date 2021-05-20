@@ -52,8 +52,11 @@ public class GameManager : Singleton<GameManager>
         UpdateMap(enemies);
         foreach (var enemy in enemies.Where(e => e.CanMove))
         {
-            var enemyPosition = enemiesPositions[enemy];
-            enemy.GetComponent<MoveAI>().UpdateAI(map, Player.Instance, (enemyPosition.x, enemyPosition.y));
+            if (enemy.TryGetComponent<MoveAI>(out var moveComponent))
+            {
+                var enemyPosition = enemiesPositions[enemy];
+                moveComponent.UpdateAI(map, Player.Instance, (enemyPosition.x, enemyPosition.y));
+            }
         }
     }
 
