@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 
 public class CheckpointSystem : MonoBehaviour
@@ -15,14 +14,16 @@ public class CheckpointSystem : MonoBehaviour
         {
             lastCheckPoint = checkpoint;
             Player.Instance.playerSave.SaveData();
+            UISystem.Instance.ShowLoadIcon();
         }
     }
 
     public void LoadLastCheckpoint()
     {
         var player = Player.Instance;
-        player.Health = 100;
-        player.GetComponent<MagicUnit>().Mana = 100;
         player.transform.position = lastCheckPoint.position;
+        player.playerSave.LoadData();
+        player.Revival();
+        UISystem.Instance.ShowLoadIcon();
     }
 }

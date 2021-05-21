@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   level: 1
   experience: 120
-  health: 95
-  mana: 39
+  health: 100
+  mana: 100

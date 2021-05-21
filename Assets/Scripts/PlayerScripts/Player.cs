@@ -34,6 +34,8 @@ public class Player : Singleton<Player>, IPlayer
     private static readonly int Combo = Animator.StringToHash("Combo");
     private static readonly int AttackAnimation = Animator.StringToHash("Attack");
     private static readonly int Movement = Animator.StringToHash("Movement");
+    private static readonly int DeadAnimation = Animator.StringToHash("Dead");
+    private static readonly int RevivalAnimation = Animator.StringToHash("Revival");
 
     public int Level
     {
@@ -148,8 +150,18 @@ public class Player : Singleton<Player>, IPlayer
 
     public void Dead()
     {
-        Debug.Log("Player died");
-        Destroy(gameObject);
+        input.Player.Disable();
+        GetComponent<Collider2D>().enabled = false;
+        animator.SetTrigger(DeadAnimation);
+        UISystem.Instance.FadeIn(true);
+    }
+
+    public void Revival()
+    {
+        input.Player.Enable();
+        GetComponent<Collider2D>().enabled = true;
+        animator.SetTrigger(RevivalAnimation);
+        UISystem.Instance.FadeOut();
     }
 
     public void Move(Vector2 inputMovement)
