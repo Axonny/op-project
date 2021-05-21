@@ -7,6 +7,11 @@ using UnityEngine;
 
 public class Player : Singleton<Player>, IPlayer
 {
+    [SerializeField] private int strength;
+    [SerializeField] private int agility;
+    [SerializeField] private int vitality;
+    [SerializeField] private int intelligence;
+    [SerializeField] private int wisdom;
     [SerializeField] private int health;
     [SerializeField] private int maxHealth;
     [SerializeField] private int speed;
