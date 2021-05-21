@@ -73,7 +73,6 @@ public class GameManager : Singleton<GameManager>
         }
 
         UpdateMap(enemies);
-        PrintMap();
     }
 
     public void UpdateMap(IEnumerable<Enemy> enemies)
@@ -99,24 +98,6 @@ public class GameManager : Singleton<GameManager>
 
         map[tilePlayer.x, tilePlayer.y] = GameField.Player;
         playerPosition = tilePlayer;
-        // PrintMap();
-    }
-
-    private void PrintMap()
-    {
-        var str = new StringBuilder();
-        for (var col = 0; col < settings.widthMap; col++)
-        {
-            for (var row = 0; row < settings.heightMap; row++)
-            {
-                var i = (int) map[col, row];
-                str.Append(i == 0 ? "_" : $"{i}");
-            }
-
-            str.Append('\n');
-        }
-
-        Debug.Log(str);
     }
 }
 

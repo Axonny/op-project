@@ -42,6 +42,7 @@ GameObject:
   - component: {fileID: 4771561111505405675}
   - component: {fileID: 4771561111505405674}
   - component: {fileID: 4771561111505405673}
+  - component: {fileID: 7529574090036374557}
   - component: {fileID: 7442107859465614561}
   - component: {fileID: 7442107859465614567}
   - component: {fileID: 984626232}
@@ -136,7 +137,7 @@ MonoBehaviour:
   level: 1
   experience: 0
   damage:
-    size: 10
+    size: 5
     type: 0
   attackDuration: 0.5
   attackPoint: {fileID: 6678184552085379643}
@@ -145,6 +146,23 @@ MonoBehaviour:
   playerLayer:
     serializedVersion: 2
     m_Bits: 128
+--- !u!114 &7529574090036374557
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4771561111505405677}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31a7c13901cb47ada68f03379edace45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  distanceRaycast: 15
+  speed: 10
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 183
 --- !u!50 &7442107859465614561
 Rigidbody2D:
   serializedVersion: 4

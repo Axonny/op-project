@@ -1,8 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using DialogueSystem;
 using Interfaces;
+using PlayerScripts;
 using UnityEngine;
 
 public class Player : Singleton<Player>, IPlayer
@@ -14,6 +13,7 @@ public class Player : Singleton<Player>, IPlayer
     [SerializeField] private float comboAttackDuration;
     
     public Damage damage = new Damage(100, DamageType.Physic);
+    public PlayerSave playerSave;
 
     [SerializeField] private Camera mainCamera;
     [SerializeField] private Transform attackPoint;
@@ -27,11 +27,8 @@ public class Player : Singleton<Player>, IPlayer
     private InputMaster input;
     private Vector2 movement;
     private float lastTimeAttack;
-    public int combo = 0;
+    private int combo;
 
-    private int NeedExperienceCurrent => 100 + 50 * Level;
-
-    private int experience;
     private int level;
     private static readonly int StrongAttack = Animator.StringToHash("StrongAttack");
     private static readonly int Combo = Animator.StringToHash("Combo");
@@ -47,13 +44,6 @@ public class Player : Singleton<Player>, IPlayer
             UISystem.Instance.lvlInfo.text = $"{level} Lvl";
         }
     }
-
-    public int Experience
-    {
-        get => experience;
-        set => experience = value;
-    }
-
     public int Health
     {
         get => health;
@@ -65,6 +55,9 @@ public class Player : Singleton<Player>, IPlayer
             UISystem.Instance.healthBar.value = health;
         }
     }
+    public int Experience { get; set; }
+
+    private int NeedExperienceCurrent => 100 + 50 * Level;
 
     private void Start()
     {
@@ -77,6 +70,7 @@ public class Player : Singleton<Player>, IPlayer
         input.Player.StrongAttack.performed += context => Attack(true);
         Health = maxHealth;
         Level = 1;
+        playerSave.LoadData();
     }
 
     private void FixedUpdate()

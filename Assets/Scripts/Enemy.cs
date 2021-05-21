@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using Interfaces;
 using UnityEngine;
 
@@ -8,6 +9,7 @@ public class Enemy : MonoBehaviour, IEnemy, IMove
     [SerializeField] private int maxHealth = 100;
     public float deadTime;
     internal bool CanMove = true;
+    internal event Action ONDead;
 
     public int level = 1;
     public int experience;
@@ -37,7 +39,12 @@ public class Enemy : MonoBehaviour, IEnemy, IMove
         get => level;
         set => level = value;
     }
-    public int Experience { get; set; }
+
+    public int Experience
+    {
+        get => experience;
+        set => experience = value;
+    }
 
 
     private void Awake()
@@ -84,6 +91,12 @@ public class Enemy : MonoBehaviour, IEnemy, IMove
     {
         lastTimeAttack = Time.time;
         animator.SetTrigger(AttackAnimation);
+        StartCoroutine(AttackCoroutine());
+    }
+
+    private IEnumerator AttackCoroutine()
+    {
+        yield return new WaitForSeconds(attackDuration);
         var playerCol = Physics.FindCollider(attackPoint.position, circleRadius, playerLayer);
         if (playerCol != null)
         {
@@ -100,6 +113,7 @@ public class Enemy : MonoBehaviour, IEnemy, IMove
     {
         Debug.Log("Enemy died");
         GameManager.Instance.enemies.Remove(this);
+        ONDead?.Invoke();
         Destroy(gameObject, deadTime);
     }
 }
