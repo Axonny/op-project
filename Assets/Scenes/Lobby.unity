@@ -4047,7 +4047,7 @@ PrefabInstance:
     - target: {fileID: 4086419334631924946, guid: 7007db745430cbf4997db3575f301234,
         type: 3}
       propertyPath: m_Text
-      value: Continue
+      value: "\u041F\u0440\u043E\u0434\u043E\u043B\u0436\u0438\u0442\u044C"
       objectReference: {fileID: 0}
     - target: {fileID: 4086419334631924946, guid: 7007db745430cbf4997db3575f301234,
         type: 3}
