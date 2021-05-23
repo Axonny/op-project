@@ -1747,10 +1747,19 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1059755484, guid: e5496aceb84c3644385898c667e40d8f, type: 3}
+      propertyPath: speed
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 2697744308059752081, guid: e5496aceb84c3644385898c667e40d8f,
         type: 3}
       propertyPath: maxHealth
       value: 5000
+      objectReference: {fileID: 0}
+    - target: {fileID: 2697744308059752081, guid: e5496aceb84c3644385898c667e40d8f,
+        type: 3}
+      propertyPath: circleRadius
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 2697744308059752083, guid: e5496aceb84c3644385898c667e40d8f,
         type: 3}
@@ -1831,6 +1840,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3629961955245972950, guid: e5496aceb84c3644385898c667e40d8f,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e5496aceb84c3644385898c667e40d8f, type: 3}

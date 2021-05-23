@@ -224,10 +224,10 @@ public class @InputMaster : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""9012c8fb-fb8f-4071-a6f0-4bade750df1e"",
-                    ""path"": ""<Keyboard>/p"",
+                    ""path"": ""<Keyboard>/tab"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""Keyboard and Mouse"",
                     ""action"": ""CharacteristicPanel"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false

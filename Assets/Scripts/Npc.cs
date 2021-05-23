@@ -9,7 +9,7 @@ public class Npc : MonoBehaviour, INpc
 
     private void Start()
     {
-        Invoke(nameof(Talk), 1f);
+        Invoke(nameof(Talk), 0.1f);
     }
     
     public void GiveQuest(Quest quest)
@@ -20,17 +20,5 @@ public class Npc : MonoBehaviour, INpc
     public void Talk()
     {
         DialogueManager.Instance.StartDialogue(levelManager.Dialogue);
-    }
-
-    public void PlayerEnter(bool flag)
-    {
-        if (flag)
-        {
-            InputSystem.Instance.UseAction += Talk;
-        }
-        else
-        {
-            InputSystem.Instance.UseAction -= Talk;
-        }
     }
 }

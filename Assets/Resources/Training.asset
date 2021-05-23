@@ -21,4 +21,4 @@ MonoBehaviour:
   agility: 10
   intelligence: 10
   wisdom: 10
-  freeSkillPoints: 10
+  freeSkillPoints: 0
