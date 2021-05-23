@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-
-namespace Interfaces
+﻿namespace Interfaces
 {
     internal interface IPlayer : IUnit, IMove
     {

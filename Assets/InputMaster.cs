@@ -187,6 +187,33 @@ public class @InputMaster : IInputActionCollection, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Absolute"",
+            ""id"": ""e1905372-7224-42d6-bfa8-928dd370157d"",
+            ""actions"": [
+                {
+                    ""name"": ""Escape"",
+                    ""type"": ""Button"",
+                    ""id"": ""22897e38-f52a-49b9-bdd0-80f58d51fe3c"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""a6c8e46e-ff6d-4d7e-ac19-8ef08becf541"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard and Mouse"",
+                    ""action"": ""Escape"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -218,6 +245,9 @@ public class @InputMaster : IInputActionCollection, IDisposable
         // Mouse
         m_Mouse = asset.FindActionMap("Mouse", throwIfNotFound: true);
         m_Mouse_Move = m_Mouse.FindAction("Move", throwIfNotFound: true);
+        // Absolute
+        m_Absolute = asset.FindActionMap("Absolute", throwIfNotFound: true);
+        m_Absolute_Escape = m_Absolute.FindAction("Escape", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -361,6 +391,39 @@ public class @InputMaster : IInputActionCollection, IDisposable
         }
     }
     public MouseActions @Mouse => new MouseActions(this);
+
+    // Absolute
+    private readonly InputActionMap m_Absolute;
+    private IAbsoluteActions m_AbsoluteActionsCallbackInterface;
+    private readonly InputAction m_Absolute_Escape;
+    public struct AbsoluteActions
+    {
+        private @InputMaster m_Wrapper;
+        public AbsoluteActions(@InputMaster wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Escape => m_Wrapper.m_Absolute_Escape;
+        public InputActionMap Get() { return m_Wrapper.m_Absolute; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(AbsoluteActions set) { return set.Get(); }
+        public void SetCallbacks(IAbsoluteActions instance)
+        {
+            if (m_Wrapper.m_AbsoluteActionsCallbackInterface != null)
+            {
+                @Escape.started -= m_Wrapper.m_AbsoluteActionsCallbackInterface.OnEscape;
+                @Escape.performed -= m_Wrapper.m_AbsoluteActionsCallbackInterface.OnEscape;
+                @Escape.canceled -= m_Wrapper.m_AbsoluteActionsCallbackInterface.OnEscape;
+            }
+            m_Wrapper.m_AbsoluteActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @Escape.started += instance.OnEscape;
+                @Escape.performed += instance.OnEscape;
+                @Escape.canceled += instance.OnEscape;
+            }
+        }
+    }
+    public AbsoluteActions @Absolute => new AbsoluteActions(this);
     private int m_KeyboardandMouseSchemeIndex = -1;
     public InputControlScheme KeyboardandMouseScheme
     {
@@ -381,5 +444,9 @@ public class @InputMaster : IInputActionCollection, IDisposable
     public interface IMouseActions
     {
         void OnMove(InputAction.CallbackContext context);
+    }
+    public interface IAbsoluteActions
+    {
+        void OnEscape(InputAction.CallbackContext context);
     }
 }

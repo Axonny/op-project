@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Concurrent;
+﻿using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using Interfaces;
 using UnityEngine;
-using UnityEngine.Serialization;
 using UnityEngine.Tilemaps;
 
 public class GameManager : Singleton<GameManager>
@@ -52,8 +49,11 @@ public class GameManager : Singleton<GameManager>
         UpdateMap(enemies);
         foreach (var enemy in enemies.Where(e => e.CanMove))
         {
-            var enemyPosition = enemiesPositions[enemy];
-            enemy.GetComponent<MoveAI>().UpdateAI(map, Player.Instance, (enemyPosition.x, enemyPosition.y));
+            if (enemy.TryGetComponent<MoveAI>(out var moveComponent))
+            {
+                var enemyPosition = enemiesPositions[enemy];
+                moveComponent.UpdateAI(map, Player.Instance, (enemyPosition.x, enemyPosition.y));
+            }
         }
     }
 
@@ -70,7 +70,6 @@ public class GameManager : Singleton<GameManager>
         }
 
         UpdateMap(enemies);
-        PrintMap();
     }
 
     public void UpdateMap(IEnumerable<Enemy> enemies)
@@ -96,24 +95,6 @@ public class GameManager : Singleton<GameManager>
 
         map[tilePlayer.x, tilePlayer.y] = GameField.Player;
         playerPosition = tilePlayer;
-        // PrintMap();
-    }
-
-    private void PrintMap()
-    {
-        var str = new StringBuilder();
-        for (var col = 0; col < settings.widthMap; col++)
-        {
-            for (var row = 0; row < settings.heightMap; row++)
-            {
-                var i = (int) map[col, row];
-                str.Append(i == 0 ? "_" : $"{i}");
-            }
-
-            str.Append('\n');
-        }
-
-        Debug.Log(str);
     }
 }
 

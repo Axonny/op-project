@@ -1,6 +1,4 @@
-﻿using System.Drawing;
-
-public enum MoveType
+﻿public enum MoveType
 {
     Left, 
     Right,

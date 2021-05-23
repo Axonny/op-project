@@ -4836,7 +4836,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 257
   damage:
-    size: 10
+    size: 35
     type: 1
 --- !u!50 &-2385247881754973989
 Rigidbody2D:

@@ -1,6 +1,5 @@
 ﻿using System;
 using ScriptableObjects;
-using UnityEngine;
 
 public class QuestSystem : Singleton<QuestSystem>
 {
