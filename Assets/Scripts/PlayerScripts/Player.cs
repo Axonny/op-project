@@ -6,6 +6,7 @@ using Interfaces;
 using PlayerScripts;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Assertions.Must;
 
 public class Player : Singleton<Player>, IPlayer
 {
@@ -283,12 +284,17 @@ public class Player : Singleton<Player>, IPlayer
 
     public void SaveCharacteristics()
     {
+        var magicUnit = GetComponent<MagicUnit>();
+        var startCoefHp = health * 1.0f / (vitalityToHealthModifier * _characteristics[1].value);
+        var startCoefMp = magicUnit.mana * 1.0f / (wisdomToManaModifier * _characteristics[4].value);
         for (int i = 0; i < _characteristics.Length; i++)
         {
             _characteristics[i].value += _characteristics_delta[i].value;
             _characteristics_delta[i].value = 0;
         }
         UpdateCharacteristicPanel();
+        Health = (int) (MaxHealth * startCoefHp);
+        magicUnit.Mana = (int) (startCoefMp * MaxMana);
     }
 
     public void ResetCharacteristics()
