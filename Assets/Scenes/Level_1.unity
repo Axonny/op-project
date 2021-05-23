@@ -966,6 +966,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1081776814}
     m_Modifications:
+    - target: {fileID: 1159114539147264183, guid: 5d60438ce89f92446bc8579bf5c667a9,
+        type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4624299113288695172, guid: 5d60438ce89f92446bc8579bf5c667a9,
         type: 3}
       propertyPath: m_RootOrder
@@ -1025,6 +1030,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: HealthRestore (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8800842329678598358, guid: 5d60438ce89f92446bc8579bf5c667a9,
+        type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5d60438ce89f92446bc8579bf5c667a9, type: 3}
@@ -3027,10 +3037,20 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1081776814}
     m_Modifications:
+    - target: {fileID: 1662085503749187808, guid: fbf77dc1b59d221499b01fffc1cef347,
+        type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4381280007424369472, guid: fbf77dc1b59d221499b01fffc1cef347,
         type: 3}
       propertyPath: m_Name
       value: ManaRestore (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4381280007424369472, guid: fbf77dc1b59d221499b01fffc1cef347,
+        type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6674793646133188969, guid: fbf77dc1b59d221499b01fffc1cef347,
         type: 3}
@@ -4789,10 +4809,20 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1081776814}
     m_Modifications:
+    - target: {fileID: 1662085503749187808, guid: fbf77dc1b59d221499b01fffc1cef347,
+        type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4381280007424369472, guid: fbf77dc1b59d221499b01fffc1cef347,
         type: 3}
       propertyPath: m_Name
       value: ManaRestore (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4381280007424369472, guid: fbf77dc1b59d221499b01fffc1cef347,
+        type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6674793646133188969, guid: fbf77dc1b59d221499b01fffc1cef347,
         type: 3}
@@ -5477,10 +5507,20 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1081776814}
     m_Modifications:
+    - target: {fileID: 1662085503749187808, guid: fbf77dc1b59d221499b01fffc1cef347,
+        type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4381280007424369472, guid: fbf77dc1b59d221499b01fffc1cef347,
         type: 3}
       propertyPath: m_Name
       value: ManaRestore
+      objectReference: {fileID: 0}
+    - target: {fileID: 4381280007424369472, guid: fbf77dc1b59d221499b01fffc1cef347,
+        type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6674793646133188969, guid: fbf77dc1b59d221499b01fffc1cef347,
         type: 3}
@@ -6131,7 +6171,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1081776814}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Restores
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11997,6 +12037,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1081776814}
     m_Modifications:
+    - target: {fileID: 1159114539147264183, guid: 5d60438ce89f92446bc8579bf5c667a9,
+        type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4624299113288695172, guid: 5d60438ce89f92446bc8579bf5c667a9,
         type: 3}
       propertyPath: m_RootOrder
@@ -12056,6 +12101,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: HealthRestore (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8800842329678598358, guid: 5d60438ce89f92446bc8579bf5c667a9,
+        type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5d60438ce89f92446bc8579bf5c667a9, type: 3}
@@ -12600,6 +12650,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1081776814}
     m_Modifications:
+    - target: {fileID: 1159114539147264183, guid: 5d60438ce89f92446bc8579bf5c667a9,
+        type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4624299113288695172, guid: 5d60438ce89f92446bc8579bf5c667a9,
         type: 3}
       propertyPath: m_RootOrder
@@ -12660,6 +12715,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: HealthRestore (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 8800842329678598358, guid: 5d60438ce89f92446bc8579bf5c667a9,
+        type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5d60438ce89f92446bc8579bf5c667a9, type: 3}
 --- !u!1001 &1375034775
@@ -12669,10 +12729,20 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1081776814}
     m_Modifications:
+    - target: {fileID: 1662085503749187808, guid: fbf77dc1b59d221499b01fffc1cef347,
+        type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4381280007424369472, guid: fbf77dc1b59d221499b01fffc1cef347,
         type: 3}
       propertyPath: m_Name
       value: ManaRestore (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4381280007424369472, guid: fbf77dc1b59d221499b01fffc1cef347,
+        type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6674793646133188969, guid: fbf77dc1b59d221499b01fffc1cef347,
         type: 3}
@@ -13397,6 +13467,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1081776814}
     m_Modifications:
+    - target: {fileID: 1159114539147264183, guid: 5d60438ce89f92446bc8579bf5c667a9,
+        type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4624299113288695172, guid: 5d60438ce89f92446bc8579bf5c667a9,
         type: 3}
       propertyPath: m_RootOrder
@@ -13456,6 +13531,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: HealthRestore (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8800842329678598358, guid: 5d60438ce89f92446bc8579bf5c667a9,
+        type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5d60438ce89f92446bc8579bf5c667a9, type: 3}
@@ -14498,6 +14578,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1081776814}
     m_Modifications:
+    - target: {fileID: 1159114539147264183, guid: 5d60438ce89f92446bc8579bf5c667a9,
+        type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4624299113288695172, guid: 5d60438ce89f92446bc8579bf5c667a9,
         type: 3}
       propertyPath: m_RootOrder
@@ -14557,6 +14642,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: HealthRestore
+      objectReference: {fileID: 0}
+    - target: {fileID: 8800842329678598358, guid: 5d60438ce89f92446bc8579bf5c667a9,
+        type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5d60438ce89f92446bc8579bf5c667a9, type: 3}
@@ -15488,6 +15578,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1081776814}
     m_Modifications:
+    - target: {fileID: 1159114539147264183, guid: 5d60438ce89f92446bc8579bf5c667a9,
+        type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4624299113288695172, guid: 5d60438ce89f92446bc8579bf5c667a9,
         type: 3}
       propertyPath: m_RootOrder
@@ -15547,6 +15642,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: HealthRestore (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8800842329678598358, guid: 5d60438ce89f92446bc8579bf5c667a9,
+        type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5d60438ce89f92446bc8579bf5c667a9, type: 3}

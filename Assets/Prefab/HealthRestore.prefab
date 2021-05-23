@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 35008236062806189}
   - component: {fileID: 148273757361387132}
   - component: {fileID: 4569201148868085380}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Particle System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4817,7 +4817,7 @@ GameObject:
   - component: {fileID: 5957320357932705089}
   - component: {fileID: 6818803503527563646}
   - component: {fileID: 7916819994487500805}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: HealthRestore
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4933,7 +4933,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b64a798456a24a54598b8815baa2a441, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEnter: 0
   onEnter:
     m_PersistentCalls:
       m_Calls:

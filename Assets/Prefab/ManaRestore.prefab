@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1965347761983185771}
   - component: {fileID: 9066573415336643534}
   - component: {fileID: 3368858666383191827}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Particle System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4817,7 +4817,7 @@ GameObject:
   - component: {fileID: 3135251046378136831}
   - component: {fileID: 6061459188034249775}
   - component: {fileID: 7521253047064149176}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: ManaRestore
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4933,7 +4933,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b64a798456a24a54598b8815baa2a441, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEnter: 0
   onEnter:
     m_PersistentCalls:
       m_Calls:
