@@ -13,8 +13,10 @@ public class Enemy : MonoBehaviour, IEnemy, IMove
 
     public int level = 1;
     public int experience;
+    [SerializeField] private GameObject view;
     [SerializeField] private Damage damage = new Damage(10, DamageType.Physic);
     [SerializeField] private float attackDuration;
+    [SerializeField] private AnimationCurve animationCurve;
     [SerializeField] private Transform attackPoint;
     [SerializeField] private Transform rotatePoint;
     [SerializeField] private float circleRadius;
@@ -23,6 +25,7 @@ public class Enemy : MonoBehaviour, IEnemy, IMove
     private Animator animator;
     private float lastTimeAttack;
     private Player player;
+    private SpriteRenderer sprite;
 
     private static readonly int HitAnimation = Animator.StringToHash("Hit");
     private static readonly int HealthProperty = Animator.StringToHash("Health");
@@ -52,6 +55,7 @@ public class Enemy : MonoBehaviour, IEnemy, IMove
         health = maxHealth;
         animator = gameObject.GetComponent<Animator>();
         player = Player.Instance;
+        sprite = view.GetComponent<SpriteRenderer>();
     }
 
     private void LateUpdate()
@@ -59,6 +63,7 @@ public class Enemy : MonoBehaviour, IEnemy, IMove
         var vector = player.transform.position - transform.position;
         var angle = Mathf.Atan2(vector.y, vector.x) * Mathf.Rad2Deg - 90f;
         rotatePoint.rotation = Quaternion.Euler(0, 0, angle);
+        sprite.flipX = angle > 0 || angle < -180;
         if (Vector3.Distance(player.transform.position, attackPoint.position) < circleRadius / 2)
         {
             CanMove = false;
@@ -76,7 +81,7 @@ public class Enemy : MonoBehaviour, IEnemy, IMove
         throw new NotImplementedException();
     }
 
-    public void AddExperience(int experience)
+    public void AddExperience(int experienceGet)
     {
     }
 
@@ -96,17 +101,22 @@ public class Enemy : MonoBehaviour, IEnemy, IMove
 
     private IEnumerator AttackCoroutine()
     {
-        yield return new WaitForSeconds(attackDuration);
+        var t = 0f;
+        var startPos = Vector3.zero;
+        var endPos = startPos + (attackPoint.position - rotatePoint.position) / 5f;
+        while (t < attackDuration)
+        {
+            view.transform.localPosition = Vector3.Lerp(startPos, endPos, animationCurve.Evaluate(t / attackDuration));
+            t += Time.deltaTime;
+            yield return null;
+        }
+
+        view.transform.localPosition = startPos;
         var playerCol = Physics.FindCollider(attackPoint.position, circleRadius, playerLayer);
         if (playerCol != null)
         {
             GameManager.Instance.ProceedDamage(this, player, damage);
         }
-    }
-
-    public void Follow(Vector2 playerPosition)
-    {
-        throw new NotImplementedException();
     }
 
     public void Dead()

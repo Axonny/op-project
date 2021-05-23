@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &2697744308059752085
+--- !u!1 &2543700708585625727
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,42 +8,36 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2697744308059752083}
-  - component: {fileID: 2697744308059752082}
-  - component: {fileID: 2697744308059752081}
-  - component: {fileID: 1059755484}
-  - component: {fileID: 910209680}
-  - component: {fileID: 6113256688827431800}
-  - component: {fileID: 1059755489}
+  - component: {fileID: 2546631061419854383}
+  - component: {fileID: 7366923902214752985}
   m_Layer: 6
-  m_Name: Enemy
+  m_Name: View
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &2697744308059752083
+--- !u!4 &2546631061419854383
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2697744308059752085}
+  m_GameObject: {fileID: 2543700708585625727}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.41599995, y: 0.712, z: 0}
-  m_LocalScale: {x: 0.15, y: 0.15, z: 1}
-  m_Children:
-  - {fileID: 7553650362207542010}
-  m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2697744308059752083}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &2697744308059752082
+--- !u!212 &7366923902214752985
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2697744308059752085}
+  m_GameObject: {fileID: 2543700708585625727}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -77,7 +71,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: a3da7a7825c942b4a9a3e27352fd667e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a3822d23b655e5d459416fe7af1e0c3a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 1
   m_FlipY: 0
@@ -88,6 +82,43 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &2697744308059752085
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2697744308059752083}
+  - component: {fileID: 2697744308059752081}
+  - component: {fileID: 1059755484}
+  - component: {fileID: 910209680}
+  - component: {fileID: 6113256688827431800}
+  - component: {fileID: 1059755489}
+  m_Layer: 6
+  m_Name: Enemy
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2697744308059752083
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2697744308059752085}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.41599995, y: 0.712, z: 0}
+  m_LocalScale: {x: 0.15, y: 0.15, z: 1}
+  m_Children:
+  - {fileID: 7553650362207542010}
+  - {fileID: 2546631061419854383}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2697744308059752081
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -104,10 +135,44 @@ MonoBehaviour:
   deadTime: 0.5
   level: 1
   experience: 0
+  view: {fileID: 2543700708585625727}
   damage:
     size: 5
     type: 0
   attackDuration: 1
+  animationCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 1.7809604
+      outSlope: 1.7809604
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.108128615
+    - serializedVersion: 3
+      time: 0.6166808
+      value: 1.002758
+      inSlope: -0.008823192
+      outSlope: -0.008823192
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1.0041951
+      value: -0.0037637227
+      inSlope: -1.7714094
+      outSlope: -1.7714094
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.16132113
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   attackPoint: {fileID: 3629961955245972950}
   rotatePoint: {fileID: 7553650362207542010}
   circleRadius: 0.6

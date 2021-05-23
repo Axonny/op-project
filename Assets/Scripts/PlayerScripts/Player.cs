@@ -7,7 +7,7 @@ using UnityEngine;
 public class Player : Singleton<Player>, IPlayer
 {
     [SerializeField] private int health;
-    [SerializeField] private int maxHealth;
+    [SerializeField] internal int maxHealth;
     [SerializeField] private int speed;
     [SerializeField] private float attackDuration;
     [SerializeField] private float comboAttackDuration;
@@ -124,7 +124,6 @@ public class Player : Singleton<Player>, IPlayer
         sprite.flipX = angle > 0 || angle < -180;
         foreach (var enemy in enemies.Select(x => x.GetComponent<Enemy>()))
         {
-            Debug.Log("hit");
             GameManager.Instance.ProceedDamage(this, enemy, damage * modifier);
         }
     }
