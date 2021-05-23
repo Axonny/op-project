@@ -1,4 +1,6 @@
-﻿public class CharacteristicPanelScripts
+﻿using UnityEngine;
+
+public class CharacteristicPanelScripts : MonoBehaviour
 {
     public void IncreaseCharacteristic(int index)
     {

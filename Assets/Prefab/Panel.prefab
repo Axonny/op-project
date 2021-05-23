@@ -593,8 +593,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: Player, Assembly-CSharp
+      - m_Target: {fileID: 1987323271189245221}
+        m_TargetAssemblyTypeName: CharacteristicPanelScripts, Assembly-CSharp
         m_MethodName: DecreaseCharacteristic
         m_Mode: 3
         m_Arguments:
@@ -616,6 +616,7 @@ GameObject:
   - component: {fileID: 4359881749952751658}
   - component: {fileID: 2535826027833618103}
   - component: {fileID: 2490708731656941281}
+  - component: {fileID: 1987323271189245221}
   m_Layer: 5
   m_Name: Panel
   m_TagString: Untagged
@@ -683,6 +684,18 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &1987323271189245221
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 589247050003866461}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5f98846dd14494db6122f7cae76c2bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &637420927295713117
 GameObject:
   m_ObjectHideFlags: 0
@@ -883,8 +896,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: Player, Assembly-CSharp
+      - m_Target: {fileID: 1987323271189245221}
+        m_TargetAssemblyTypeName: CharacteristicPanelScripts, Assembly-CSharp
         m_MethodName: DecreaseCharacteristic
         m_Mode: 3
         m_Arguments:
@@ -1016,8 +1029,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: Player, Assembly-CSharp
+      - m_Target: {fileID: 1987323271189245221}
+        m_TargetAssemblyTypeName: CharacteristicPanelScripts, Assembly-CSharp
         m_MethodName: IncreaseCharacteristic
         m_Mode: 3
         m_Arguments:
@@ -1422,8 +1435,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: Player, Assembly-CSharp
+      - m_Target: {fileID: 1987323271189245221}
+        m_TargetAssemblyTypeName: CharacteristicPanelScripts, Assembly-CSharp
         m_MethodName: IncreaseCharacteristic
         m_Mode: 3
         m_Arguments:
@@ -2598,8 +2611,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: Player, Assembly-CSharp
+      - m_Target: {fileID: 1987323271189245221}
+        m_TargetAssemblyTypeName: CharacteristicPanelScripts, Assembly-CSharp
         m_MethodName: SaveCharacteristics
         m_Mode: 1
         m_Arguments:
@@ -3243,8 +3256,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: Player, Assembly-CSharp
+      - m_Target: {fileID: 1987323271189245221}
+        m_TargetAssemblyTypeName: CharacteristicPanelScripts, Assembly-CSharp
         m_MethodName: DecreaseCharacteristic
         m_Mode: 3
         m_Arguments:
@@ -3376,8 +3389,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: Player, Assembly-CSharp
+      - m_Target: {fileID: 1987323271189245221}
+        m_TargetAssemblyTypeName: CharacteristicPanelScripts, Assembly-CSharp
         m_MethodName: IncreaseCharacteristic
         m_Mode: 3
         m_Arguments:
@@ -3509,8 +3522,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: Player, Assembly-CSharp
+      - m_Target: {fileID: 1987323271189245221}
+        m_TargetAssemblyTypeName: CharacteristicPanelScripts, Assembly-CSharp
         m_MethodName: IncreaseCharacteristic
         m_Mode: 3
         m_Arguments:
@@ -4150,8 +4163,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: Player, Assembly-CSharp
+      - m_Target: {fileID: 1987323271189245221}
+        m_TargetAssemblyTypeName: CharacteristicPanelScripts, Assembly-CSharp
         m_MethodName: DecreaseCharacteristic
         m_Mode: 3
         m_Arguments:
@@ -4776,8 +4789,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: Player, Assembly-CSharp
+      - m_Target: {fileID: 1987323271189245221}
+        m_TargetAssemblyTypeName: CharacteristicPanelScripts, Assembly-CSharp
         m_MethodName: DecreaseCharacteristic
         m_Mode: 3
         m_Arguments:
@@ -5533,8 +5546,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: Player, Assembly-CSharp
+      - m_Target: {fileID: 1987323271189245221}
+        m_TargetAssemblyTypeName: CharacteristicPanelScripts, Assembly-CSharp
         m_MethodName: IncreaseCharacteristic
         m_Mode: 3
         m_Arguments:
@@ -6516,8 +6529,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: Player, Assembly-CSharp
+      - m_Target: {fileID: 1987323271189245221}
+        m_TargetAssemblyTypeName: CharacteristicPanelScripts, Assembly-CSharp
         m_MethodName: ResetCharacteristics
         m_Mode: 1
         m_Arguments:
