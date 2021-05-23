@@ -979,7 +979,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b64a798456a24a54598b8815baa2a441, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEnter: 0
   onEnter:
     m_PersistentCalls:
       m_Calls:
@@ -1196,7 +1195,7 @@ GameObject:
   - component: {fileID: 162412891}
   - component: {fileID: 162412890}
   - component: {fileID: 162412889}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Exit
   m_TagString: Untagged
   m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
@@ -1215,7 +1214,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b922fa72e1c5454bb9a88ef8e49c23e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelManager: {fileID: 0}
+  levelManager: {fileID: 11400000, guid: 54513f5ccb27b0e46a72d91feb87bb0e, type: 2}
 --- !u!114 &162412890
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1228,7 +1227,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b64a798456a24a54598b8815baa2a441, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEnter: 0
   onEnter:
     m_PersistentCalls:
       m_Calls:
@@ -1658,7 +1656,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b64a798456a24a54598b8815baa2a441, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEnter: 0
   onEnter:
     m_PersistentCalls:
       m_Calls:
@@ -2082,7 +2079,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b64a798456a24a54598b8815baa2a441, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEnter: 0
   onEnter:
     m_PersistentCalls:
       m_Calls:
@@ -3201,7 +3197,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b64a798456a24a54598b8815baa2a441, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEnter: 0
   onEnter:
     m_PersistentCalls:
       m_Calls:
@@ -3732,7 +3727,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b64a798456a24a54598b8815baa2a441, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEnter: 0
   onEnter:
     m_PersistentCalls:
       m_Calls:
@@ -4149,7 +4143,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b64a798456a24a54598b8815baa2a441, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEnter: 0
   onEnter:
     m_PersistentCalls:
       m_Calls:
@@ -4965,7 +4958,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b64a798456a24a54598b8815baa2a441, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEnter: 0
   onEnter:
     m_PersistentCalls:
       m_Calls:
@@ -15376,10 +15368,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fc1ece2f92a46fb831663471f77b984, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputSystem: {fileID: 0}
-  questSystem: {fileID: 0}
-  experienceSystem: {fileID: 0}
-  uiSystem: {fileID: 2110187095}
   tilemapWalls: {fileID: 1335898269}
   settings: {fileID: 11400000, guid: c97f0da22a7c7f94a8d1a70659689093, type: 2}
 --- !u!1001 &1459660371
@@ -17346,7 +17334,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b64a798456a24a54598b8815baa2a441, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEnter: 0
   onEnter:
     m_PersistentCalls:
       m_Calls:
@@ -22520,15 +22507,3 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a4cff7c9edc53e34487c7f09c444440e, type: 3}
---- !u!114 &2110187095 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6724140613839207160, guid: a4cff7c9edc53e34487c7f09c444440e,
-    type: 3}
-  m_PrefabInstance: {fileID: 2110187094}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fac7758e36e699f43b9056629ddeee3c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

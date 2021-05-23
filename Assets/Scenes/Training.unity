@@ -6286,7 +6286,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b64a798456a24a54598b8815baa2a441, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEnter: 0
   onEnter:
     m_PersistentCalls:
       m_Calls:
@@ -8781,7 +8780,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b64a798456a24a54598b8815baa2a441, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEnter: 0
   onEnter:
     m_PersistentCalls:
       m_Calls:
@@ -11208,7 +11206,7 @@ GameObject:
   - component: {fileID: 1255322202}
   - component: {fileID: 1255322201}
   - component: {fileID: 1255322200}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Exit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11240,7 +11238,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b64a798456a24a54598b8815baa2a441, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEnter: 0
   onEnter:
     m_PersistentCalls:
       m_Calls:
@@ -12982,7 +12979,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b64a798456a24a54598b8815baa2a441, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEnter: 0
   onEnter:
     m_PersistentCalls:
       m_Calls:
@@ -13402,10 +13398,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fc1ece2f92a46fb831663471f77b984, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputSystem: {fileID: 0}
-  questSystem: {fileID: 0}
-  experienceSystem: {fileID: 0}
-  uiSystem: {fileID: 2010351265}
   tilemapWalls: {fileID: 178153207}
   settings: {fileID: 11400000, guid: c97f0da22a7c7f94a8d1a70659689093, type: 2}
 --- !u!1 &1738653504
@@ -14666,7 +14658,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b64a798456a24a54598b8815baa2a441, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEnter: 0
   onEnter:
     m_PersistentCalls:
       m_Calls:
@@ -14723,18 +14714,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 2.9931288}
   m_EdgeRadius: 0
---- !u!114 &2010351265 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6724140613839207160, guid: a4cff7c9edc53e34487c7f09c444440e,
-    type: 3}
-  m_PrefabInstance: {fileID: 6724140614658178137}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fac7758e36e699f43b9056629ddeee3c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2015558210
 GameObject:
   m_ObjectHideFlags: 0
@@ -14973,7 +14952,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b64a798456a24a54598b8815baa2a441, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEnter: 0
   onEnter:
     m_PersistentCalls:
       m_Calls:
@@ -16076,6 +16054,16 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1255322200}
+    - target: {fileID: 5560168586030314155, guid: a4cff7c9edc53e34487c7f09c444440e,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6682003480101630737, guid: a4cff7c9edc53e34487c7f09c444440e,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 6724140613323291784, guid: a4cff7c9edc53e34487c7f09c444440e,
         type: 3}
       propertyPath: m_Pivot.x
@@ -16201,6 +16189,11 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1255322200}
+    - target: {fileID: 6724140615089735786, guid: a4cff7c9edc53e34487c7f09c444440e,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 6724140615199512769, guid: a4cff7c9edc53e34487c7f09c444440e,
         type: 3}
       propertyPath: m_Text
