@@ -1,4 +1,4 @@
-﻿namespace DialogueSystem.Editor
+﻿namespace DialogueSystem.Editor.Nodes
 {
     public class DialogueNode : BaseNode
     {

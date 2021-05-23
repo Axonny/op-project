@@ -1,21 +1,19 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using DialogueSystem.Editor;
+using DialogueSystem.Editor.Nodes;
 using UnityEditor.Experimental.GraphView;
-using UnityEngine;
 
 namespace DialogueSystem.GraphData
 {
-    [Serializable]
-    public class DialogueContainer : ScriptableObject
+    public class DialogueContainer
     {
-        public EntryPointNodeData entryPoint;
-        [SerializeField] private List<DialogueNodeData> dialogueNodes = new List<DialogueNodeData>();
-        [SerializeField] private List<EventNodeData> eventNodes = new List<EventNodeData>();
-        
-        public List<BaseNodeData> Nodes => dialogueNodes.Cast<BaseNodeData>().Union(eventNodes).ToList();
+        public DialogueData Container;
 
+        public DialogueContainer(DialogueData container)
+        {
+            Container = container;
+        }
+        
         public void Add(BaseNode node)
         {
             switch (node)
@@ -39,7 +37,7 @@ namespace DialogueSystem.GraphData
         {
             var outputPort = (Port) node.outputContainer[0];
             var targetNode = (BaseNode) outputPort.connections.First().input.node;
-            entryPoint = new EntryPointNodeData
+            Container.entryPoint = new EntryPointNodeData
             {
                 guid = node.Guid, 
                 targetNodeGuid = targetNode.Guid
@@ -50,14 +48,14 @@ namespace DialogueSystem.GraphData
         {
             var data = new EventNodeData { dataEvent = node.DataEvent};
             AddBaseData(node, data);
-            eventNodes.Add(data);
+            Container.eventNodes.Add(data);
         }
 
         private void AddDialogueNodeData(DialogueNode node)
         {
             var data = new DialogueNodeData { dialogueText = node.DialogueText };
             AddBaseData(node, data);
-            dialogueNodes.Add(data);
+            Container.dialogueNodes.Add(data);
         }
 
         private void AddBaseData(BaseNode node, BaseNodeData toData)

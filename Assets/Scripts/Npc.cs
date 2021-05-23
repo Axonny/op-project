@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class Npc : MonoBehaviour, INpc
 {
-    public DialogueContainer dialogue;
+    public DialogueData dialogue;
 
     public void GiveQuest(Quest quest)
     {

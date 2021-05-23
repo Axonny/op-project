@@ -14,14 +14,14 @@ namespace DialogueSystem
         public GameObject dialogueWindow;
         public Transform buttonParent;
         public GameObject continueButton;
-        public DialogueContainer dialogue;
+        public DialogueData dialogue;
 
         public bool isTalk;
         
         private Coroutine typing;
         [SerializeField] private GameObject buttonPrefab;
 
-        public void StartDialogue(DialogueContainer dialogueContainer)
+        public void StartDialogue(DialogueData dialogueContainer)
         {
             dialogue = dialogueContainer;
             isTalk = true;

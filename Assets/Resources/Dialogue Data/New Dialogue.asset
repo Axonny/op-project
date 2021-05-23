@@ -9,43 +9,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a7ab5aedc4cb49cdad4dd7f9ecfeaf35, type: 3}
+  m_Script: {fileID: 11500000, guid: 98c2df0b561049a3aa78ad26525ec7cf, type: 3}
   m_Name: New Dialogue
   m_EditorClassIdentifier: 
   entryPoint:
-    guid: 0920005f-78d6-45f7-87b4-c02ab31d8556
-    targetNodeGuid: 2df8ead5-292e-48fa-9dde-0697d9ee967d
+    guid: bc993398-1480-4a50-88bb-d307c2700691
+    targetNodeGuid: 38ae7d38-692d-4a08-9776-e76eee406f97
   dialogueNodes:
-  - guid: 2df8ead5-292e-48fa-9dde-0697d9ee967d
-    position: {x: 260, y: 200.8}
+  - guid: 38ae7d38-692d-4a08-9776-e76eee406f97
+    position: {x: 358.4, y: 255.2}
     outputPorts:
-    - portName: Hi
-      targetNodeGuid: 17020547-10d9-4b31-a198-78883f65acd4
-    - portName: Bye
+    - portName: Choice 1
       targetNodeGuid: 
-    dialogueText: Hi
-  - guid: 17020547-10d9-4b31-a198-78883f65acd4
-    position: {x: 501.6, y: 129.59999}
-    outputPorts:
-    - portName: Ok
-      targetNodeGuid: dffd4d38-d319-4d6d-86f1-d4f992d74d7e
-    - portName: Nope
-      targetNodeGuid: 78397b3a-d45f-4bb2-b95c-4ac1fb092550
-    dialogueText: Can you kill 5 monsters?
-  - guid: 78397b3a-d45f-4bb2-b95c-4ac1fb092550
-    position: {x: 813.6, y: 253.59999}
-    outputPorts:
-    - portName: Ok, I help
-      targetNodeGuid: dffd4d38-d319-4d6d-86f1-d4f992d74d7e
-    - portName: I said no
-      targetNodeGuid: 29f9bbb2-ea14-468a-b755-6f5c5933f387
-    dialogueText: Damn. Can you help me anyway?)
-  - guid: dffd4d38-d319-4d6d-86f1-d4f992d74d7e
-    position: {x: 1172.8, y: 47.2}
-    outputPorts: []
-    dialogueText: Thanks! Bye!
-  - guid: 29f9bbb2-ea14-468a-b755-6f5c5933f387
-    position: {x: 1200.8, y: 347.2}
-    outputPorts: []
-    dialogueText: Sorry...
+    - portName: Choice 2
+      targetNodeGuid: 
+    dialogueText: Dialogue Node
   eventNodes: []

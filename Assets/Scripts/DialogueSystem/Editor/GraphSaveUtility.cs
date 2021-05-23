@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using DialogueSystem.Editor.Nodes;
 using DialogueSystem.GraphData;
 using UnityEditor;
 using UnityEditor.Experimental.GraphView;
@@ -25,20 +26,21 @@ namespace DialogueSystem.Editor
         public void SaveGraph(string fileName)
         {
             if (!Edges.Any()) return;
-            var dialogueContainer = ScriptableObject.CreateInstance<DialogueContainer>();
+            var dialogueContainer = new DialogueContainer(ScriptableObject.CreateInstance<DialogueData>());
 
             foreach (var node in Nodes)
             {
                 dialogueContainer.Add(node);
             }
 
-            AssetDatabase.CreateAsset(dialogueContainer, $"Assets/Resources/Dialogue Data/{fileName}.asset");
+            AssetDatabase.CreateAsset(dialogueContainer.Container, $"Assets/Resources/Dialogue Data/{fileName}.asset");
             AssetDatabase.SaveAssets();
         }
 
         public void LoadGraph(string fileName)
         {
-            containerCache = Resources.Load<DialogueContainer>($"Dialogue Data/{fileName}");
+            containerCache = new DialogueContainer(Resources.Load<DialogueData>($"Dialogue Data/{fileName}"));
+                
             if (containerCache == null)
             {
                 EditorUtility.DisplayDialog("File Not Found", "Target dialogue file doesn't exists!", "OK");
@@ -54,7 +56,7 @@ namespace DialogueSystem.Editor
         {
             foreach (var node in Nodes.Where(x => !x.EntryPoint))
             {
-                var connections = containerCache.Nodes
+                var connections = containerCache.Container.Nodes
                     .First(x => x.guid == node.Guid)
                     .outputPorts
                     .Where(x => !string.IsNullOrEmpty(x.targetNodeGuid));
@@ -72,7 +74,7 @@ namespace DialogueSystem.Editor
 
             var outputEntryPoint = (Port) Nodes.First(x => x.EntryPoint).outputContainer[0];
             var inputEntryPoint = (Port) Nodes
-                .First(x => x.Guid == containerCache.entryPoint.targetNodeGuid)
+                .First(x => x.Guid == containerCache.Container.entryPoint.targetNodeGuid)
                 .inputContainer[0];
             LinkNodes(outputEntryPoint, inputEntryPoint);
         }
@@ -92,9 +94,9 @@ namespace DialogueSystem.Editor
 
         private void CreateNodes()
         {
-            Nodes.First().Guid = containerCache.entryPoint.guid;
+            Nodes.First().Guid = containerCache.Container.entryPoint.guid;
             
-            foreach (var nodeData in containerCache.Nodes)
+            foreach (var nodeData in containerCache.Container.Nodes)
             {
                 BaseNode tmpNode;
                 switch (nodeData)
