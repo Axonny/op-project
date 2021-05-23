@@ -1,12 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using DialogueSystem;
 using Interfaces;
 using PlayerScripts;
-using UnityEditor;
 using UnityEngine;
-using UnityEngine.Assertions.Must;
 
 public class Player : Singleton<Player>, IPlayer
 {
