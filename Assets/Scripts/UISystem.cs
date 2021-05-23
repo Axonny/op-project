@@ -74,9 +74,9 @@ public class UISystem : Singleton<UISystem>
         StartCoroutine(FadeInOut(0.8f, 0, false));
     }
 
-    public void ShowLoadIcon()
+    public void ShowLoadIcon(float time = 0f)
     {
-        StartCoroutine(LoadIdAnimation(timeLoad));
+        StartCoroutine(LoadIdAnimation(time < 0.01f ? timeLoad : time));
     }
 
     private IEnumerator FadeInOut(float fromAlpha, float toAlpha, bool showDead)

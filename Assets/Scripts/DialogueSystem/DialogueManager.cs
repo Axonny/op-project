@@ -9,7 +9,6 @@ namespace DialogueSystem
 {
     public class DialogueManager : Singleton<DialogueManager>
     {
-        public Text npcName;
         public Text message;
         public GameObject dialogueWindow;
         public Transform buttonParent;

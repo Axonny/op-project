@@ -18,10 +18,6 @@ MonoBehaviour:
   dialogueNodes:
   - guid: 38ae7d38-692d-4a08-9776-e76eee406f97
     position: {x: 358.4, y: 255.2}
-    outputPorts:
-    - portName: Choice 1
-      targetNodeGuid: 
-    - portName: Choice 2
-      targetNodeGuid: 
+    outputPorts: []
     dialogueText: Dialogue Node
   eventNodes: []

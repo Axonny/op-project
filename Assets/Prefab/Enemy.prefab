@@ -347,7 +347,7 @@ MonoBehaviour:
   speed: 7
   layerMask:
     serializedVersion: 2
-    m_Bits: 183
+    m_Bits: 179
 --- !u!95 &910209680
 Animator:
   serializedVersion: 3
