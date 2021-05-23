@@ -1,8 +1,16 @@
+using ScriptableObjects;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class SceneLoader : MonoBehaviour
 {
+    public LevelManager levelManager;
+    
+    public void LoadSceneFromScriptableObject()
+    {
+        LoadScene(levelManager.levels[levelManager.index++]);
+    }
+    
     public void LoadScene(string nameScene)
     {
         Player.Instance.playerSave.SaveData();

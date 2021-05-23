@@ -277,11 +277,51 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 2279574520564340528, guid: a4cff7c9edc53e34487c7f09c444440e,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2279574520564340528, guid: a4cff7c9edc53e34487c7f09c444440e,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2279574520564340528, guid: a4cff7c9edc53e34487c7f09c444440e,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2279574520564340528, guid: a4cff7c9edc53e34487c7f09c444440e,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5531092551963860916, guid: a4cff7c9edc53e34487c7f09c444440e,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1221264202}
+    - target: {fileID: 5855349312281307902, guid: a4cff7c9edc53e34487c7f09c444440e,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5855349312281307902, guid: a4cff7c9edc53e34487c7f09c444440e,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5855349312281307902, guid: a4cff7c9edc53e34487c7f09c444440e,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5855349312281307902, guid: a4cff7c9edc53e34487c7f09c444440e,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6724140613323291784, guid: a4cff7c9edc53e34487c7f09c444440e,
         type: 3}
       propertyPath: m_Pivot.x
@@ -426,6 +466,26 @@ PrefabInstance:
         type: 3}
       propertyPath: subtitles
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6724140614941908489, guid: a4cff7c9edc53e34487c7f09c444440e,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6724140614941908489, guid: a4cff7c9edc53e34487c7f09c444440e,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6724140614941908489, guid: a4cff7c9edc53e34487c7f09c444440e,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6724140614941908489, guid: a4cff7c9edc53e34487c7f09c444440e,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6724140614941908494, guid: a4cff7c9edc53e34487c7f09c444440e,
         type: 3}
@@ -3548,6 +3608,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b922fa72e1c5454bb9a88ef8e49c23e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  levelManager: {fileID: 0}
 --- !u!114 &1221264203
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3566,8 +3627,8 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1221264202}
         m_TargetAssemblyTypeName: SceneLoader, Assembly-CSharp
-        m_MethodName: LoadScene
-        m_Mode: 5
+        m_MethodName: LoadSceneFromScriptableObject
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -3603,7 +3664,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 8.382631, y: 2.8249245}
+  m_Size: {x: 2.4816377, y: 0.8869597}
   m_EdgeRadius: 0
 --- !u!4 &1221264205
 Transform:
@@ -3613,7 +3674,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1221264201}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 26.97, y: 45.36, z: 0}
+  m_LocalPosition: {x: 1.49, y: 2.58, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -4322,7 +4383,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mana: 100
-  maxMana: 100
   costMana: 5
   magicAttackPrefab: {fileID: 1870006588852226763, guid: 81b9a239f15d1d548b9f440cf659e7f4,
     type: 3}
@@ -4784,7 +4844,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2819fe8087fa43a482fc8b41f86dea94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogue: {fileID: 11400000, guid: c9a7cac1397a84d47953f197e6977269, type: 2}
+  levelManager: {fileID: 11400000, guid: 54513f5ccb27b0e46a72d91feb87bb0e, type: 2}
 --- !u!1 &1773667275
 GameObject:
   m_ObjectHideFlags: 0
@@ -7056,14 +7116,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c05f2e1a6edbd649b41a291d3b1210d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 0
-  maxHealth: 100
-  speed: 7
   attackDuration: 0.75
   comboAttackDuration: 0.34
-  damage:
-    size: 20
-    type: 0
   playerSave: {fileID: 11400000, guid: d335b7180447fb84ab13aef924a82529, type: 2}
   mainCamera: {fileID: 1625720669}
   attackPoint: {fileID: 68833812}

@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class Npc : MonoBehaviour, INpc
 {
-    public DialogueData dialogue;
+    public LevelManager levelManager;
 
     public void GiveQuest(Quest quest)
     {
@@ -15,7 +15,7 @@ public class Npc : MonoBehaviour, INpc
 
     public void Talk()
     {
-        DialogueManager.Instance.StartDialogue(dialogue);
+        DialogueManager.Instance.StartDialogue(levelManager.Dialogue);
     }
 
     public void PlayerEnter(bool flag)
