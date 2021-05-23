@@ -7,6 +7,11 @@ public class Npc : MonoBehaviour, INpc
 {
     public LevelManager levelManager;
 
+    private void Start()
+    {
+        Talk();
+    }
+    
     public void GiveQuest(Quest quest)
     {
         QuestSystem.Instance.AddQuest(quest);

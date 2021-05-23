@@ -17,24 +17,24 @@ MonoBehaviour:
     targetNodeGuid: fa6e0ad0-a7c3-4774-8a48-1f816457b6e0
   dialogueNodes:
   - guid: fa6e0ad0-a7c3-4774-8a48-1f816457b6e0
-    position: {x: 231, y: 268}
+    position: {x: 231.2, y: 268}
     outputPorts:
     - portName: ...
       targetNodeGuid: 362513d1-ba6a-4544-aba0-9e6499202ba2
     dialogueText: "\u041D\u0430\u043A\u043E\u043D\u0435\u0446 \u0442\u044B \u043F\u0440\u0438\u0448\u043B\u0430
       \u0432 \u0441\u0435\u0431\u044F"
   - guid: 362513d1-ba6a-4544-aba0-9e6499202ba2
-    position: {x: 685, y: 267}
+    position: {x: 685.60004, y: 267.19998}
     outputPorts:
     - portName: ...
       targetNodeGuid: 01be45e7-e4ea-45c2-8641-b4230bd4480b
     dialogueText: "\u042F \u0442\u0435\u0431\u044F \u0442\u0443\u0442 \u0436\u0434\u0443,
       \u0437\u043D\u0430\u0447\u0438\u0442. \u0410 \u0442\u044B \u0432\u0441\u0435
-      \u043B\u0435\u0436\u0438\u0448\u044C, \u0438 \u043B\u0435\u0436\u0438\u0448\u044C...                     
+      \u043B\u0435\u0436\u0438\u0448\u044C, \u0438 \u043B\u0435\u0436\u0438\u0448\u044C...
       \u0414\u0443\u043C\u0430\u043B \u0441\u043E\u0432\u0441\u0435\u043C \u0432
       \u0441\u0435\u0431\u044F \u043D\u0435 \u043F\u0440\u0438\u0434\u0435\u0448\u044C..."
   - guid: 01be45e7-e4ea-45c2-8641-b4230bd4480b
-    position: {x: 1529, y: 267}
+    position: {x: 1529.6, y: 267.19998}
     outputPorts:
     - portName: ....
       targetNodeGuid: 128c8f00-9bfe-470d-b047-9ea164adac99
@@ -42,7 +42,7 @@ MonoBehaviour:
       \u041D\u043E \u043C\u043D\u0435 \u043D\u0443\u0436\u043D\u043E \u0432\u0432\u0435\u0441\u0442\u0438
       \u0442\u0435\u0431\u044F \u0432 \u043A\u0443\u0440\u0441 \u0434\u0435\u043B\u0430"
   - guid: 128c8f00-9bfe-470d-b047-9ea164adac99
-    position: {x: 2160, y: 266}
+    position: {x: 2160, y: 265.59998}
     outputPorts:
     - portName: ...
       targetNodeGuid: 7a67bf3b-ff4b-49b6-8788-7e32401710fc
@@ -52,7 +52,7 @@ MonoBehaviour:
       \u0436\u0438\u0432\u044B\u0445. \u041D\u0438 \u043C\u0435\u0440\u0442\u0432\u044B\u0445.
       \u041D\u0418\u041A\u041E\u0413\u041E."
   - guid: 7a67bf3b-ff4b-49b6-8788-7e32401710fc
-    position: {x: 2922, y: 261}
+    position: {x: 2922.4, y: 260.8}
     outputPorts:
     - portName: ...
       targetNodeGuid: 122a7ec0-a420-4c71-abf0-3bf02697da1e
@@ -60,7 +60,7 @@ MonoBehaviour:
       \u043C\u0435\u0440\u0442\u0432\u0435\u0446\u044B \u0437\u0434\u0435\u0441\u044C
       \u043D\u0435 \u0440\u0435\u0434\u043A\u043E\u0441\u0442\u044C"
   - guid: 122a7ec0-a420-4c71-abf0-3bf02697da1e
-    position: {x: 3442, y: 266}
+    position: {x: 3442.4, y: 265.59998}
     outputPorts:
     - portName: "\u0410 \u043F\u0440\u0438\u0447\u0435\u043C \u0442\u0443\u0442 \u044F?"
       targetNodeGuid: 8f8b1463-6aa1-43e6-988c-e790f65f786d
@@ -74,16 +74,8 @@ MonoBehaviour:
       \u0447\u0442\u043E\u0431\u044B \u043D\u0435\u043F\u0440\u043E\u0448\u0435\u043D\u044B\u0445
       \u0433\u043E\u0441\u0442\u0435\u0439 \u0431\u044B\u043B\u043E \u043A\u0430\u043A
       \u043C\u043E\u0436\u043D\u043E \u043C\u0435\u043D\u044C\u0448\u0435"
-  - guid: 8f8b1463-6aa1-43e6-988c-e790f65f786d
-    position: {x: 4432, y: 104}
-    outputPorts:
-    - portName: Choice 1
-      targetNodeGuid: 603d0464-889e-4363-9daa-f95104c7893d
-    dialogueText: "\u041A\u0430\u043A \u044D\u0442\u043E \"\u043F\u0440\u0438\u0447\u0451\u043C\"?
-      \u042F \u0442\u0435\u043F\u0435\u0440\u044C \u0434\u043E\u043B\u0436\u0435\u043D
-      \u0432\u0441\u0451 \u0434\u0435\u043B\u0430\u0442\u044C \u0441\u0430\u043C?"
   - guid: 603d0464-889e-4363-9daa-f95104c7893d
-    position: {x: 4988, y: 103}
+    position: {x: 4988, y: 103.2}
     outputPorts:
     - portName: ...
       targetNodeGuid: eeb2c11b-e6e3-49c0-8515-70c2dea76b70
@@ -96,20 +88,20 @@ MonoBehaviour:
       \u043F\u043E\u043C\u043E\u0449\u043D\u0438\u043A\u0430, \u0430 \u043B\u0443\u0447\u0448\u0435
       \u043F\u043E\u043C\u043E\u0449\u043D\u0438\u0446\u0443."
   - guid: 19d5d19d-f360-456d-be36-d6ab7d091759
-    position: {x: 5179, y: 402}
+    position: {x: 5179.2, y: 401.59998}
     outputPorts:
     - portName: ...
       targetNodeGuid: eeb2c11b-e6e3-49c0-8515-70c2dea76b70
     dialogueText: "\u0420\u0430\u0434, \u0447\u0442\u043E \u0442\u044B \u0441\u043F\u0440\u043E\u0441\u0438\u043B\u0430"
   - guid: 644feada-97fe-43a9-9a67-57298617542a
-    position: {x: 7135, y: 500}
+    position: {x: 7135.2, y: 500}
     outputPorts:
     - portName: ...
       targetNodeGuid: 36bc1382-2571-41c1-a3ef-b4a13276ff5b
     dialogueText: "\u0425\u043C\u043C\u043C... \u041E\u0431 \u044D\u0442\u043E\u043C
       \u044F \u043D\u0435 \u043F\u043E\u0434\u0443\u043C\u0430\u043B"
   - guid: 36bc1382-2571-41c1-a3ef-b4a13276ff5b
-    position: {x: 7580, y: 498}
+    position: {x: 7580, y: 497.59998}
     outputPorts:
     - portName: ...
       targetNodeGuid: e8a811ed-4497-4a5a-bf8b-1868ff83cbf1
@@ -123,7 +115,7 @@ MonoBehaviour:
       \u0443\u0439\u0434\u0451\u0448\u044C - \u044F \u043F\u0440\u043E\u0441\u0442\u043E
       \u0441\u043E\u0437\u0434\u0430\u043C \u043D\u043E\u0432\u0443\u044E \u043F\u043E\u043C\u043E\u0449\u043D\u0438\u0446\u0443"
   - guid: 0f4f62be-e8ef-47e6-afc1-cfb90c2bd919
-    position: {x: 8752, y: 506}
+    position: {x: 8752, y: 505.59998}
     outputPorts:
     - portName: ...
       targetNodeGuid: 35251da1-1fe8-4db0-a553-3ad3aafe8293
@@ -140,7 +132,7 @@ MonoBehaviour:
       \u043D\u0430 \u0441\u0430\u043C\u044B\u0435 \u043F\u0440\u0438\u043C\u0438\u0442\u0438\u0432\u043D\u044B\u0435
       \u0432\u0435\u0449\u0438"
   - guid: 35251da1-1fe8-4db0-a553-3ad3aafe8293
-    position: {x: 10401, y: 508}
+    position: {x: 10401.601, y: 508}
     outputPorts:
     - portName: ....
       targetNodeGuid: e8a811ed-4497-4a5a-bf8b-1868ff83cbf1
@@ -149,7 +141,7 @@ MonoBehaviour:
       \u043F\u043E\u0434\u0443\u043C\u0430\u044E \u043D\u0430\u0434 \u0442\u0432\u043E\u0438\u043C
       \u0443\u043B\u0443\u0447\u0448\u0435\u043D\u0438\u0435\u043C"
   - guid: eeb2c11b-e6e3-49c0-8515-70c2dea76b70
-    position: {x: 6170, y: 286}
+    position: {x: 6170.4004, y: 285.59998}
     outputPorts:
     - portName: ...
       targetNodeGuid: e8a811ed-4497-4a5a-bf8b-1868ff83cbf1
@@ -162,7 +154,7 @@ MonoBehaviour:
       \u0438 \u0434\u043E\u0431\u044B\u0432\u0430\u0442\u044C \u043D\u0443\u0436\u043D\u044B\u0435
       \u043C\u043D\u0435 \u043C\u0430\u0442\u0435\u0440\u0438\u0430\u043B\u044B"
   - guid: ab951a15-c15f-450c-81f8-102133f19bcf
-    position: {x: 11601, y: -44}
+    position: {x: 11601.601, y: -44}
     outputPorts:
     - portName: ...
       targetNodeGuid: 84583813-6df5-4844-8cc8-5abc53ca9139
@@ -173,7 +165,7 @@ MonoBehaviour:
       \u0440\u0430\u0437\u0433\u0443\u043B\u0438\u0432\u0430\u044E\u0442 \u0440\u044F\u0434\u043E\u043C
       \u0441 \u043C\u043E\u0438\u043C \u0447\u0443\u0434\u043D\u044B\u043C \u0436\u0438\u043B\u0438\u0449\u0435\u043C"
   - guid: e8a811ed-4497-4a5a-bf8b-1868ff83cbf1
-    position: {x: 11011, y: -42}
+    position: {x: 11011.2, y: -42.4}
     outputPorts:
     - portName: ...
       targetNodeGuid: ab951a15-c15f-450c-81f8-102133f19bcf
@@ -181,7 +173,7 @@ MonoBehaviour:
       \u043F\u0440\u043E\u0432\u0435\u0440\u0438\u043C \u043D\u0430 \u0447\u0442\u043E
       \u0442\u044B \u0441\u043F\u043E\u0441\u043E\u0431\u043D\u0430"
   - guid: 84583813-6df5-4844-8cc8-5abc53ca9139
-    position: {x: 12676, y: -43}
+    position: {x: 12676, y: -43.2}
     outputPorts: []
     dialogueText: "\u0422\u0432\u043E\u044F \u0437\u0430\u0434\u0430\u0447\u0430
       -  \u0438\u0437\u0431\u0430\u0432\u0438\u0442\u044C\u0441\u044F \u043E\u0442
@@ -189,4 +181,12 @@ MonoBehaviour:
       \u044F \u0432\u044B\u0439\u0434\u0443 \u0432\u0435\u0447\u0435\u0440\u043E\u043C
       \u043D\u0430 \u043F\u0440\u043E\u043C\u0435\u043D\u0430\u0434, \u043E\u043D\u0438
       \u043D\u0435 \u043C\u043E\u0437\u043E\u043B\u0438\u043B\u0438 \u0433\u043B\u0430\u0437\u0430"
+  - guid: 8f8b1463-6aa1-43e6-988c-e790f65f786d
+    position: {x: 4432, y: 104}
+    outputPorts:
+    - portName: ',,,'
+      targetNodeGuid: 603d0464-889e-4363-9daa-f95104c7893d
+    dialogueText: "\u041A\u0430\u043A \u044D\u0442\u043E \"\u043F\u0440\u0438\u0447\u0451\u043C\"?
+      \u042F \u0442\u0435\u043F\u0435\u0440\u044C \u0434\u043E\u043B\u0436\u0435\u043D
+      \u0432\u0441\u0451 \u0434\u0435\u043B\u0430\u0442\u044C \u0441\u0430\u043C?"
   eventNodes: []
