@@ -1,19 +1,55 @@
-﻿using System.Linq;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using DialogueSystem;
 using Interfaces;
 using PlayerScripts;
+using UnityEditor;
 using UnityEngine;
 
 public class Player : Singleton<Player>, IPlayer
 {
-    [SerializeField] private int health;
-    [SerializeField] private int maxHealth;
-    [SerializeField] private int speed;
+    internal Characteristic[] _characteristics =
+    {
+        new Characteristic("strength", 10),
+        new Characteristic("vitality", 10),
+        new Characteristic("agility", 10),
+        new Characteristic("intelligence", 10),
+        new Characteristic("wisdom", 10),
+    };
+
+    internal Characteristic[] _characteristics_delta =
+    {
+        new Characteristic("strength", 0),
+        new Characteristic("vitality", 0),
+        new Characteristic("agility", 0),
+        new Characteristic("intelligence", 0),
+        new Characteristic("wisdom", 0),
+    };
+
+    internal int freeSkillPoints = 0;
+    internal int skillPointsPerLevel = 5;
+
+
+    private int experience = 0;
+    internal int level;
+
+    internal int NeedExperienceCurrent => 100 + 50 * Level;
+
+    internal int strongAttackModifier = 2;
+    internal int strengthToDamageModifier = 3;
+    internal int vitalityToHealthModifier = 10;
+    internal int agilityToSpeedModifier = 1;
+    internal int intelligenceToDamageModifier = 1;
+    internal int wisdomToManaModifier = 10;
+    internal float wisdomToManaRestoreModifier = 0.2f;
+
+    private int health;
     [SerializeField] private float attackDuration;
     [SerializeField] private float comboAttackDuration;
-    
-    public Damage damage = new Damage(100, DamageType.Physic);
+
     public PlayerSave playerSave;
+
 
     [SerializeField] private Camera mainCamera;
     [SerializeField] private Transform attackPoint;
@@ -21,7 +57,7 @@ public class Player : Singleton<Player>, IPlayer
     [SerializeField] private float circleRadius;
     [SerializeField] private LayerMask enemyLayers;
     [SerializeField] private SpriteRenderer sprite;
-    
+
     private new Rigidbody2D rigidbody;
     private Animator animator;
     private InputMaster input;
@@ -29,7 +65,6 @@ public class Player : Singleton<Player>, IPlayer
     private float lastTimeAttack;
     private int combo;
 
-    private int level;
     private static readonly int StrongAttack = Animator.StringToHash("StrongAttack");
     private static readonly int Combo = Animator.StringToHash("Combo");
     private static readonly int AttackAnimation = Animator.StringToHash("Attack");
@@ -46,20 +81,44 @@ public class Player : Singleton<Player>, IPlayer
             UISystem.Instance.lvlInfo.text = $"{level} Lvl";
         }
     }
+
+    public int Experience
+    {
+        get => experience;
+        set => experience = value;
+    }
+
     public int Health
     {
         get => health;
         set
         {
             health = value;
-            if (health > maxHealth)
-                health = maxHealth;
-            UISystem.Instance.healthBar.value = health;
+            if (health > MaxHealth)
+                health = MaxHealth;
+            UISystem.Instance.healthBar.value = health * 1.0f / MaxHealth * 100;
         }
     }
-    public int Experience { get; set; }
 
-    private int NeedExperienceCurrent => 100 + 50 * Level;
+    internal int Strength => _characteristics[0].value + _characteristics_delta[0].value;
+    internal int Vitality => _characteristics[1].value + _characteristics_delta[1].value;
+    internal int Agility => _characteristics[2].value + _characteristics_delta[2].value;
+    internal int Intelligence => _characteristics[3].value + _characteristics_delta[3].value;
+    internal int Wisdom => _characteristics[4].value + _characteristics_delta[4].value;
+    public Damage SimpleDamage => new Damage(Strength * strengthToDamageModifier, DamageType.Physic);
+
+    public Damage StrongDamage => new Damage(SimpleDamage.Size * strongAttackModifier, DamageType.Physic);
+
+    public Damage MagickDamage =>
+        new Damage(Intelligence * intelligenceToDamageModifier, DamageType.Magic);
+
+    internal int MaxHealth => vitalityToHealthModifier * Vitality;
+    internal int MaxMana => Wisdom * wisdomToManaModifier;
+
+    internal int ManaRestore =>
+        (int) (1 + (Math.Max(0, Wisdom - 10) * wisdomToManaRestoreModifier));
+
+    internal int MovementSpeed => Agility * agilityToSpeedModifier;
 
     private void Start()
     {
@@ -68,16 +127,39 @@ public class Player : Singleton<Player>, IPlayer
         animator = gameObject.GetComponent<Animator>();
         input.Player.Move.performed += context => Move(context.ReadValue<Vector2>());
         input.Player.Move.canceled += context => Move(Vector3.zero);
-        input.Player.Shot.performed += context => Attack();        
+        input.Player.Shot.performed += context => Attack();
         input.Player.StrongAttack.performed += context => Attack(true);
-        Health = maxHealth;
+        Health = MaxHealth;
         Level = 1;
+        UpdateCharacteristicPanel();
         playerSave.LoadData();
+    }
+
+    internal
+        void UpdateCharacteristicPanel()
+    {
+        for (int i = 0; i < _characteristics.Length; i++)
+        {
+            UISystem.Instance.PanelUIContainer.characteristic[i].text =
+                (_characteristics[i].value + _characteristics_delta[i].value).ToString();
+        }
+
+        UISystem.Instance.PanelUIContainer.lvlInfo.text = level.ToString();
+        UISystem.Instance.PanelUIContainer.currentExperience.text = experience.ToString();
+        UISystem.Instance.PanelUIContainer.needExperience.text = NeedExperienceCurrent.ToString();
+        UISystem.Instance.PanelUIContainer.freeSkillPoints.text = freeSkillPoints.ToString();
+        UISystem.Instance.PanelUIContainer.simpleAttackDamage.text = SimpleDamage.Size.ToString();
+        UISystem.Instance.PanelUIContainer.strongAttackDamage.text = StrongDamage.Size.ToString();
+        UISystem.Instance.PanelUIContainer.magickAttackDamage.text = MagickDamage.Size.ToString();
+        UISystem.Instance.PanelUIContainer.maxHealth.text = MaxHealth.ToString();
+        UISystem.Instance.PanelUIContainer.maxMana.text = MaxMana.ToString();
+        UISystem.Instance.PanelUIContainer.manaRestore.text = (2 * ManaRestore).ToString();
+        UISystem.Instance.PanelUIContainer.movementSpeed.text = MovementSpeed.ToString();
     }
 
     private void FixedUpdate()
     {
-        rigidbody.velocity = movement * speed;
+        rigidbody.velocity = movement * MovementSpeed;
 
         rotatePoint.rotation = Quaternion.Euler(0, 0, Physics.GetAngleToMouse(mainCamera, transform.position));
     }
@@ -90,7 +172,7 @@ public class Player : Singleton<Player>, IPlayer
         {
             animator.SetTrigger(StrongAttack);
         }
-        else if (Time.time - lastTimeAttack >= attackDuration) 
+        else if (Time.time - lastTimeAttack >= attackDuration)
         {
             combo = 1;
             animator.SetTrigger(AttackAnimation);
@@ -110,22 +192,22 @@ public class Player : Singleton<Player>, IPlayer
                 case 3:
                     return;
             }
+
             animator.SetInteger(Combo, combo);
         }
         else
         {
             return;
         }
-        
+
         lastTimeAttack = Time.time;
         var enemies = Physics.FindColliders(attackPoint.position, circleRadius, enemyLayers);
-        var modifier = isStrongAttack ? 2 : 1;
         var angle = Physics.GetAngleToMouse(mainCamera, transform.position);
         sprite.flipX = angle > 0 || angle < -180;
         foreach (var enemy in enemies.Select(x => x.GetComponent<Enemy>()))
         {
             Debug.Log("hit");
-            GameManager.Instance.ProceedDamage(this, enemy, damage * modifier);
+            GameManager.Instance.ProceedDamage(this, enemy, isStrongAttack ? StrongDamage : SimpleDamage);
         }
     }
 
@@ -136,6 +218,7 @@ public class Player : Singleton<Player>, IPlayer
         {
             newExperience -= NeedExperienceCurrent;
             Level++;
+            freeSkillPoints += skillPointsPerLevel;
         }
 
         Experience = newExperience;
@@ -173,4 +256,49 @@ public class Player : Singleton<Player>, IPlayer
         if (inputMovement.x != 0)
             sprite.flipX = inputMovement.x < 0;
     }
+
+    public void IncreaseCharacteristic(int index)
+    {
+        if (freeSkillPoints == 0)
+        {
+            return;
+        }
+
+        _characteristics_delta[index].value++;
+        freeSkillPoints--;
+        UpdateCharacteristicPanel();
+    }
+
+    public void DecreaseCharacteristic(int index)
+    {
+        if (_characteristics_delta[index].value == 0)
+        {
+            return;
+        }
+
+        _characteristics_delta[index].value--;
+        freeSkillPoints++;
+        UpdateCharacteristicPanel();
+    }
+
+    public void SaveCharacteristics()
+    {
+        for (int i = 0; i < _characteristics.Length; i++)
+        {
+            _characteristics[i].value += _characteristics_delta[i].value;
+            _characteristics_delta[i].value = 0;
+        }
+        UpdateCharacteristicPanel();
+    }
+
+    public void ResetCharacteristics()
+    {
+        for (int i = 0; i < _characteristics_delta.Length; i++)
+        {
+            freeSkillPoints += _characteristics_delta[i].value;
+            _characteristics_delta[i].value = 0;
+        }
+        UpdateCharacteristicPanel();
+    }
+
 }
