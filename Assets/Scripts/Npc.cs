@@ -9,7 +9,7 @@ public class Npc : MonoBehaviour, INpc
 
     private void Start()
     {
-        Talk();
+        Invoke(nameof(Talk), 1f);
     }
     
     public void GiveQuest(Quest quest)
