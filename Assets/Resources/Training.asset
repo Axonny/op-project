@@ -9,15 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7d34b4c0347848d6ad3094678134068a, type: 3}
-  m_Name: LevelData
+  m_Script: {fileID: 11500000, guid: 252d8632daee442cb0094cbcb5a3bd9e, type: 3}
+  m_Name: Training
   m_EditorClassIdentifier: 
-  index: 0
-  levels:
-  - Level_1
-  - Level_2
-  - Level_3
-  dialogues:
-  - {fileID: 11400000, guid: c9a7cac1397a84d47953f197e6977269, type: 2}
-  - {fileID: 0}
-  - {fileID: 0}
+  level: 0
+  experience: 0
+  health: 100
+  mana: 100
