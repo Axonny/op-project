@@ -139,6 +139,9 @@ public class MoveAI : MonoBehaviour
                         GameManager.Instance.tilemapWalls.origin) + new Vector3(0.5f, 0.5f, 0);
                     rigidbody.velocity = (to2 - transform.position)
                         .normalized * speed;
+                } else if (i == pathPoints.Count - 1)
+                {
+                    rigidbody.velocity = (to - from).normalized * speed;
                 }
 
                 return;
