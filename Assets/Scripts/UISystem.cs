@@ -9,4 +9,5 @@ public class UISystem : Singleton<UISystem>
     public Slider healthBar;
     public Slider manaBar;
     public Text lvlInfo;
+    [SerializeField] public CharacteristicPanelUIContainer PanelUIContainer;
 }
