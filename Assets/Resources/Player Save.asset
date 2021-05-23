@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Player Save
   m_EditorClassIdentifier: 
   level: 1
-  experience: 120
+  experience: 0
   health: 100
   mana: 100

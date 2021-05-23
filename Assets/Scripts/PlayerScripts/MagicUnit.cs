@@ -4,7 +4,7 @@ using UnityEngine;
 public class MagicUnit : MonoBehaviour
 {
     public int mana;
-    public int costMana = 15;
+    public int costMana = 5;
     public GameObject magicAttackPrefab;
     [SerializeField] private float attackDuration;
     [SerializeField] private float manaRestoreDuration;
@@ -17,6 +17,7 @@ public class MagicUnit : MonoBehaviour
     private InputMaster input;
     private float lastTimeAttack;
     private float lastTimeRestoreMana;
+    internal int MaxMana => Player.Instance.MaxMana;
 
     public int Mana
     {
@@ -30,11 +31,8 @@ public class MagicUnit : MonoBehaviour
         }
     }
 
-    internal int MaxMana => Player.Instance._characteristics[4].value * Player.Instance.wisdomToManaModifier;
 
-    internal int ManaRestore =>
-        1 + (Math.Max(0, Player.Instance._characteristics[4].value - 10) *
-             Player.Instance.wisdomToManaRestoreModifier);
+    internal int ManaRestore => Player.Instance.ManaRestore;
 
     private void Awake()
     {

@@ -18,38 +18,38 @@ public class Player : Singleton<Player>, IPlayer
         new Characteristic("wisdom", 10),
     };
 
+    internal Characteristic[] _characteristics_delta =
+    {
+        new Characteristic("strength", 0),
+        new Characteristic("vitality", 0),
+        new Characteristic("agility", 0),
+        new Characteristic("intelligence", 0),
+        new Characteristic("wisdom", 0),
+    };
+
     internal int freeSkillPoints = 0;
     internal int skillPointsPerLevel = 5;
 
 
-    internal int experience;
+    private int experience = 0;
     internal int level;
 
     internal int NeedExperienceCurrent => 100 + 50 * Level;
 
     internal int strongAttackModifier = 2;
     internal int strengthToDamageModifier = 3;
-    internal int intelligenceToDamageModifier = 3;
-    internal int vitalityToHealthModifier = 3;
-    internal int wisdomToManaModifier = 3;
-    internal int wisdomToManaRestoreModifier = 3;
+    internal int vitalityToHealthModifier = 10;
+    internal int agilityToSpeedModifier = 1;
+    internal int intelligenceToDamageModifier = 1;
+    internal int wisdomToManaModifier = 10;
+    internal float wisdomToManaRestoreModifier = 0.2f;
 
-    internal int MaxHealth => vitalityToHealthModifier * _characteristics[1].value;
-
-    [SerializeField] private int health;
-    [SerializeField] private int speed;
+    private int health;
     [SerializeField] private float attackDuration;
     [SerializeField] private float comboAttackDuration;
-    
-    public Damage damage = new Damage(100, DamageType.Physic);
+
     public PlayerSave playerSave;
 
-    public Damage SimpleDamage => new Damage(_characteristics[0].value * strengthToDamageModifier, DamageType.Physic);
-
-    public Damage StrongDamage => new Damage(SimpleDamage.Size * strongAttackModifier, DamageType.Physic);
-
-    public Damage MagickDamage =>
-        new Damage(_characteristics[3].value * intelligenceToDamageModifier, DamageType.Physic);
 
     [SerializeField] private Camera mainCamera;
     [SerializeField] private Transform attackPoint;
@@ -100,6 +100,26 @@ public class Player : Singleton<Player>, IPlayer
         }
     }
 
+    internal int Strength => _characteristics[0].value + _characteristics_delta[0].value;
+    internal int Vitality => _characteristics[1].value + _characteristics_delta[1].value;
+    internal int Agility => _characteristics[2].value + _characteristics_delta[2].value;
+    internal int Intelligence => _characteristics[3].value + _characteristics_delta[3].value;
+    internal int Wisdom => _characteristics[4].value + _characteristics_delta[4].value;
+    public Damage SimpleDamage => new Damage(Strength * strengthToDamageModifier, DamageType.Physic);
+
+    public Damage StrongDamage => new Damage(SimpleDamage.Size * strongAttackModifier, DamageType.Physic);
+
+    public Damage MagickDamage =>
+        new Damage(Intelligence * intelligenceToDamageModifier, DamageType.Magic);
+
+    internal int MaxHealth => vitalityToHealthModifier * Vitality;
+    internal int MaxMana => Wisdom * wisdomToManaModifier;
+
+    internal int ManaRestore =>
+        (int) (1 + (Math.Max(0, Wisdom - 10) * wisdomToManaRestoreModifier));
+
+    internal int MovementSpeed => Agility * agilityToSpeedModifier;
+
     private void Start()
     {
         input = InputSystem.Instance.Input;
@@ -111,28 +131,35 @@ public class Player : Singleton<Player>, IPlayer
         input.Player.StrongAttack.performed += context => Attack(true);
         Health = MaxHealth;
         Level = 1;
+        UpdateCharacteristicPanel();
+        playerSave.LoadData();
+    }
+
+    internal
+        void UpdateCharacteristicPanel()
+    {
         for (int i = 0; i < _characteristics.Length; i++)
         {
-            UISystem.Instance.PanelUIContainer.characteristic[i].text = _characteristics[i].value.ToString();
+            UISystem.Instance.PanelUIContainer.characteristic[i].text =
+                (_characteristics[i].value + _characteristics_delta[i].value).ToString();
         }
 
         UISystem.Instance.PanelUIContainer.lvlInfo.text = level.ToString();
         UISystem.Instance.PanelUIContainer.currentExperience.text = experience.ToString();
         UISystem.Instance.PanelUIContainer.needExperience.text = NeedExperienceCurrent.ToString();
         UISystem.Instance.PanelUIContainer.freeSkillPoints.text = freeSkillPoints.ToString();
-        UISystem.Instance.PanelUIContainer.simpleAttackDamage.text = SimpleDamage.ToString();
-        UISystem.Instance.PanelUIContainer.strongAttackDamage.text = StrongAttack.ToString();
-        UISystem.Instance.PanelUIContainer.magickAttackDamage.text = MagickDamage.ToString();
+        UISystem.Instance.PanelUIContainer.simpleAttackDamage.text = SimpleDamage.Size.ToString();
+        UISystem.Instance.PanelUIContainer.strongAttackDamage.text = StrongDamage.Size.ToString();
+        UISystem.Instance.PanelUIContainer.magickAttackDamage.text = MagickDamage.Size.ToString();
         UISystem.Instance.PanelUIContainer.maxHealth.text = MaxHealth.ToString();
-        UISystem.Instance.PanelUIContainer.maxMana.text = freeSkillPoints.ToString();
-        UISystem.Instance.PanelUIContainer.manaRestore.text = freeSkillPoints.ToString();
-        UISystem.Instance.PanelUIContainer.movementSpeed.text = freeSkillPoints.ToString();
-        playerSave.LoadData();
+        UISystem.Instance.PanelUIContainer.maxMana.text = MaxMana.ToString();
+        UISystem.Instance.PanelUIContainer.manaRestore.text = (2 * ManaRestore).ToString();
+        UISystem.Instance.PanelUIContainer.movementSpeed.text = MovementSpeed.ToString();
     }
 
     private void FixedUpdate()
     {
-        rigidbody.velocity = movement * speed;
+        rigidbody.velocity = movement * MovementSpeed;
 
         rotatePoint.rotation = Quaternion.Euler(0, 0, Physics.GetAngleToMouse(mainCamera, transform.position));
     }
@@ -172,7 +199,7 @@ public class Player : Singleton<Player>, IPlayer
         {
             return;
         }
-        
+
         lastTimeAttack = Time.time;
         var enemies = Physics.FindColliders(attackPoint.position, circleRadius, enemyLayers);
         var angle = Physics.GetAngleToMouse(mainCamera, transform.position);
@@ -191,6 +218,7 @@ public class Player : Singleton<Player>, IPlayer
         {
             newExperience -= NeedExperienceCurrent;
             Level++;
+            freeSkillPoints += skillPointsPerLevel;
         }
 
         Experience = newExperience;
@@ -228,4 +256,49 @@ public class Player : Singleton<Player>, IPlayer
         if (inputMovement.x != 0)
             sprite.flipX = inputMovement.x < 0;
     }
+
+    public void IncreaseCharacteristic(int index)
+    {
+        if (freeSkillPoints == 0)
+        {
+            return;
+        }
+
+        _characteristics_delta[index].value++;
+        freeSkillPoints--;
+        UpdateCharacteristicPanel();
+    }
+
+    public void DecreaseCharacteristic(int index)
+    {
+        if (_characteristics_delta[index].value == 0)
+        {
+            return;
+        }
+
+        _characteristics_delta[index].value--;
+        freeSkillPoints++;
+        UpdateCharacteristicPanel();
+    }
+
+    public void SaveCharacteristics()
+    {
+        for (int i = 0; i < _characteristics.Length; i++)
+        {
+            _characteristics[i].value += _characteristics_delta[i].value;
+            _characteristics_delta[i].value = 0;
+        }
+        UpdateCharacteristicPanel();
+    }
+
+    public void ResetCharacteristics()
+    {
+        for (int i = 0; i < _characteristics_delta.Length; i++)
+        {
+            freeSkillPoints += _characteristics_delta[i].value;
+            _characteristics_delta[i].value = 0;
+        }
+        UpdateCharacteristicPanel();
+    }
+
 }
