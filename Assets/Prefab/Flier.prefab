@@ -568,7 +568,7 @@ MonoBehaviour:
   speed: 10
   layerMask:
     serializedVersion: 2
-    m_Bits: 183
+    m_Bits: 179
 --- !u!50 &7442107859465614561
 Rigidbody2D:
   serializedVersion: 4
