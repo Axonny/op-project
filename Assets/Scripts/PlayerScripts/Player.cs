@@ -179,7 +179,7 @@ public class Player : Singleton<Player>, IPlayer
             animator.SetTrigger(AttackAnimation);
             animator.SetInteger(Combo, combo);
         }
-        else if (Time.time - lastTimeAttack < comboAttackDuration)
+        else if (!isStrongAttack && Time.time - lastTimeAttack < comboAttackDuration)
         {
             switch (combo)
             {
