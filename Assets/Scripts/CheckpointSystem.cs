@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using PlayerScripts;
 using UnityEngine;
 
 
@@ -6,7 +7,7 @@ public class CheckpointSystem : MonoBehaviour
 {
     public Transform lastCheckPoint;
 
-    private HashSet<Transform> checkpoints = new HashSet<Transform>();
+    private readonly HashSet<Transform> checkpoints = new HashSet<Transform>();
 
     public void Checkpoint(Transform checkpoint)
     {

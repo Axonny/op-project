@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using PlayerScripts;
 using UnityEngine;
 
 
@@ -10,7 +11,7 @@ public class MoveAI : MonoBehaviour
     private bool isDetectedPlayer;
     [SerializeField] private LayerMask layerMask;
 
-    private static Moves[] moves = new[]
+    private static readonly Moves[] Moves = new[]
     {
         new Moves(MoveType.Down, new Vector2Int(1, 0)),
         new Moves(MoveType.Up, new Vector2Int(-1, 0)),
@@ -26,15 +27,25 @@ public class MoveAI : MonoBehaviour
     public void UpdateAI(GameField[,] map, Player player, (int, int) enemyPosInMap)
     {
         if (isDetectedPlayer || TryDetectPlayer(player, out isDetectedPlayer))
-            MoveToPlayer(map, player, enemyPosInMap);
+            MoveToPlayer(map, enemyPosInMap);
     }
 
-    public static List<(int, int)> MoveBFSOnTilemapToPoint(GameField[,] map, (int, int) start)
+    private static List<(int, int)> MoveBFSOnTilemapToPoint(GameField[,] map, (int, int) start)
     {
         var n = map.GetLength(0);
         var m = map.GetLength(1);
-        var visited = new bool[n, m];
-        var prev = new (int, int)[n, m];
+        var visited = new bool[n][];
+        for (int index = 0; index < n; index++)
+        {
+            visited[index] = new bool[m];
+        }
+
+        var prev = new (int, int)[n][];
+        for (int index = 0; index < n; index++)
+        {
+            prev[index] = new (int, int)[m];
+        }
+
         var queue = new Queue<(int, int)>();
         queue.Enqueue(start);
         (int, int) playerPosition = (-1, -1);
@@ -47,16 +58,16 @@ public class MoveAI : MonoBehaviour
                 break;
             }
 
-            foreach (var move in moves)
+            foreach (var move in Moves)
             {
-                var newX = x + move.move.y;
-                var newY = y + move.move.x;
+                var newX = x + move.Move.y;
+                var newY = y + move.Move.x;
                 if (newX >= 0 && newX < n &&
                     newY >= 0 && newY < m &&
-                    !visited[newX, newY] && map[newX, newY] != GameField.Wall)
+                    !visited[newX][newY] && map[newX, newY] != GameField.Wall)
                 {
-                    prev[newX, newY] = (x, y);
-                    visited[newX, newY] = true;
+                    prev[newX][newY] = (x, y);
+                    visited[newX][newY] = true;
                     queue.Enqueue((newX, newY));
                 }
             }
@@ -71,14 +82,14 @@ public class MoveAI : MonoBehaviour
         while (playerPosition != start)
         {
             ans.Add(playerPosition);
-            playerPosition = prev[playerPosition.Item1, playerPosition.Item2];
+            playerPosition = prev[playerPosition.Item1][playerPosition.Item2];
         }
 
         ans.Reverse();
         return ans;
     }
 
-    private void MoveToPlayer(GameField[,] map, Player player, (int, int) enemyPosInMap)
+    private void MoveToPlayer(GameField[,] map, (int, int) enemyPosInMap)
     {
         var pathPoints = MoveBFSOnTilemapToPoint(map, enemyPosInMap);
         if (pathPoints.Count == 0)

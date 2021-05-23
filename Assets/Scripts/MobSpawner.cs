@@ -27,6 +27,6 @@ public class MobSpawner : MonoBehaviour
         var enemy = Instantiate(mob, spawn.position, Quaternion.identity).GetComponent<Enemy>();
         enemy.level = levelMob;
         enemy.ONDead += () => mobCount--;
-        GameManager.Instance.enemies.Add(enemy);
+        GameManager.Instance.Enemies.Add(enemy);
     }
 }

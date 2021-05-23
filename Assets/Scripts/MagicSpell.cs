@@ -1,4 +1,5 @@
 ﻿using Interfaces;
+using PlayerScripts;
 using UnityEngine;
 
 public class MagicSpell : MonoBehaviour

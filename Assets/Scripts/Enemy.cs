@@ -1,10 +1,11 @@
 using System;
 using System.Collections;
 using Interfaces;
+using PlayerScripts;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Enemy : MonoBehaviour, IEnemy, IMove
+public class Enemy : MonoBehaviour, IEnemy
 {
     private int health;
     [SerializeField] private int maxHealth = 100;
@@ -78,16 +79,11 @@ public class Enemy : MonoBehaviour, IEnemy, IMove
         }
     }
 
-    public void Move(Vector2 movement)
-    {
-        throw new NotImplementedException();
-    }
-
     public void AddExperience(int experienceGet)
     {
     }
 
-    public void GetDamage(Damage damageGet, IUnit player)
+    public void GetDamage(Damage damageGet, IUnit attacker)
     {
         health -= damageGet.Size;
         animator.SetTrigger(HitAnimation);
@@ -125,7 +121,7 @@ public class Enemy : MonoBehaviour, IEnemy, IMove
     public void Dead()
     {
         Debug.Log("Enemy died");
-        GameManager.Instance.enemies.Remove(this);
+        GameManager.Instance.Enemies.Remove(this);
         ONDead?.Invoke();
         Destroy(gameObject, deadTime);
     }

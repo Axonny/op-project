@@ -5,10 +5,6 @@ public class ExperienceSystem : Singleton<ExperienceSystem>
 {
     private float levelCoefficient = 0.2f;
 
-    private void Awake()
-    {
-    }
-
     public void CalculateExperience(IUnit killer, IUnit killed)
     {
         var additionalExperience =

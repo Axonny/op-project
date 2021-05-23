@@ -23,12 +23,12 @@ namespace PlayerScripts
             experience = player.Experience;
             health = player.Health;
             mana = player.GetComponent<MagicUnit>().Mana;
-            strength = player._characteristics[0].value; 
-            vitality = player._characteristics[1].value; 
-            agility = player._characteristics[2].value; 
-            intelligence = player._characteristics[3].value; 
-            wisdom = player._characteristics[4].value;
-            freeSkillPoints = player.freeSkillPoints;
+            strength = player._characteristics[0].Value; 
+            vitality = player._characteristics[1].Value; 
+            agility = player._characteristics[2].Value; 
+            intelligence = player._characteristics[3].Value; 
+            wisdom = player._characteristics[4].Value;
+            freeSkillPoints = player.FreeSkillPoints;
         }
         
         public void LoadData()
@@ -39,12 +39,12 @@ namespace PlayerScripts
             player.Health = health;
             player.GetComponent<MagicUnit>().Mana = mana;
             mana = player.GetComponent<MagicUnit>().Mana;
-            player._characteristics[0].value = strength; 
-            player._characteristics[1].value = vitality; 
-            player._characteristics[2].value = agility; 
-            player._characteristics[3].value = intelligence; 
-            player._characteristics[4].value = wisdom;
-            player.freeSkillPoints = freeSkillPoints;
+            player._characteristics[0].Value = strength; 
+            player._characteristics[1].Value = vitality; 
+            player._characteristics[2].Value = agility; 
+            player._characteristics[3].Value = intelligence; 
+            player._characteristics[4].Value = wisdom;
+            player.FreeSkillPoints = freeSkillPoints;
         }
     }
 }

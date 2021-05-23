@@ -1,5 +1,7 @@
 using System.Collections;
+using PlayerScripts;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class UISystem : Singleton<UISystem>
@@ -7,7 +9,7 @@ public class UISystem : Singleton<UISystem>
     public Slider healthBar;
     public Slider manaBar;
     public Text lvlInfo;
-    [SerializeField] public CharacteristicPanelUIContainer PanelUIContainer;
+    [FormerlySerializedAs("PanelUIContainer")] [SerializeField] public CharacteristicPanelUIContainer panelUIContainer;
     public GameObject characteristicPanel;
     public GameObject menuPanel;
     public GameObject deadPanel;

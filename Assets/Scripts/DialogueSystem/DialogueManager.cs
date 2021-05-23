@@ -49,6 +49,8 @@ namespace DialogueSystem
             {
                 case DialogueNodeData dialogueNodeData:
                     var sentence = dialogueNodeData.dialogueText;
+                    if (typing != null)
+                        StopCoroutine(typing);
                     typing = StartCoroutine(TypeSentence(sentence));
                     GenerateResponseButtons(dialogueNodeData.outputPorts);
                     break;

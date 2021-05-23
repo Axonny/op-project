@@ -1,4 +1,5 @@
 using System.Collections;
+using PlayerScripts;
 using ScriptableObjects;
 using UnityEngine;
 using UnityEngine.SceneManagement;

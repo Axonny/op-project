@@ -2,22 +2,19 @@
 using System.Collections.Generic;
 using System.Linq;
 using Interfaces;
+using PlayerScripts;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
 public class GameManager : Singleton<GameManager>
 {
-    public InputSystem inputSystem;
-    public QuestSystem questSystem;
-    public ExperienceSystem experienceSystem;
-    public UISystem uiSystem;
 
-    public HashSet<Enemy> enemies;
+    public HashSet<Enemy> Enemies;
     public Tilemap tilemapWalls;
     public Settings settings;
 
     private GameField[,] map;
-    private ConcurrentDictionary<Enemy, Vector3Int> enemiesPositions = new ConcurrentDictionary<Enemy, Vector3Int>();
+    private readonly ConcurrentDictionary<Enemy, Vector3Int> enemyPositions = new ConcurrentDictionary<Enemy, Vector3Int>();
     private Vector3Int playerPosition;
 
     private void Awake()
@@ -28,7 +25,7 @@ public class GameManager : Singleton<GameManager>
         settings.widthMap = size.x;
         settings.heightMap = size.y;
         map = new GameField[settings.widthMap, settings.heightMap];
-        enemies = new HashSet<Enemy>(FindObjectsOfType<Enemy>());
+        Enemies = new HashSet<Enemy>(FindObjectsOfType<Enemy>());
         InitMap();
     }
 
@@ -46,18 +43,18 @@ public class GameManager : Singleton<GameManager>
 
     private void FixedUpdate()
     {
-        UpdateMap(enemies);
-        foreach (var enemy in enemies.Where(e => e.CanMove))
+        UpdateMap(Enemies);
+        foreach (var enemy in Enemies.Where(e => e.CanMove))
         {
             if (enemy.TryGetComponent<MoveAI>(out var moveComponent))
             {
-                var enemyPosition = enemiesPositions[enemy];
+                var enemyPosition = enemyPositions[enemy];
                 moveComponent.UpdateAI(map, Player.Instance, (enemyPosition.x, enemyPosition.y));
             }
         }
     }
 
-    public void InitMap()
+    private void InitMap()
     {
         for (int x = tilemapWalls.origin.x, i = 0; i < tilemapWalls.size.x; x++, i++)
         for (int y = tilemapWalls.origin.y, j = 0; j < tilemapWalls.size.y; y++, j++)
@@ -69,22 +66,22 @@ public class GameManager : Singleton<GameManager>
             map[i, j] = tileWall is null ? GameField.Empty : GameField.Wall;
         }
 
-        UpdateMap(enemies);
+        UpdateMap(Enemies);
     }
 
-    public void UpdateMap(IEnumerable<Enemy> enemies)
+    private void UpdateMap(IEnumerable<Enemy> enemies)
     {
         
         foreach (var enemy in enemies)
         {
             var tilePos = tilemapWalls.WorldToCell(enemy.transform.position) - tilemapWalls.origin;
-            var initialized = enemiesPositions.TryGetValue(enemy, out var enemyPosition);
+            var initialized = enemyPositions.TryGetValue(enemy, out var enemyPosition);
             if (initialized && map[enemyPosition.x, enemyPosition.y] == GameField.Enemy)
             {
                 map[enemyPosition.x, enemyPosition.y] = GameField.Empty;
             }
 
-            enemiesPositions[enemy] = tilePos;
+            enemyPositions[enemy] = tilePos;
             map[tilePos.x, tilePos.y] = GameField.Enemy;
         }
         var tilePlayer = tilemapWalls.WorldToCell(Player.Instance.transform.position) - tilemapWalls.origin;

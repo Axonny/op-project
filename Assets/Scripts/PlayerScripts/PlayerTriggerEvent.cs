@@ -1,28 +1,28 @@
 ﻿using UnityEngine;
 using UnityEngine.Events;
 
-[RequireComponent(typeof(Collider2D))]
-public class PlayerTriggerEvent : MonoBehaviour
+namespace PlayerScripts
 {
-    public bool isEnter;
-    public UnityEvent onEnter;
-    public UnityEvent onExit;
+    [RequireComponent(typeof(Collider2D))]
+    public class PlayerTriggerEvent : MonoBehaviour
+    {
+        public UnityEvent onEnter;
+        public UnityEvent onExit;
 
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.CompareTag("Player"))
+        private void OnTriggerEnter2D(Collider2D other)
         {
-            isEnter = true;
-            onEnter.Invoke();
+            if (other.CompareTag("Player"))
+            {
+                onEnter.Invoke();
+            }
         }
-    }
     
-    private void OnTriggerExit2D(Collider2D other)
-    {
-        if (other.CompareTag("Player"))
+        private void OnTriggerExit2D(Collider2D other)
         {
-            isEnter = false;
-            onExit.Invoke();
+            if (other.CompareTag("Player"))
+            {
+                onExit.Invoke();
+            }
         }
     }
 }

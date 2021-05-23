@@ -1,11 +1,9 @@
 ﻿public class Characteristic
 {
-    public string name;
-    public int value;
+    public int Value;
 
-    public Characteristic(string name, int value)
+    public Characteristic(int value)
     {
-        this.name = name;
-        this.value = value;
+        Value = value;
     }
 }

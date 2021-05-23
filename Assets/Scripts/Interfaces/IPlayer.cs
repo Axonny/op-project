@@ -1,6 +1,6 @@
 ﻿namespace Interfaces
 {
-    internal interface IPlayer : IUnit, IMove
+    internal interface IPlayer : IUnit
     {
         void Attack(bool isStrongAttack);
     }
