@@ -710,6 +710,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1663375450498424172, guid: 7d98d02eeac5551408ed2cbbf06e633a,
+        type: 3}
+      propertyPath: playerSave
+      value: 
+      objectReference: {fileID: 11400000, guid: ccfa43e890e4fd745a8ea6661328ffe6,
+        type: 2}
     - target: {fileID: 1663375450498424173, guid: 7d98d02eeac5551408ed2cbbf06e633a,
         type: 3}
       propertyPath: m_Name
@@ -6247,7 +6253,7 @@ GameObject:
   - component: {fileID: 336823764}
   - component: {fileID: 336823766}
   - component: {fileID: 336823765}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Checkpoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6266,7 +6272,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 490184915}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &336823765
 MonoBehaviour:
@@ -7582,7 +7588,7 @@ GameObject:
   m_Component:
   - component: {fileID: 490184915}
   - component: {fileID: 490184914}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Checkpoints
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7613,11 +7619,11 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 1918790949}
   - {fileID: 336823764}
   - {fileID: 1581904596}
   - {fileID: 1994590022}
   - {fileID: 2083986158}
-  - {fileID: 1918790949}
   m_Father: {fileID: 0}
   m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -11221,6 +11227,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b922fa72e1c5454bb9a88ef8e49c23e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  levelManager: {fileID: 0}
 --- !u!114 &1255322201
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12942,7 +12949,7 @@ GameObject:
   - component: {fileID: 1581904596}
   - component: {fileID: 1581904598}
   - component: {fileID: 1581904597}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Checkpoint (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12961,7 +12968,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 490184915}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1581904597
 MonoBehaviour:
@@ -14138,7 +14145,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1918790949}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Start
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14157,7 +14164,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 490184915}
-  m_RootOrder: 4
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1925339987
 GameObject:
@@ -14626,7 +14633,7 @@ GameObject:
   - component: {fileID: 1994590022}
   - component: {fileID: 1994590024}
   - component: {fileID: 1994590023}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Checkpoint (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14645,7 +14652,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 490184915}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1994590023
 MonoBehaviour:
@@ -14933,7 +14940,7 @@ GameObject:
   - component: {fileID: 2083986158}
   - component: {fileID: 2083986160}
   - component: {fileID: 2083986159}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Checkpoint (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14952,7 +14959,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 490184915}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2083986159
 MonoBehaviour:
@@ -16048,6 +16055,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 473904090220465357, guid: a4cff7c9edc53e34487c7f09c444440e,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 731960384612991187, guid: a4cff7c9edc53e34487c7f09c444440e,
         type: 3}
