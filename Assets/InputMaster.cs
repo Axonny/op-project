@@ -199,6 +199,14 @@ public class @InputMaster : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""CharacteristicPanel"",
+                    ""type"": ""Button"",
+                    ""id"": ""e405bd30-634e-4902-a816-df87702b1e4e"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press""
                 }
             ],
             ""bindings"": [
@@ -210,6 +218,17 @@ public class @InputMaster : IInputActionCollection, IDisposable
                     ""processors"": """",
                     ""groups"": ""Keyboard and Mouse"",
                     ""action"": ""Escape"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9012c8fb-fb8f-4071-a6f0-4bade750df1e"",
+                    ""path"": ""<Keyboard>/p"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CharacteristicPanel"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -248,6 +267,7 @@ public class @InputMaster : IInputActionCollection, IDisposable
         // Absolute
         m_Absolute = asset.FindActionMap("Absolute", throwIfNotFound: true);
         m_Absolute_Escape = m_Absolute.FindAction("Escape", throwIfNotFound: true);
+        m_Absolute_CharacteristicPanel = m_Absolute.FindAction("CharacteristicPanel", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -396,11 +416,13 @@ public class @InputMaster : IInputActionCollection, IDisposable
     private readonly InputActionMap m_Absolute;
     private IAbsoluteActions m_AbsoluteActionsCallbackInterface;
     private readonly InputAction m_Absolute_Escape;
+    private readonly InputAction m_Absolute_CharacteristicPanel;
     public struct AbsoluteActions
     {
         private @InputMaster m_Wrapper;
         public AbsoluteActions(@InputMaster wrapper) { m_Wrapper = wrapper; }
         public InputAction @Escape => m_Wrapper.m_Absolute_Escape;
+        public InputAction @CharacteristicPanel => m_Wrapper.m_Absolute_CharacteristicPanel;
         public InputActionMap Get() { return m_Wrapper.m_Absolute; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -413,6 +435,9 @@ public class @InputMaster : IInputActionCollection, IDisposable
                 @Escape.started -= m_Wrapper.m_AbsoluteActionsCallbackInterface.OnEscape;
                 @Escape.performed -= m_Wrapper.m_AbsoluteActionsCallbackInterface.OnEscape;
                 @Escape.canceled -= m_Wrapper.m_AbsoluteActionsCallbackInterface.OnEscape;
+                @CharacteristicPanel.started -= m_Wrapper.m_AbsoluteActionsCallbackInterface.OnCharacteristicPanel;
+                @CharacteristicPanel.performed -= m_Wrapper.m_AbsoluteActionsCallbackInterface.OnCharacteristicPanel;
+                @CharacteristicPanel.canceled -= m_Wrapper.m_AbsoluteActionsCallbackInterface.OnCharacteristicPanel;
             }
             m_Wrapper.m_AbsoluteActionsCallbackInterface = instance;
             if (instance != null)
@@ -420,6 +445,9 @@ public class @InputMaster : IInputActionCollection, IDisposable
                 @Escape.started += instance.OnEscape;
                 @Escape.performed += instance.OnEscape;
                 @Escape.canceled += instance.OnEscape;
+                @CharacteristicPanel.started += instance.OnCharacteristicPanel;
+                @CharacteristicPanel.performed += instance.OnCharacteristicPanel;
+                @CharacteristicPanel.canceled += instance.OnCharacteristicPanel;
             }
         }
     }
@@ -448,5 +476,6 @@ public class @InputMaster : IInputActionCollection, IDisposable
     public interface IAbsoluteActions
     {
         void OnEscape(InputAction.CallbackContext context);
+        void OnCharacteristicPanel(InputAction.CallbackContext context);
     }
 }

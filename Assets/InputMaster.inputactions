@@ -186,6 +186,14 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "CharacteristicPanel",
+                    "type": "Button",
+                    "id": "e405bd30-634e-4902-a816-df87702b1e4e",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press"
                 }
             ],
             "bindings": [
@@ -197,6 +205,17 @@
                     "processors": "",
                     "groups": "Keyboard and Mouse",
                     "action": "Escape",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9012c8fb-fb8f-4071-a6f0-4bade750df1e",
+                    "path": "<Keyboard>/p",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "CharacteristicPanel",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

@@ -7,6 +7,8 @@ public class UISystem : Singleton<UISystem>
     public Slider healthBar;
     public Slider manaBar;
     public Text lvlInfo;
+    [SerializeField] public CharacteristicPanelUIContainer PanelUIContainer;
+    public GameObject characteristicPanel;
     public GameObject menuPanel;
     public GameObject deadPanel;
     public GameObject loadImage;
@@ -14,34 +16,48 @@ public class UISystem : Singleton<UISystem>
     public Image fade;
     public float timeFade;
     public float timeLoad;
-    
+
     private InputMaster input;
 
     private void Start()
     {
         input = InputSystem.Instance.Input;
-
+        input.Absolute.CharacteristicPanel.performed += ctx =>
+        {
+            if (characteristicPanel.activeInHierarchy)
+            {
+                
+                Player.Instance.UpdateCharacteristicPanel();
+                ResumeGame(characteristicPanel);
+            }
+            else
+            {
+                Player.Instance.UpdateCharacteristicPanel();
+                PauseGame(characteristicPanel);
+                hub.SetActive(true);
+            }
+        };
         input.Absolute.Escape.performed += ctx =>
         {
             if (menuPanel.activeInHierarchy)
-                ResumeGame();
+                ResumeGame(menuPanel);
             else
-                PauseGame();
+                PauseGame(menuPanel);
         };
     }
 
-    public void ResumeGame()
+    public void ResumeGame(GameObject panel)
     {
         input.Player.Enable();
-        menuPanel.SetActive(false);
+        panel.SetActive(false);
         hub.SetActive(true);
         Time.timeScale = 1f;
     }
 
-    public void PauseGame()
+    public void PauseGame(GameObject panel)
     {
         input.Player.Disable();
-        menuPanel.SetActive(true);
+        panel.SetActive(true);
         hub.SetActive(false);
         Time.timeScale = 0f;
     }
@@ -66,13 +82,14 @@ public class UISystem : Singleton<UISystem>
     {
         var time = 0f;
         var colorFrom = new Color(0, 0, 0, fromAlpha);
-        var colorTo = new Color(0,0,0,toAlpha);
+        var colorTo = new Color(0, 0, 0, toAlpha);
         while (time < timeFade)
         {
             fade.color = Color.Lerp(colorFrom, colorTo, time / timeFade);
             time += Time.deltaTime;
             yield return null;
         }
+
         fade.color = colorTo;
         deadPanel.SetActive(showDead);
     }

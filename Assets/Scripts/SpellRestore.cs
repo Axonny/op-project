@@ -19,7 +19,7 @@ public class SpellRestore : MonoBehaviour
         switch (type)
         {
             case TypeRestore.Health:
-                if (player.Health < player.maxHealth)
+                if (player.Health < player.MaxHealth)
                 {
                     player.Health += restoreHealth;
                     Destroy(gameObject);
@@ -27,7 +27,7 @@ public class SpellRestore : MonoBehaviour
                 break;
             case TypeRestore.Mana:
                 var magic = player.GetComponent<MagicUnit>();
-                if (magic.Mana < magic.maxMana)
+                if (magic.Mana < magic.MaxMana)
                 {
                     magic.Mana += restoreMana;
                     Destroy(gameObject);
