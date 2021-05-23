@@ -9,13 +9,18 @@ public class SceneLoader : MonoBehaviour
     
     public void LoadSceneFromScriptableObject()
     {
-        LoadSceneWithoutSaving(levelManager.levels[levelManager.index++]);
+        LoadSceneWithoutSaving(levelManager.NextLevel);
+    }
+
+    public void SetLevelManagerIndex(int index)
+    {
+        levelManager.index = index;
     }
     
     public void LoadScene(string nameScene)
     {
         Player.Instance.playerSave.SaveData();
-        StartCoroutine(LoadSceneAsync(nameScene));
+        StartCoroutine(LoadSceneAsync(nameScene, true));
     }
     
     public void LoadSceneWithoutSaving(string nameScene)
@@ -23,13 +28,17 @@ public class SceneLoader : MonoBehaviour
         StartCoroutine(LoadSceneAsync(nameScene));
     }
 
-    private IEnumerator LoadSceneAsync(string nameScene)
+    private IEnumerator LoadSceneAsync(string nameScene, bool isFade = false)
     {
-        UISystem.Instance.FadeIn(false);
-        UISystem.Instance.ShowLoadIcon(100);
+        if (isFade)
+        {
+            UISystem.Instance.FadeIn(false);
+            UISystem.Instance.ShowLoadIcon(100);
+        }
+
         var res = SceneManager.LoadSceneAsync(nameScene);
         res.allowSceneActivation = false;
-        while (res.progress > 0.9f)
+        while (res.progress < 0.9f)
             yield return new WaitForSeconds(0.5f);
         res.allowSceneActivation = true;
     }

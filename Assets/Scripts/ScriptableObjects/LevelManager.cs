@@ -9,7 +9,8 @@ namespace ScriptableObjects
         public int index;
         public string[] levels;
         public DialogueData[] dialogues;
-        
+
+        public string NextLevel => levels[index];
         public DialogueData Dialogue => dialogues[index];
     }
 }
