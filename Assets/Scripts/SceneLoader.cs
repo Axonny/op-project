@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 public class SceneLoader : MonoBehaviour
 {
     public LevelManager levelManager;
-    
+
     public void LoadSceneFromScriptableObject()
     {
         LoadSceneWithoutSaving(levelManager.NextLevel);
@@ -17,14 +17,20 @@ public class SceneLoader : MonoBehaviour
     {
         levelManager.index = index;
     }
-    
+
     public void LoadScene(string nameScene)
     {
+        // if (Statistics.mobsKilled < 20)
+        // {
+            // UISystem.Instance.ShowNotEnoughMobsMessage();
+        // }
+
         Time.timeScale = 1f;
         Player.Instance.playerSave.SaveData();
         StartCoroutine(LoadSceneAsync(nameScene, true));
+        Statistics.mobsKilled = 0;
     }
-    
+
     public void LoadSceneWithoutSaving(string nameScene)
     {
         Time.timeScale = 1f;

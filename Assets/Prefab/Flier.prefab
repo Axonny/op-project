@@ -503,11 +503,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e5880299f83163418e5e8e1bda8a946, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
+  maxHealth: 200
   deadTime: 0.75
   hpBar: {fileID: 917138000}
-  level: 1
-  experience: 0
+  level: 3
+  experience: 40
   view: {fileID: 55743903082436908}
   damage:
     size: 5

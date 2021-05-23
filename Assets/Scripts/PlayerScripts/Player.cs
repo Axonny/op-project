@@ -31,16 +31,16 @@ namespace PlayerScripts
 
 
         private int experience;
-        private int level;
+        private int level = 1;
 
-        internal int NeedExperienceCurrent => 100 + 50 * Level;
+        internal int NeedExperienceCurrent => 100 * (Level + 1);
 
         internal int strongAttackModifier = 2;
         internal int strengthToDamageModifier = 1;
-        internal int vitalityToHealthModifier = 10;
-        internal int agilityToSpeedModifier = 1;
+        internal int vitalityToHealthModifier = 5;
+        internal float agilityToSpeedModifier = 0.2f;
         internal int intelligenceToDamageModifier = 1;
-        internal int wisdomToManaModifier = 10;
+        internal int wisdomToManaModifier = 3;
         internal float wisdomToManaRestoreModifier = 0.2f;
 
         private int health;
@@ -117,7 +117,7 @@ namespace PlayerScripts
         internal int ManaRestore =>
             (int) (1 + (Math.Max(0, Wisdom - 10) * wisdomToManaRestoreModifier));
 
-        internal int MovementSpeed => Agility * agilityToSpeedModifier;
+        internal int MovementSpeed => 8 + (int) (Agility * agilityToSpeedModifier);
 
         private void Start()
         {

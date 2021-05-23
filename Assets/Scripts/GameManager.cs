@@ -38,6 +38,7 @@ public class GameManager : Singleton<GameManager>
             Debug.Log(attacker);
             ExperienceSystem.Instance.CalculateExperience(attacker, attacked);
             attacked.Dead();
+            Statistics.mobsKilled++;
         }
     }
 

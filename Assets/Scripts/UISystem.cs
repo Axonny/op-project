@@ -103,4 +103,9 @@ public class UISystem : Singleton<UISystem>
         yield return new WaitForSeconds(time);
         loadImage.SetActive(false);
     }
+
+    public void ShowNotEnoughMobsMessage(int needSimple, int needElite)
+    {
+        
+    }
 }
