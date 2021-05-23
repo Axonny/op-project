@@ -18,6 +18,6 @@ MonoBehaviour:
   - Level_2
   - Level_3
   dialogues:
-  - {fileID: 11400000, guid: c9a7cac1397a84d47953f197e6977269, type: 2}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 11400000, guid: 935702ad96ea1514b9221ecf056d32d3, type: 2}
+  - {fileID: 11400000, guid: d210d810e86615645a4014bae1456b45, type: 2}
+  - {fileID: 11400000, guid: 1f28a7da3c5c7004089f0e3ac8c4e213, type: 2}

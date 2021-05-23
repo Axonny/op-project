@@ -20,12 +20,14 @@ public class SceneLoader : MonoBehaviour
     
     public void LoadScene(string nameScene)
     {
+        Time.timeScale = 1f;
         Player.Instance.playerSave.SaveData();
         StartCoroutine(LoadSceneAsync(nameScene, true));
     }
     
     public void LoadSceneWithoutSaving(string nameScene)
     {
+        Time.timeScale = 1f;
         StartCoroutine(LoadSceneAsync(nameScene));
     }
 
