@@ -28,6 +28,7 @@ public class UISystem : Singleton<UISystem>
             {
                 
                 Player.Instance.UpdateCharacteristicPanel();
+                Player.Instance.ResetCharacteristics();
                 ResumeGame(characteristicPanel);
             }
             else

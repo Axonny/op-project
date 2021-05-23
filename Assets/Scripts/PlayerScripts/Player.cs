@@ -37,7 +37,7 @@ public class Player : Singleton<Player>, IPlayer
     internal int NeedExperienceCurrent => 100 + 50 * Level;
 
     internal int strongAttackModifier = 2;
-    internal int strengthToDamageModifier = 3;
+    internal int strengthToDamageModifier = 1;
     internal int vitalityToHealthModifier = 10;
     internal int agilityToSpeedModifier = 1;
     internal int intelligenceToDamageModifier = 1;

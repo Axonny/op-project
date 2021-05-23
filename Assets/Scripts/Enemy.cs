@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using Interfaces;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Enemy : MonoBehaviour, IEnemy, IMove
 {
@@ -10,6 +11,7 @@ public class Enemy : MonoBehaviour, IEnemy, IMove
     public float deadTime;
     internal bool CanMove = true;
     internal event Action ONDead;
+    public Slider hpBar;
 
     public int level = 1;
     public int experience;
@@ -90,6 +92,7 @@ public class Enemy : MonoBehaviour, IEnemy, IMove
         health -= damageGet.Size;
         animator.SetTrigger(HitAnimation);
         animator.SetInteger(HealthProperty, health);
+        hpBar.value = Health * 1.0f / maxHealth * 100;
     }
 
     public void Attack()
