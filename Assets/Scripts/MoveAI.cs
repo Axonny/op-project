@@ -9,6 +9,8 @@ public class MoveAI : MonoBehaviour
     public float speed = 3f;
     private new Rigidbody2D rigidbody;
     private bool isDetectedPlayer;
+    private static int minDistance = 13;
+    public bool hasKey = false;
     [SerializeField] private LayerMask layerMask;
 
     private static readonly Moves[] Moves = new[]
@@ -24,13 +26,71 @@ public class MoveAI : MonoBehaviour
         rigidbody = gameObject.GetComponent<Rigidbody2D>();
     }
 
-    public void UpdateAI(GameField[,] map, Player player, (int, int) enemyPosInMap)
+    public void UpdateAI(GameField[,] map, Player player, (int, int) enemyPosInMap, (int, int) playerPos)
     {
         if (isDetectedPlayer || TryDetectPlayer(player, out isDetectedPlayer))
-            MoveToPlayer(map, enemyPosInMap);
+            if (hasKey)
+            {
+                MoveAwayFromPlayer(map, enemyPosInMap, playerPos);
+            }
+            else
+            {
+                MoveToPlayer(map, enemyPosInMap, playerPos);
+            }
     }
 
-    private static List<(int, int)> MoveBFSOnTilemapToPoint(GameField[,] map, (int, int) start)
+    private static List<(int, int)> FindPathAwayFromPlayer(GameField[,] map, (int, int) start, (int, int) playerPos)
+    {
+        var n = map.GetLength(0);
+        var m = map.GetLength(1);
+        var visited = new bool[n][];
+        for (int index = 0; index < n; index++)
+        {
+            visited[index] = new bool[m];
+        }
+
+        var prev = new (int, int)[n][];
+        for (int index = 0; index < n; index++)
+        {
+            prev[index] = new (int, int)[m];
+        }
+
+        var queue = new Queue<(int, int, int)>();
+        queue.Enqueue((playerPos.Item1, playerPos.Item2, 0));
+        var goodPoints = new HashSet<(int, int)>();
+        while (queue.Count > 0)
+        {
+            var (x, y, length) = queue.Dequeue();
+            if (length > minDistance)
+            {
+                break;
+            }
+
+            if (length == minDistance)
+            {
+                goodPoints.Add((x, y));
+            }
+
+            foreach (var move in Moves)
+            {
+                var newX = x + move.Move.y;
+                var newY = y + move.Move.x;
+                if (newX >= 0 && newX < n &&
+                    newY >= 0 && newY < m &&
+                    !visited[newX][newY] && map[newX, newY] != GameField.Wall)
+                {
+                    prev[newX][newY] = (x, y);
+                    visited[newX][newY] = true;
+                    queue.Enqueue((newX, newY, length + 1));
+                }
+            }
+        }
+
+        return MoveBFSOnTilemapToPoints(map, start, goodPoints);
+    }
+
+    private static List<(int, int)> MoveBFSOnTilemapToPoints(GameField[,] map, (int, int) start,
+        HashSet<(int, int)> toPoints)
     {
         var n = map.GetLength(0);
         var m = map.GetLength(1);
@@ -48,13 +108,13 @@ public class MoveAI : MonoBehaviour
 
         var queue = new Queue<(int, int)>();
         queue.Enqueue(start);
-        (int, int) playerPosition = (-1, -1);
+        var toPoint = (-1, -1);
         while (queue.Count > 0)
         {
             var (x, y) = queue.Dequeue();
-            if (map[x, y] == GameField.Player)
+            if (toPoints.Contains((x, y)))
             {
-                playerPosition = (x, y);
+                toPoint = (x, y);
                 break;
             }
 
@@ -74,24 +134,38 @@ public class MoveAI : MonoBehaviour
         }
 
         var ans = new List<(int, int)>();
-        if (playerPosition == (-1, -1))
+        if (toPoint == (-1, -1))
         {
             return new List<(int, int)>();
         }
 
-        while (playerPosition != start)
+        while (toPoint != start)
         {
-            ans.Add(playerPosition);
-            playerPosition = prev[playerPosition.Item1][playerPosition.Item2];
+            ans.Add(toPoint);
+            toPoint = prev[toPoint.Item1][toPoint.Item2];
         }
 
         ans.Reverse();
         return ans;
     }
 
-    private void MoveToPlayer(GameField[,] map, (int, int) enemyPosInMap)
+    private void MoveToPlayer(GameField[,] map, (int, int) enemyPosInMap, (int, int) playerPos)
     {
-        var pathPoints = MoveBFSOnTilemapToPoint(map, enemyPosInMap);
+        var pathPoints = MoveBFSOnTilemapToPoints(map, enemyPosInMap, new HashSet<(int, int)>
+        {
+            playerPos
+        });
+        GoThroughPath(pathPoints, enemyPosInMap);
+    }
+
+    private void MoveAwayFromPlayer(GameField[,] map, (int, int) enemyPosInMap, (int, int) playerPos)
+    {
+        var pathPoints = FindPathAwayFromPlayer(map, enemyPosInMap, playerPos);
+        GoThroughPath(pathPoints, enemyPosInMap);
+    }
+
+    private void GoThroughPath(List<(int, int)> pathPoints, (int, int) fromPos)
+    {
         if (pathPoints.Count == 0)
         {
             return;
@@ -102,7 +176,7 @@ public class MoveAI : MonoBehaviour
         while (true)
         {
             var from = GameManager.Instance.tilemapWalls.CellToWorld(
-                new Vector3Int(enemyPosInMap.Item1, enemyPosInMap.Item2, 0) +
+                new Vector3Int(fromPos.Item1, fromPos.Item2, 0) +
                 GameManager.Instance.tilemapWalls.origin);
             var to = GameManager.Instance.tilemapWalls.CellToWorld(new Vector3Int(currentVariant.Item1,
                 currentVariant.Item2, 0) + GameManager.Instance.tilemapWalls.origin);
@@ -135,11 +209,12 @@ public class MoveAI : MonoBehaviour
                 if (i == 0)
                 {
                     var to2 = GameManager.Instance.tilemapWalls.CellToWorld(
-                        new Vector3Int(enemyPosInMap.Item1, enemyPosInMap.Item2, 0) +
+                        new Vector3Int(fromPos.Item1, fromPos.Item2, 0) +
                         GameManager.Instance.tilemapWalls.origin) + new Vector3(0.5f, 0.5f, 0);
                     rigidbody.velocity = (to2 - transform.position)
                         .normalized * speed;
-                } else if (i == pathPoints.Count - 1)
+                }
+                else if (i == pathPoints.Count - 1)
                 {
                     rigidbody.velocity = (to - from).normalized * speed;
                 }

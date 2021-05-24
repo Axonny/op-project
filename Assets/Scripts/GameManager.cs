@@ -45,13 +45,14 @@ public class GameManager : Singleton<GameManager>
 
     private void FixedUpdate()
     {
+        var tilePlayer = tilemapWalls.WorldToCell(Player.Instance.transform.position) - tilemapWalls.origin;
         UpdateMap(Enemies);
         foreach (var enemy in Enemies.Where(e => e.CanMove))
         {
             if (enemy.TryGetComponent<MoveAI>(out var moveComponent))
             {
                 var enemyPosition = enemyPositions[enemy];
-                moveComponent.UpdateAI(map, Player.Instance, (enemyPosition.x, enemyPosition.y));
+                moveComponent.UpdateAI(map, Player.Instance, (enemyPosition.x, enemyPosition.y), (tilePlayer.x, tilePlayer.y));
             }
         }
     }
