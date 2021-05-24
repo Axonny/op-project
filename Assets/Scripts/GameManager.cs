@@ -32,14 +32,14 @@ public class GameManager : Singleton<GameManager>
     public void ProceedDamage(IUnit attacker, IUnit attacked, Damage damage)
     {
         attacked.GetDamage(damage, attacker);
-        if (attacked.Health <= 0 && attacked.IDead == false)
+        if (attacked.Health <= 0 && attacked.IsDead == false)
         {
             Debug.Log(attacked);
             Debug.Log(attacker);    
             ExperienceSystem.Instance.CalculateExperience(attacker, attacked);
-            attacked.IDead = true;
+            attacked.IsDead = true;
             attacked.Dead();
-            Statistics.mobsKilled++;
+            Statistics.MobsKilled++;
         }
     }
 

@@ -1,5 +1,4 @@
-﻿public class Statistics
+﻿public static class Statistics
 {
-    static internal int mobsKilled = 0;
-    public int[] needMobs = {20, 20, 20};
+    internal static int MobsKilled = 0;
 }

@@ -602,7 +602,7 @@ GameObject:
   - component: {fileID: 417482923}
   - component: {fileID: 417482926}
   m_Layer: 5
-  m_Name: Train (1)
+  m_Name: ClearData
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -735,6 +735,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerSave: {fileID: 11400000, guid: d335b7180447fb84ab13aef924a82529, type: 2}
+  levelManager: {fileID: 11400000, guid: 54513f5ccb27b0e46a72d91feb87bb0e, type: 2}
 --- !u!1 &420606452
 GameObject:
   m_ObjectHideFlags: 0

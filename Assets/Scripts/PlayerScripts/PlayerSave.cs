@@ -16,7 +16,6 @@ namespace PlayerScripts
         public int intelligence;
         public int wisdom;
         public int freeSkillPoints;
-        public int dialogueIndex = 0;
 
         public void SaveData()
         {
@@ -31,7 +30,6 @@ namespace PlayerScripts
             intelligence = player._characteristics[3].Value;
             wisdom = player._characteristics[4].Value;
             freeSkillPoints = player.FreeSkillPoints;
-            dialogueIndex = player.currenDialogue;
         }
 
         public void LoadData()
@@ -48,7 +46,6 @@ namespace PlayerScripts
             player._characteristics[3].Value = intelligence;
             player._characteristics[4].Value = wisdom;
             player.FreeSkillPoints = freeSkillPoints;
-            player.CurrenDialogue = dialogueIndex;
         }
 
         public void ClearData()
@@ -64,8 +61,6 @@ namespace PlayerScripts
             intelligence = 10;
             wisdom = 10;
             freeSkillPoints = 0;
-            dialogueIndex = 0;
-            player.CurrenDialogue = dialogueIndex;
         }
     }
 }

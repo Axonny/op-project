@@ -13,7 +13,7 @@ public class Enemy : MonoBehaviour, IEnemy
     internal bool CanMove = true;
     internal event Action ONDead;
     public Slider hpBar;
-    public bool IDead { get; set; }
+    public bool IsDead { get; set; }
     public int level = 1;
     public int experience;
     [SerializeField] private GameObject view;

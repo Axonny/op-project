@@ -4,6 +4,7 @@ using DialogueSystem;
 using Interfaces;
 using ScriptableObjects;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace PlayerScripts
 {
@@ -29,19 +30,19 @@ namespace PlayerScripts
 
         internal int FreeSkillPoints;
         internal int skillPointsPerLevel = 5;
-        public LevelManager LevelManager;
+        [FormerlySerializedAs("LevelManager")] public LevelManager levelManager;
 
         private int experience;
         private int level = 1;
-        internal int currenDialogue = 0;
+        internal int currentDialogue;
 
-        public int CurrenDialogue
+        public int CurrentDialogue
         {
-            get => currenDialogue;
+            get => currentDialogue;
             set
             {
-                currenDialogue = value;
-                LevelManager.index = value;
+                currentDialogue = value;
+                levelManager.index = value;
                 playerSave.SaveData();
             }
         }
@@ -60,10 +61,10 @@ namespace PlayerScripts
         [SerializeField] private float attackDuration;
         [SerializeField] private float comboAttackDuration;
 
-        public bool IDead
+        public bool IsDead
         {
             get => false;
-            set => value = value;
+            set { }
         }
 
         public PlayerSave playerSave;

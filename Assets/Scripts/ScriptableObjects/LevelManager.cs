@@ -12,5 +12,10 @@ namespace ScriptableObjects
 
         public string NextLevel => levels[index];
         public DialogueData Dialogue => dialogues[index];
+
+        public void ClearData()
+        {
+            index = 0;
+        }
     }
 }

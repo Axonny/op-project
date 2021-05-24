@@ -16,21 +16,14 @@ public class SceneLoader : MonoBehaviour
     public void SetLevelManagerIndex(int index)
     {
         levelManager.index = index;
-        Player.Instance.CurrenDialogue = index;
+        Player.Instance.CurrentDialogue = index;
     }
 
     public void LoadScene(string nameScene)
     {
-        if (nameScene == "Lobby" && Statistics.mobsKilled < 20)
-        {
-            StartCoroutine(UISystem.Instance.ShowNotEnoughMobsMessage(20));
-            return;
-        }
-
         Time.timeScale = 1f;
         Player.Instance.playerSave.SaveData();
         StartCoroutine(LoadSceneAsync(nameScene, true));
-        Statistics.mobsKilled = 0;
     }
 
     public void LoadSceneWithoutSaving(string nameScene)

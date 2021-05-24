@@ -7,6 +7,7 @@ public class MobSpawner : MonoBehaviour
     public float timeSpawn = 5f;
     public int maxMobCount = 3;
     public int levelMob;
+    public int experienceMob;
     
     private int mobCount;
     private float lastTimeSpawn;
@@ -25,9 +26,8 @@ public class MobSpawner : MonoBehaviour
         var mob = mobPrefabs[Random.Range(0, mobPrefabs.Length)];
         var spawn = spawnPositions[Random.Range(0, spawnPositions.Length)];
         var enemy = Instantiate(mob, spawn.position, Quaternion.identity).GetComponent<Enemy>();
-        enemy.level = 1;
-        enemy.Health = 50;
-        enemy.Experience = 100;
+        enemy.level = levelMob;
+        enemy.Experience = experienceMob;
         enemy.ONDead += () => mobCount--;
         GameManager.Instance.Enemies.Add(enemy);
     }

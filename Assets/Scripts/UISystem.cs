@@ -9,7 +9,6 @@ public class UISystem : Singleton<UISystem>
     public Slider healthBar;
     public Slider manaBar;
     public Text lvlInfo;
-    public Text needMoreMobsMessage;
 
     [FormerlySerializedAs("PanelUIContainer")] [SerializeField]
     public CharacteristicPanelUIContainer panelUIContainer;
@@ -105,13 +104,5 @@ public class UISystem : Singleton<UISystem>
         loadImage.SetActive(true);
         yield return new WaitForSeconds(time);
         loadImage.SetActive(false);
-    }
-
-    public IEnumerator ShowNotEnoughMobsMessage(int needSimple)
-    {
-        needMoreMobsMessage.text =
-            $"Тебе надо убить еще монстров, что бы пройти задание. Убито {Statistics.mobsKilled} / {needSimple}";
-        yield return new WaitForSeconds(5f);
-        needMoreMobsMessage.text = "";
     }
 }
