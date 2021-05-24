@@ -53,9 +53,9 @@ namespace PlayerScripts
         internal int strengthToDamageModifier = 1;
         internal int vitalityToHealthModifier = 5;
         internal float agilityToSpeedModifier = 0.2f;
-        internal int intelligenceToDamageModifier = 1;
-        internal int wisdomToManaModifier = 3;
-        internal float wisdomToManaRestoreModifier = 0.2f;
+        internal float intelligenceToDamageModifier = 2.5f;
+        internal int wisdomToManaModifier = 5;
+        internal float wisdomToManaRestoreModifier = 0.334f;
 
         private int health;
         [SerializeField] private float attackDuration;
@@ -129,7 +129,7 @@ namespace PlayerScripts
         public Damage StrongDamage => new Damage(SimpleDamage.Size * strongAttackModifier, DamageType.Physic);
 
         public Damage MagickDamage =>
-            new Damage(Intelligence * intelligenceToDamageModifier, DamageType.Magic);
+            new Damage((int) (Intelligence * intelligenceToDamageModifier), DamageType.Magic);
 
         internal int MaxHealth => vitalityToHealthModifier * Vitality;
         internal int MaxMana => Wisdom * wisdomToManaModifier;
