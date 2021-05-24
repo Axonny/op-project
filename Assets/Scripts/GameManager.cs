@@ -1,6 +1,7 @@
 ﻿using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
+using GateScripts;
 using Interfaces;
 using PlayerScripts;
 using UnityEngine;
@@ -57,7 +58,7 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
-    private void InitMap()
+    public void InitMap()
     {
         for (int x = tilemapWalls.origin.x, i = 0; i < tilemapWalls.size.x; x++, i++)
         for (int y = tilemapWalls.origin.y, j = 0; j < tilemapWalls.size.y; y++, j++)
@@ -68,7 +69,7 @@ public class GameManager : Singleton<GameManager>
 
             map[i, j] = tileWall is null ? GameField.Empty : GameField.Wall;
         }
-
+        
         UpdateMap(Enemies);
     }
 
@@ -95,6 +96,22 @@ public class GameManager : Singleton<GameManager>
 
         map[tilePlayer.x, tilePlayer.y] = GameField.Player;
         playerPosition = tilePlayer;
+    }
+
+    public void RemoveGateFromTilemap(Gate gate)
+    {
+        var tilePos = tilemapWalls.WorldToCell(gate.transform.position);
+        tilemapWalls.SetTile(tilePos, null);
+        switch (gate.typeGate)
+        {
+            case TypeGate.Horizontal:
+                tilemapWalls.SetTile(tilePos + Vector3Int.right, null);
+                break;
+            case TypeGate.Vertical:
+                tilemapWalls.SetTile(tilePos + Vector3Int.down, null);
+                break;
+        }
+        InitMap();
     }
 }
 

@@ -8,6 +8,8 @@ public class MagicSpell : MonoBehaviour
     public LayerMask enemyMask;
     public LayerMask wallMask;
     public Damage damage = new Damage(10, DamageType.Magic);
+    
+    private bool isHit;
 
     public void SetDirection(Vector3 from, Vector3 to)
     {
@@ -16,7 +18,7 @@ public class MagicSpell : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if(((1 << other.gameObject.layer) & enemyMask) != 0)
+        if(!isHit && ((1 << other.gameObject.layer) & enemyMask) != 0)
         {
             var enemy = other.gameObject.GetComponent<Enemy>();
             var player = Player.Instance;
@@ -24,7 +26,7 @@ public class MagicSpell : MonoBehaviour
             DestroyMagic();
         }
 
-        if (((1 << other.gameObject.layer) & wallMask) != 0)
+        if (!isHit && ((1 << other.gameObject.layer) & wallMask) != 0)
         {
             DestroyMagic();
         }
@@ -32,6 +34,7 @@ public class MagicSpell : MonoBehaviour
 
     private void DestroyMagic()
     {
+        isHit = true;
         GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         Destroy(gameObject, 0.1f);
     }
