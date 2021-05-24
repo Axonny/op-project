@@ -490,14 +490,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c05f2e1a6edbd649b41a291d3b1210d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 0
-  maxHealth: 100
-  speed: 10
+  LevelManager: {fileID: 0}
   attackDuration: 0.75
   comboAttackDuration: 0.34
-  damage:
-    size: 20
-    type: 0
   playerSave: {fileID: 11400000, guid: d335b7180447fb84ab13aef924a82529, type: 2}
   mainCamera: {fileID: 519420031}
   attackPoint: {fileID: 1009691158}
@@ -539,7 +534,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mana: 100
-  maxMana: 100
   costMana: 5
   magicAttackPrefab: {fileID: 1870006588852226763, guid: 81b9a239f15d1d548b9f440cf659e7f4,
     type: 3}

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using ScriptableObjects;
+using UnityEngine;
 
 namespace PlayerScripts
 {
@@ -15,6 +16,7 @@ namespace PlayerScripts
         public int intelligence;
         public int wisdom;
         public int freeSkillPoints;
+        public int dialogueIndex = 0;
 
         public void SaveData()
         {
@@ -23,14 +25,15 @@ namespace PlayerScripts
             experience = player.Experience;
             health = player.Health;
             mana = player.GetComponent<MagicUnit>().Mana;
-            strength = player._characteristics[0].Value; 
-            vitality = player._characteristics[1].Value; 
-            agility = player._characteristics[2].Value; 
-            intelligence = player._characteristics[3].Value; 
+            strength = player._characteristics[0].Value;
+            vitality = player._characteristics[1].Value;
+            agility = player._characteristics[2].Value;
+            intelligence = player._characteristics[3].Value;
             wisdom = player._characteristics[4].Value;
             freeSkillPoints = player.FreeSkillPoints;
+            dialogueIndex = player.currenDialogue;
         }
-        
+
         public void LoadData()
         {
             var player = Player.Instance;
@@ -39,12 +42,30 @@ namespace PlayerScripts
             player.Health = health;
             player.GetComponent<MagicUnit>().Mana = mana;
             mana = player.GetComponent<MagicUnit>().Mana;
-            player._characteristics[0].Value = strength; 
-            player._characteristics[1].Value = vitality; 
-            player._characteristics[2].Value = agility; 
-            player._characteristics[3].Value = intelligence; 
+            player._characteristics[0].Value = strength;
+            player._characteristics[1].Value = vitality;
+            player._characteristics[2].Value = agility;
+            player._characteristics[3].Value = intelligence;
             player._characteristics[4].Value = wisdom;
             player.FreeSkillPoints = freeSkillPoints;
+            player.CurrenDialogue = dialogueIndex;
+        }
+
+        public void ClearData()
+        {
+            var player = Player.Instance;
+            level = 1;
+            experience = 0;
+            health = 50;
+            mana = 30;
+            strength = 10;
+            vitality = 10;
+            agility = 10;
+            intelligence = 10;
+            wisdom = 10;
+            freeSkillPoints = 0;
+            dialogueIndex = 0;
+            player.CurrenDialogue = dialogueIndex;
         }
     }
 }

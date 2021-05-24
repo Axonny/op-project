@@ -16,7 +16,7 @@ public class ExperienceSystem : Singleton<ExperienceSystem>
         {
             coef = Mathf.Lerp(0, 1, 1.0f + (killed.Level - killer.Level * 1.0f) / killer.Level);
         }
-
+        Debug.Log(coef);
         var additionalExperience = Mathf.CeilToInt(killed.Experience * coef);
         killer.AddExperience(additionalExperience);
     }

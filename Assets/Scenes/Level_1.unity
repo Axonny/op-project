@@ -130,6 +130,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1549380127}
     m_Modifications:
+    - target: {fileID: 545472162230318360, guid: e5496aceb84c3644385898c667e40d8f,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -0.3
+      objectReference: {fileID: 0}
     - target: {fileID: 2697744308059752083, guid: e5496aceb84c3644385898c667e40d8f,
         type: 3}
       propertyPath: m_RootOrder
@@ -268,6 +273,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1663375450498424172, guid: 7d98d02eeac5551408ed2cbbf06e633a,
+        type: 3}
+      propertyPath: LevelManager
+      value: 
+      objectReference: {fileID: 11400000, guid: 54513f5ccb27b0e46a72d91feb87bb0e,
+        type: 2}
     - target: {fileID: 1663375450498424173, guid: 7d98d02eeac5551408ed2cbbf06e633a,
         type: 3}
       propertyPath: m_Name

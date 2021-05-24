@@ -303,6 +303,11 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4886370980329271628, guid: a4cff7c9edc53e34487c7f09c444440e,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 5531092551963860916, guid: a4cff7c9edc53e34487c7f09c444440e,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -7194,6 +7199,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c05f2e1a6edbd649b41a291d3b1210d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  LevelManager: {fileID: 11400000, guid: 54513f5ccb27b0e46a72d91feb87bb0e, type: 2}
   attackDuration: 0.75
   comboAttackDuration: 0.34
   playerSave: {fileID: 11400000, guid: d335b7180447fb84ab13aef924a82529, type: 2}

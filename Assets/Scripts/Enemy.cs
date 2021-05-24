@@ -13,7 +13,7 @@ public class Enemy : MonoBehaviour, IEnemy
     internal bool CanMove = true;
     internal event Action ONDead;
     public Slider hpBar;
-
+    public bool IDead { get; set; }
     public int level = 1;
     public int experience;
     [SerializeField] private GameObject view;
@@ -122,6 +122,7 @@ public class Enemy : MonoBehaviour, IEnemy
     {
         Debug.Log("Enemy died");
         GameManager.Instance.Enemies.Remove(this);
+        
         ONDead?.Invoke();
         Destroy(gameObject, deadTime);
     }

@@ -9,7 +9,11 @@ public class UISystem : Singleton<UISystem>
     public Slider healthBar;
     public Slider manaBar;
     public Text lvlInfo;
-    [FormerlySerializedAs("PanelUIContainer")] [SerializeField] public CharacteristicPanelUIContainer panelUIContainer;
+    public Text needMoreMobsMessage;
+
+    [FormerlySerializedAs("PanelUIContainer")] [SerializeField]
+    public CharacteristicPanelUIContainer panelUIContainer;
+
     public GameObject characteristicPanel;
     public GameObject menuPanel;
     public GameObject deadPanel;
@@ -28,7 +32,6 @@ public class UISystem : Singleton<UISystem>
         {
             if (characteristicPanel.activeInHierarchy)
             {
-                
                 Player.Instance.UpdateCharacteristicPanel();
                 Player.Instance.ResetCharacteristics();
                 ResumeGame(characteristicPanel);
@@ -104,8 +107,11 @@ public class UISystem : Singleton<UISystem>
         loadImage.SetActive(false);
     }
 
-    public void ShowNotEnoughMobsMessage(int needSimple, int needElite)
+    public IEnumerator ShowNotEnoughMobsMessage(int needSimple)
     {
-        
+        needMoreMobsMessage.text =
+            $"Тебе надо убить еще монстров, что бы пройти задание. Убито {Statistics.mobsKilled} / {needSimple}";
+        yield return new WaitForSeconds(5f);
+        needMoreMobsMessage.text = "";
     }
 }

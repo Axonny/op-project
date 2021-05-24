@@ -2,6 +2,7 @@
 using System.Linq;
 using DialogueSystem;
 using Interfaces;
+using ScriptableObjects;
 using UnityEngine;
 
 namespace PlayerScripts
@@ -28,10 +29,22 @@ namespace PlayerScripts
 
         internal int FreeSkillPoints;
         internal int skillPointsPerLevel = 5;
-
+        public LevelManager LevelManager;
 
         private int experience;
         private int level = 1;
+        internal int currenDialogue = 0;
+
+        public int CurrenDialogue
+        {
+            get => currenDialogue;
+            set
+            {
+                currenDialogue = value;
+                LevelManager.index = value;
+                playerSave.SaveData();
+            }
+        }
 
         internal int NeedExperienceCurrent => 100 * (Level + 1);
 
@@ -46,6 +59,12 @@ namespace PlayerScripts
         private int health;
         [SerializeField] private float attackDuration;
         [SerializeField] private float comboAttackDuration;
+
+        public bool IDead
+        {
+            get => false;
+            set => value = value;
+        }
 
         public PlayerSave playerSave;
 
@@ -290,6 +309,7 @@ namespace PlayerScripts
                 _characteristics[i].Value += _characteristics_delta[i].Value;
                 _characteristics_delta[i].Value = 0;
             }
+
             UpdateCharacteristicPanel();
             Health = (int) (MaxHealth * startCoefHp);
             magicUnit.Mana = (int) (startCoefMp * MaxMana);
@@ -302,8 +322,8 @@ namespace PlayerScripts
                 FreeSkillPoints += _characteristics_delta[i].Value;
                 _characteristics_delta[i].Value = 0;
             }
+
             UpdateCharacteristicPanel();
         }
-
     }
 }
