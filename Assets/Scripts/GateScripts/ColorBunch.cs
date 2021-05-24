@@ -4,6 +4,6 @@
     {
         Gold,
         Red,
-        Blue
+        Green
     }
 }
