@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 252d8632daee442cb0094cbcb5a3bd9e, type: 3}
   m_Name: Player Save
   m_EditorClassIdentifier: 
-  level: 1
-  experience: 0
+  level: 3
+  experience: 231
   health: 50
   mana: 30
-  strength: 10
+  strength: 1000
   vitality: 10
   agility: 10
   intelligence: 10
   wisdom: 10
-  freeSkillPoints: 0
+  freeSkillPoints: 10
