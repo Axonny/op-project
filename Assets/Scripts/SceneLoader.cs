@@ -9,7 +9,7 @@ public class SceneLoader : MonoBehaviour
 
     public void LoadSceneFromScriptableObject()
     {
-        LoadSceneWithoutSaving(levelManager.NextLevel);
+        LoadScene(levelManager.NextLevel);
     }
 
     public void SetLevelManagerIndex(int index)

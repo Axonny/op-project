@@ -568,7 +568,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 4084971065360372277}
         m_TargetAssemblyTypeName: SceneLoader, Assembly-CSharp
-        m_MethodName: LoadScene
+        m_MethodName: LoadSceneWithoutSaving
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

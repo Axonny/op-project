@@ -17,6 +17,13 @@ namespace PlayerScripts
         public int wisdom;
         public int freeSkillPoints;
 
+        public void LoadCheckpoint()
+        {
+            var player = Player.Instance;
+            health = player.Health;
+            mana = player.GetComponent<MagicUnit>().Mana;
+        }
+
         public void SaveData()
         {
             var player = Player.Instance;

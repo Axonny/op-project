@@ -23,7 +23,7 @@ public class CheckpointSystem : MonoBehaviour
     {
         var player = Player.Instance;
         player.transform.position = lastCheckPoint.position;
-        player.playerSave.LoadData();
+        player.playerSave.LoadCheckpoint();
         player.Revival();
         UISystem.Instance.ShowLoadIcon();
     }

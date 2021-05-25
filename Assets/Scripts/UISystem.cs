@@ -70,6 +70,9 @@ public class UISystem : Singleton<UISystem>
                 PauseGame(menuPanel);
             }
         };
+        
+        FadeOut();
+        ShowLoadIcon();
     }
 
     public void ResumeGame(GameObject panel)
