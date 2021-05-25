@@ -52,9 +52,7 @@ public class UISystem : Singleton<UISystem>
         {
             if (characteristicPanel.activeSelf)
             {
-                characteristicPanel.SetActive(false);
-                hub.SetActive(true);
-                Time.timeScale = 1f;
+                ResumeGame(characteristicPanel);
                 return;
             }
             if (menuPanel.activeInHierarchy)
@@ -92,13 +90,13 @@ public class UISystem : Singleton<UISystem>
 
     public void FadeIn(bool showDead)
     {
-        StartCoroutine(FadeInOut(0, 0.8f, showDead));
+        StartCoroutine(FadeInOut(0, 1, showDead));
     }
 
     public void FadeOut()
     {
         deadPanel.SetActive(false);
-        StartCoroutine(FadeInOut(0.8f, 0, false));
+        StartCoroutine(FadeInOut(1, 0, false));
     }
 
     public void ShowLoadIcon(float time = 0f)
