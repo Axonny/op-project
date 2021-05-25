@@ -5283,6 +5283,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2697744308059752081, guid: e5496aceb84c3644385898c667e40d8f,
         type: 3}
+      propertyPath: level
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2697744308059752081, guid: e5496aceb84c3644385898c667e40d8f,
+        type: 3}
       propertyPath: maxHealth
       value: 150
       objectReference: {fileID: 0}
@@ -6187,6 +6192,11 @@ PrefabInstance:
     - target: {fileID: 1059755484, guid: e5496aceb84c3644385898c667e40d8f, type: 3}
       propertyPath: hasKey
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2697744308059752081, guid: e5496aceb84c3644385898c667e40d8f,
+        type: 3}
+      propertyPath: level
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2697744308059752081, guid: e5496aceb84c3644385898c667e40d8f,
         type: 3}
