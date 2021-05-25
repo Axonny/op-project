@@ -50,12 +50,12 @@ namespace PlayerScripts
         internal int NeedExperienceCurrent => 100 * (Level + 1);
 
         internal float strongAttackModifier = 1.5f;
-        internal int strengthToDamageModifier = 1;
+        internal int strengthToDamageModifier = 1;    
         internal int vitalityToHealthModifier = 5;
         internal float agilityToSpeedModifier = 0.2f;
-        internal float intelligenceToDamageModifier = 2.5f;
-        internal int wisdomToManaModifier = 5;
-        internal float wisdomToManaRestoreModifier = 0.334f;
+        internal float intelligenceToDamageModifier = 3f;
+        internal int wisdomToManaModifier = 7;
+        internal float wisdomToManaRestoreModifier = 0.5f;
         internal int baseMagickDamage = 15;
 
         private int health;

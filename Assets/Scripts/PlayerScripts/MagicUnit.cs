@@ -9,7 +9,7 @@ namespace PlayerScripts
         internal int costManaBase = 10;
 
         public int CostMana =>
-            (int) (costManaBase + Math.Max(0, Player.Instance.Intelligence - 15) * 2f);
+            (int) (costManaBase + Math.Max(0, Player.Instance.Intelligence - 15) * 1.5f);
 
         public GameObject magicAttackPrefab;
         [SerializeField] private float attackDuration;

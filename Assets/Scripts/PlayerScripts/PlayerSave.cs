@@ -53,7 +53,7 @@ namespace PlayerScripts
             level = 1;
             experience = 0;
             health = 50;
-            mana = 30;
+            mana = 50;
             strength = 10;
             vitality = 10;
             agility = 10;
