@@ -1,11 +1,16 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace PlayerScripts
 {
     public class MagicUnit : MonoBehaviour
     {
         public int mana;
-        public int costMana = 5;
+        internal int costManaBase = 10;
+
+        public int CostMana =>
+            (int) (costManaBase + Math.Max(0, Player.Instance.Intelligence - 15) * 2f);
+
         public GameObject magicAttackPrefab;
         [SerializeField] private float attackDuration;
         [SerializeField] private float manaRestoreDuration;
@@ -53,7 +58,7 @@ namespace PlayerScripts
 
         private void Attack()
         {
-            if (Time.time - lastTimeAttack < attackDuration || Mana < costMana)
+            if (Time.time - lastTimeAttack < attackDuration || Mana < CostMana)
                 return;
             lastTimeAttack = Time.time;
             var position = fromPoint.position;
@@ -61,7 +66,7 @@ namespace PlayerScripts
             var magic = Instantiate(magicAttackPrefab, position, rotation).GetComponent<MagicSpell>();
             magic.damage = Player.Instance.MagickDamage;
             magic.SetDirection(rotatePoint.position, attackPoint.position);
-            Mana -= costMana;
+            Mana -= CostMana;
         }
     }
 }

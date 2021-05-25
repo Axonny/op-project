@@ -50,7 +50,6 @@ namespace PlayerScripts
 
         public void ClearData()
         {
-            var player = Player.Instance;
             level = 1;
             experience = 0;
             health = 50;

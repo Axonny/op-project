@@ -32,7 +32,7 @@ public class UISystem : Singleton<UISystem>
             if (characteristicPanel.activeInHierarchy)
             {
                 Player.Instance.UpdateCharacteristicPanel();
-                Player.Instance.ResetCharacteristics();
+                Player.Instance.SaveCharacteristics();
                 ResumeGame(characteristicPanel);
             }
             else

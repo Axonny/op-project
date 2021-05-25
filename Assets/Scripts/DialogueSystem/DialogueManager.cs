@@ -18,6 +18,7 @@ namespace DialogueSystem
         public bool isTalk;
         
         private Coroutine typing;
+        private bool isCanceled;
         [SerializeField] private GameObject buttonPrefab;
 
         public void StartDialogue(DialogueData dialogueContainer)
@@ -27,6 +28,11 @@ namespace DialogueSystem
 
             NextSentence(dialogue.entryPoint.targetNodeGuid);
             dialogueWindow.SetActive(true);
+        }
+
+        public void CancelTyping()
+        {
+            isCanceled = true;
         }
         
         public void EndDialogue()
@@ -83,10 +89,14 @@ namespace DialogueSystem
             message.text = "";
             foreach (var letter in sentence.ToCharArray())
             {
+                if (isCanceled)
+                    break;
                 message.text += letter;
                 yield return null;
             }
-        
+
+            message.text = sentence;
+            isCanceled = false;
             typing = null;
             buttonParent.gameObject.SetActive(true);
         }

@@ -49,13 +49,14 @@ namespace PlayerScripts
 
         internal int NeedExperienceCurrent => 100 * (Level + 1);
 
-        internal int strongAttackModifier = 2;
+        internal float strongAttackModifier = 1.5f;
         internal int strengthToDamageModifier = 1;
         internal int vitalityToHealthModifier = 5;
         internal float agilityToSpeedModifier = 0.2f;
-        internal int intelligenceToDamageModifier = 1;
-        internal int wisdomToManaModifier = 3;
-        internal float wisdomToManaRestoreModifier = 0.2f;
+        internal float intelligenceToDamageModifier = 2.5f;
+        internal int wisdomToManaModifier = 5;
+        internal float wisdomToManaRestoreModifier = 0.334f;
+        internal int baseMagickDamage = 15;
 
         private int health;
         [SerializeField] private float attackDuration;
@@ -126,10 +127,13 @@ namespace PlayerScripts
         internal int Wisdom => _characteristics[4].Value + _characteristics_delta[4].Value;
         public Damage SimpleDamage => new Damage(Strength * strengthToDamageModifier, DamageType.Physic);
 
-        public Damage StrongDamage => new Damage(SimpleDamage.Size * strongAttackModifier, DamageType.Physic);
+        public Damage SecondComboDamage =>
+            new Damage((int) (Strength * strengthToDamageModifier * 0.5f), DamageType.Physic);
+
+        public Damage StrongDamage => new Damage((int) (SimpleDamage.Size * strongAttackModifier), DamageType.Physic);
 
         public Damage MagickDamage =>
-            new Damage(Intelligence * intelligenceToDamageModifier, DamageType.Magic);
+            new Damage(baseMagickDamage + (int) (Math.Max(0, Intelligence - 10) * intelligenceToDamageModifier), DamageType.Magic);
 
         internal int MaxHealth => vitalityToHealthModifier * Vitality;
         internal int MaxMana => Wisdom * wisdomToManaModifier;
@@ -226,7 +230,8 @@ namespace PlayerScripts
             foreach (var enemy in enemies.Select(x => x.GetComponent<Enemy>()))
             {
                 Debug.Log("hit");
-                GameManager.Instance.ProceedDamage(this, enemy, isStrongAttack ? StrongDamage : SimpleDamage);
+                GameManager.Instance.ProceedDamage(this, enemy,
+                    isStrongAttack ? StrongDamage : combo == 1 ? SimpleDamage : SecondComboDamage);
             }
         }
 

@@ -286,7 +286,7 @@ MonoBehaviour:
   deadTime: 0.5
   hpBar: {fileID: 6515259798161467429}
   level: 1
-  experience: 20
+  experience: 40
   view: {fileID: 2543700708585625727}
   damage:
     size: 5
