@@ -29,25 +29,48 @@ public class UISystem : Singleton<UISystem>
         input = InputSystem.Instance.Input;
         input.Absolute.CharacteristicPanel.performed += ctx =>
         {
+            if (menuPanel.activeSelf)
+                return;
             if (characteristicPanel.activeInHierarchy)
             {
                 Player.Instance.UpdateCharacteristicPanel();
                 Player.Instance.SaveCharacteristics();
                 ResumeGame(characteristicPanel);
+                if (menuPanel.activeSelf)
+                {
+                    Time.timeScale = 0f;
+                    hub.SetActive(false);
+                }
             }
             else
             {
                 Player.Instance.UpdateCharacteristicPanel();
                 PauseGame(characteristicPanel);
-                hub.SetActive(true);
             }
         };
         input.Absolute.Escape.performed += ctx =>
         {
+            if (characteristicPanel.activeSelf)
+            {
+                characteristicPanel.SetActive(false);
+                hub.SetActive(true);
+                Time.timeScale = 1f;
+                return;
+            }
             if (menuPanel.activeInHierarchy)
+            {
                 ResumeGame(menuPanel);
+                if (characteristicPanel.activeSelf)
+                {
+                    Time.timeScale = 0f;
+                    hub.SetActive(false);
+                }
+            }
+
             else
+            {
                 PauseGame(menuPanel);
+            }
         };
     }
 
