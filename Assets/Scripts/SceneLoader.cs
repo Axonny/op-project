@@ -31,6 +31,7 @@ public class SceneLoader : MonoBehaviour
 
     private void LoadSceneAsync(string nameScene, bool isFade = false)
     {
+        InputSystem.Instance.Input.Player.Disable();
         Time.timeScale = 1f;
         if (isFade)
         {

@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1239001802933276114}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.242, y: -0.058, z: 0}
+  m_LocalPosition: {x: -0.381, y: -0.138, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1239001803672628393}
@@ -71,7 +71,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 89b8540ea9d54624b848751c99606d05, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 519ba234559818d4aabd776748e7a5bc, type: 3}
   m_Color: {r: 0.83921576, g: 0.19215688, b: 0.10196079, a: 1}
   m_FlipX: 1
   m_FlipY: 0
@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 1239001803250291870}
   - component: {fileID: 1239001803250291865}
   m_Layer: 0
-  m_Name: GateRed
+  m_Name: GateVertical
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
