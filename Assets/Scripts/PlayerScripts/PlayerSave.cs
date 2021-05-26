@@ -20,8 +20,8 @@ namespace PlayerScripts
         public void LoadCheckpoint()
         {
             var player = Player.Instance;
-            health = player.Health;
-            mana = player.GetComponent<MagicUnit>().Mana;
+            player.Health = health;
+            player.GetComponent<MagicUnit>().Mana = mana;
         }
 
         public void SaveData()
@@ -60,7 +60,7 @@ namespace PlayerScripts
             level = 1;
             experience = 0;
             health = 50;
-            mana = 50;
+            mana = 70;
             strength = 10;
             vitality = 10;
             agility = 10;

@@ -1695,6 +1695,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2697744308059752081, guid: e5496aceb84c3644385898c667e40d8f,
         type: 3}
+      propertyPath: damage.size
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 2697744308059752081, guid: e5496aceb84c3644385898c667e40d8f,
+        type: 3}
       propertyPath: circleRadius
       value: 1.5
       objectReference: {fileID: 0}
