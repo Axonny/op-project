@@ -40,7 +40,7 @@ namespace PlayerScripts
 
         private int ManaRestore => Player.Instance.ManaRestore;
 
-        private void Awake()
+        private void Start()
         {
             input = InputSystem.Instance.Input;
             input.Player.MagicShot.performed += context => Attack();
