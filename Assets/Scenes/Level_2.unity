@@ -12933,6 +12933,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tilemapWalls: {fileID: 800791904}
+  wallTile: {fileID: 0}
   settings: {fileID: 11400000, guid: c97f0da22a7c7f94a8d1a70659689093, type: 2}
 --- !u!1001 &1166176582
 PrefabInstance:
@@ -19178,6 +19179,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 531616156513665018, guid: 7d98d02eeac5551408ed2cbbf06e633a,
+        type: 3}
+      propertyPath: m_Volume
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 883170348960255039, guid: 7d98d02eeac5551408ed2cbbf06e633a,
+        type: 3}
+      propertyPath: m_Volume
+      value: 0.3
+      objectReference: {fileID: 0}
     - target: {fileID: 1663375450498424170, guid: 7d98d02eeac5551408ed2cbbf06e633a,
         type: 3}
       propertyPath: m_RootOrder
@@ -19243,6 +19254,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 3587969457505324067, guid: 7d98d02eeac5551408ed2cbbf06e633a,
+        type: 3}
+      propertyPath: m_Volume
+      value: 0.3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d98d02eeac5551408ed2cbbf06e633a, type: 3}
