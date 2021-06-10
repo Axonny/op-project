@@ -16,8 +16,6 @@ namespace PlayerScripts
         [SerializeField] private float manaRestoreDuration;
 
         [SerializeField] Camera mainCamera;
-        [SerializeField] private Transform attackPoint;
-        [SerializeField] private Transform rotatePoint;
         [SerializeField] private Transform fromPoint;
 
         private InputMaster input;
@@ -65,7 +63,6 @@ namespace PlayerScripts
             var rotation = Quaternion.Euler(0, 0, Physics.GetAngleToMouse(mainCamera, position));
             var magic = Instantiate(magicAttackPrefab, position, rotation).GetComponent<MagicSpell>();
             magic.damage = Player.Instance.MagickDamage;
-            magic.SetDirection(rotatePoint.position, attackPoint.position);
             Mana -= CostMana;
         }
     }

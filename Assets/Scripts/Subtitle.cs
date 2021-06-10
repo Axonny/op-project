@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class Subtitle : MonoBehaviour
 {
     public List<SubtitleElement> subtitles;
+    public string subtitleAfterTabWindow;
     public Text message;
     public float timeShow;
 
@@ -29,6 +30,11 @@ public class Subtitle : MonoBehaviour
         }
     }
 
+    public void StartLearnUpgradePlayer()
+    {
+        StartCoroutine(TabWindow());
+    }
+
     private IEnumerator Subtitles()
     {
         foreach (var sentence in subtitles[current].sentences)
@@ -43,6 +49,21 @@ public class Subtitle : MonoBehaviour
         }
         message.text = "";
         subtitleCoroutine = null;
+    }
+
+    private IEnumerator TabWindow()
+    {
+        var window = UISystem.Instance.characteristicPanel;
+        while (!window.activeSelf)
+        {
+            yield return null;
+        }
+        while (window.activeSelf)
+        {
+            yield return null;
+        }
+
+        message.text = subtitleAfterTabWindow;
     }
 }
 

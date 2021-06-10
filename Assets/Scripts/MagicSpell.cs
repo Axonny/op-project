@@ -11,9 +11,10 @@ public class MagicSpell : MonoBehaviour
     
     private bool isHit;
 
-    public void SetDirection(Vector3 from, Vector3 to)
+    private void Awake()
     {
-        GetComponent<Rigidbody2D>().velocity = (to - from).normalized * speed;
+        
+        GetComponent<Rigidbody2D>().velocity = transform.up * speed;
     }
 
     private void OnCollisionEnter2D(Collision2D other)

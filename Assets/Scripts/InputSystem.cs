@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 
 public class InputSystem : Singleton<InputSystem>
 {
@@ -10,7 +11,15 @@ public class InputSystem : Singleton<InputSystem>
         Input = new InputMaster();
         Input.Player.Action.performed += context => UseAction?.Invoke();
     }
-    
+
+    public void TogglePlayerInput(bool active)
+    {
+        if (active)
+            Input.Player.Enable();
+        else
+            Input.Player.Disable();
+    }
+
     private void OnEnable()
     {
         Input.Enable();
