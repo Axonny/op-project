@@ -17,6 +17,8 @@ namespace PlayerScripts
 
         [SerializeField] Camera mainCamera;
         [SerializeField] private Transform fromPoint;
+        
+        [SerializeField] private AudioSource attackVFX;
 
         private InputMaster input;
         private float lastTimeAttack;
@@ -59,6 +61,7 @@ namespace PlayerScripts
             if (Time.time - lastTimeAttack < attackDuration || Mana < CostMana)
                 return;
             lastTimeAttack = Time.time;
+            attackVFX.Play();
             var position = fromPoint.position;
             var rotation = Quaternion.Euler(0, 0, Physics.GetAngleToMouse(mainCamera, position));
             var magic = Instantiate(magicAttackPrefab, position, rotation).GetComponent<MagicSpell>();

@@ -14,6 +14,7 @@ namespace GateScripts
         public void Open()
         {
             GameManager.Instance.RemoveGateFromTilemap(this);
+            gameObject.GetComponent<AudioSource>().Play();
             StartCoroutine(DeleteGate());
         }
 

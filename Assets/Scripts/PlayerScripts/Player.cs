@@ -78,6 +78,8 @@ namespace PlayerScripts
         [SerializeField] private LayerMask enemyLayers;
         [SerializeField] private SpriteRenderer sprite;
 
+        [SerializeField] private AudioSource attackVFX;
+
         private new Rigidbody2D rigidbody;
         private Animator animator;
         private InputMaster input;
@@ -224,6 +226,7 @@ namespace PlayerScripts
             }
 
             lastTimeAttack = Time.time;
+            attackVFX.Play();
             var enemies = Physics.FindColliders(attackPoint.position, circleRadius, enemyLayers);
             var angle = Physics.GetAngleToMouse(mainCamera, transform.position);
             sprite.flipX = angle > 0 || angle < -180;
