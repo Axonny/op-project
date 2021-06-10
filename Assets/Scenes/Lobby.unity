@@ -4243,6 +4243,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tilemapWalls: {fileID: 1186620108}
+  wallTile: {fileID: 0}
   settings: {fileID: 11400000, guid: c97f0da22a7c7f94a8d1a70659689093, type: 2}
 --- !u!1 &1625720667
 GameObject:
@@ -4582,7 +4583,7 @@ MonoBehaviour:
   buttonParent: {fileID: 725259149}
   continueButton: {fileID: 999529070}
   dialogue: {fileID: 0}
-  isTalk: 0
+  isTalk: 1
   buttonPrefab: {fileID: 4086419333356847019, guid: 47d69600449157d43b0b93670028b8e4,
     type: 3}
 --- !u!1 &1773667275
