@@ -116,7 +116,7 @@ namespace PlayerScripts
                 health = value;
                 if (health > MaxHealth)
                     health = MaxHealth;
-                UISystem.Instance.healthBar.value = health * 1.0f / MaxHealth * 100;
+                UISystem.Instance.UpdateHealthScrollbar(health, MaxHealth);
             }
         }
 

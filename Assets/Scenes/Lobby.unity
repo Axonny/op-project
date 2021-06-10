@@ -8729,7 +8729,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthBar: {fileID: 6724140614129007612}
+  healthBarText: {fileID: 6724140614129007613}
   manaBar: {fileID: 6724140614451204920}
+  manaBarText: {fileID: 6724140614451204921}
   lvlInfo: {fileID: 6724140615303109225}
   panelUIContainer:
     lvlInfo: {fileID: 4184631408539604449}
@@ -8865,7 +8867,7 @@ PrefabInstance:
     - target: {fileID: 3662744958038121118, guid: c0c92abb3f7a67043b2aca279e1b1954,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 20
+      value: 80
       objectReference: {fileID: 0}
     - target: {fileID: 3662744958038121118, guid: c0c92abb3f7a67043b2aca279e1b1954,
         type: 3}
@@ -8920,6 +8922,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6724140614129007613 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1948648796766848941, guid: c0c92abb3f7a67043b2aca279e1b1954,
+    type: 3}
+  m_PrefabInstance: {fileID: 6724140614129007610}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &6724140614451204918
@@ -9012,7 +9026,7 @@ PrefabInstance:
     - target: {fileID: 6763583120208548096, guid: 03794761318eff14eb31edabb6276e18,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 20.000015
+      value: 80
       objectReference: {fileID: 0}
     - target: {fileID: 6763583120208548096, guid: 03794761318eff14eb31edabb6276e18,
         type: 3}
@@ -9067,6 +9081,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6724140614451204921 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7964465140634390331, guid: 03794761318eff14eb31edabb6276e18,
+    type: 3}
+  m_PrefabInstance: {fileID: 6724140614451204918}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &6724140614619157609

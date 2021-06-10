@@ -7,7 +7,9 @@ using UnityEngine.UI;
 public class UISystem : Singleton<UISystem>
 {
     public Slider healthBar;
+    public Text healthBarText;
     public Slider manaBar;
+    public Text manaBarText;
     public Text lvlInfo;
 
     [FormerlySerializedAs("PanelUIContainer")] [SerializeField]
@@ -73,6 +75,18 @@ public class UISystem : Singleton<UISystem>
         
         FadeOut();
         ShowLoadIcon();
+    }
+
+    public void UpdateHealthScrollbar(int current, int max)
+    {
+        healthBar.value = current * 1.0f / max * 100;
+        healthBarText.text = $"{current}/{max}";
+    }
+    
+    public void UpdateManaScrollbar(int current, int max)
+    {
+        manaBar.value = current * 1.0f / max * 100;
+        manaBarText.text = $"{current}/{max}";
     }
 
     public void ResumeGame(GameObject panel)

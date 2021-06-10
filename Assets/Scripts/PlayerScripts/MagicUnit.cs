@@ -31,7 +31,7 @@ namespace PlayerScripts
                 mana = value;
                 if (mana > MaxMana)
                     mana = MaxMana;
-                UISystem.Instance.manaBar.value = mana * 1.0f / MaxMana * 100;
+                UISystem.Instance.UpdateManaScrollbar(mana, MaxMana);
             }
         }
 
