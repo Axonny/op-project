@@ -12,6 +12,7 @@ public class GameManager : Singleton<GameManager>
 
     public HashSet<Enemy> Enemies;
     public Tilemap tilemapWalls;
+    public Tile wallTile;
     public Settings settings;
 
     private GameField[,] map;
@@ -100,15 +101,25 @@ public class GameManager : Singleton<GameManager>
 
     public void RemoveGateFromTilemap(Gate gate)
     {
+        EditTilemap(gate, null);
+    }
+
+    public void AddGateToTilemap(Gate gate)
+    {
+        EditTilemap(gate, wallTile);
+    }
+
+    private void EditTilemap(Gate gate, Tile tile)
+    {
         var tilePos = tilemapWalls.WorldToCell(gate.transform.position);
-        tilemapWalls.SetTile(tilePos, null);
+        tilemapWalls.SetTile(tilePos, tile);
         switch (gate.typeGate)
         {
             case TypeGate.Horizontal:
-                tilemapWalls.SetTile(tilePos + Vector3Int.right, null);
+                tilemapWalls.SetTile(tilePos + Vector3Int.right, tile);
                 break;
             case TypeGate.Vertical:
-                tilemapWalls.SetTile(tilePos + Vector3Int.down, null);
+                tilemapWalls.SetTile(tilePos + Vector3Int.down, tile);
                 break;
         }
         InitMap();

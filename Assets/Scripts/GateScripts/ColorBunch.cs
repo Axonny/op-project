@@ -4,6 +4,7 @@
     {
         Gold,
         Red,
-        Green
+        Green,
+        NonOpening
     }
 }
